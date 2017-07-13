@@ -13,14 +13,14 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
+  username: imanual
+  password: pgsw322r3
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
   database: iManual_development
-  username: root
+  username: imanual
   password: pgsw322r3
 
 # Warning: The database defined as "test" will be erased and
