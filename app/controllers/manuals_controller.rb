@@ -1,4 +1,5 @@
 class ManualsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
 
   # GET /manuals
