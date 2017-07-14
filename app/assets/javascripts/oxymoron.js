@@ -166,6 +166,108 @@ angular.module("oxymoron.config.states", [])
           }
         })
       
+        .state('user_twitter_omniauth_authorize_path', {
+          url: '/users/auth/twitter',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_twitter_omniauth_authorize_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('passthru', $stateParams)
+            }]
+          }
+        })
+      
+        .state('user_twitter_omniauth_callback_path', {
+          url: '/users/auth/twitter/callback',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_twitter_omniauth_callback_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('twitter', $stateParams)
+            }]
+          }
+        })
+      
+        .state('user_vk_omniauth_authorize_path', {
+          url: '/users/auth/vk',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_vk_omniauth_authorize_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('passthru', $stateParams)
+            }]
+          }
+        })
+      
+        .state('user_vk_omniauth_callback_path', {
+          url: '/users/auth/vk/callback',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_vk_omniauth_callback_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('vk', $stateParams)
+            }]
+          }
+        })
+      
+        .state('user_google_oauth2_omniauth_authorize_path', {
+          url: '/users/auth/google_oauth2',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_google_oauth2_omniauth_authorize_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('passthru', $stateParams)
+            }]
+          }
+        })
+      
+        .state('user_google_oauth2_omniauth_callback_path', {
+          url: '/users/auth/google_oauth2/callback',
+          
+          templateUrl: function(params) {
+            params['ng-view']='';
+            
+            
+            return Routes['user_google_oauth2_omniauth_callback_path'](params);
+          },
+          controller: 'UsersOmniauthCallbacksCtrl as ctrl',
+          resolve: {
+            action: ['$stateParams', function ($stateParams) {
+              return resolve('google_oauth2', $stateParams)
+            }]
+          }
+        })
+      
         .state('cancel_user_registration_path', {
           url: '/users/cancel',
           
@@ -649,7 +751,7 @@ angular.module("oxymoron.directives", ['oxymoron.directives.fileupload', 'oxymor
 (function () {
   var Routes = function () {
     var self = this,
-        routes = {"rails_info_properties":{"defaults":{},"path":"/rails/info/properties"},"rails_info_routes":{"defaults":{},"path":"/rails/info/routes"},"rails_info":{"defaults":{},"path":"/rails/info"},"rails_mailers":{"defaults":{},"path":"/rails/mailers"},"new_user_session":{"defaults":{},"path":"/users/sign_in"},"user_session":{"defaults":{},"path":"/users/sign_in"},"destroy_user_session":{"defaults":{},"path":"/users/sign_out"},"user_facebook_omniauth_authorize":{"defaults":{},"path":"/users/auth/facebook"},"user_facebook_omniauth_callback":{"defaults":{},"path":"/users/auth/facebook/callback"},"cancel_user_registration":{"defaults":{},"path":"/users/cancel"},"new_user_registration":{"defaults":{},"path":"/users/sign_up"},"edit_user_registration":{"defaults":{},"path":"/users/edit"},"user_registration":{"defaults":{},"path":"/users"},"manuals":{"defaults":{},"path":"/manuals"},"new_manual":{"defaults":{},"path":"/manuals/new"},"edit_manual":{"defaults":{},"path":"/manuals/:id/edit"},"manual":{"defaults":{},"path":"/manuals/:id"},"root":{"defaults":{},"path":"/"}};
+        routes = {"rails_info_properties":{"defaults":{},"path":"/rails/info/properties"},"rails_info_routes":{"defaults":{},"path":"/rails/info/routes"},"rails_info":{"defaults":{},"path":"/rails/info"},"rails_mailers":{"defaults":{},"path":"/rails/mailers"},"new_user_session":{"defaults":{},"path":"/users/sign_in"},"user_session":{"defaults":{},"path":"/users/sign_in"},"destroy_user_session":{"defaults":{},"path":"/users/sign_out"},"user_facebook_omniauth_authorize":{"defaults":{},"path":"/users/auth/facebook"},"user_facebook_omniauth_callback":{"defaults":{},"path":"/users/auth/facebook/callback"},"user_twitter_omniauth_authorize":{"defaults":{},"path":"/users/auth/twitter"},"user_twitter_omniauth_callback":{"defaults":{},"path":"/users/auth/twitter/callback"},"user_vk_omniauth_authorize":{"defaults":{},"path":"/users/auth/vk"},"user_vk_omniauth_callback":{"defaults":{},"path":"/users/auth/vk/callback"},"user_google_oauth2_omniauth_authorize":{"defaults":{},"path":"/users/auth/google_oauth2"},"user_google_oauth2_omniauth_callback":{"defaults":{},"path":"/users/auth/google_oauth2/callback"},"cancel_user_registration":{"defaults":{},"path":"/users/cancel"},"new_user_registration":{"defaults":{},"path":"/users/sign_up"},"edit_user_registration":{"defaults":{},"path":"/users/edit"},"user_registration":{"defaults":{},"path":"/users"},"manuals":{"defaults":{},"path":"/manuals"},"new_manual":{"defaults":{},"path":"/manuals/new"},"edit_manual":{"defaults":{},"path":"/manuals/:id/edit"},"manual":{"defaults":{},"path":"/manuals/:id"},"root":{"defaults":{},"path":"/"}};
 
     self.defaultParams = {}
 

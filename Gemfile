@@ -49,7 +49,7 @@ gem 'devise-bootstrap-views'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-google'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 
 group :development, :test do
