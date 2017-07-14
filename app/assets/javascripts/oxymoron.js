@@ -166,40 +166,6 @@ angular.module("oxymoron.config.states", [])
           }
         })
       
-        .state('new_user_password_path', {
-          url: '/users/password/new',
-          
-          templateUrl: function(params) {
-            params['ng-view']='';
-            
-            
-            return Routes['new_user_password_path'](params);
-          },
-          controller: 'DevisePasswordsCtrl as ctrl',
-          resolve: {
-            action: ['$stateParams', function ($stateParams) {
-              return resolve('new', $stateParams)
-            }]
-          }
-        })
-      
-        .state('edit_user_password_path', {
-          url: '/users/password/edit',
-          
-          templateUrl: function(params) {
-            params['ng-view']='';
-            
-            
-            return Routes['edit_user_password_path'](params);
-          },
-          controller: 'DevisePasswordsCtrl as ctrl',
-          resolve: {
-            action: ['$stateParams', function ($stateParams) {
-              return resolve('edit', $stateParams)
-            }]
-          }
-        })
-      
         .state('cancel_user_registration_path', {
           url: '/users/cancel',
           
@@ -683,7 +649,7 @@ angular.module("oxymoron.directives", ['oxymoron.directives.fileupload', 'oxymor
 (function () {
   var Routes = function () {
     var self = this,
-        routes = {"rails_info_properties":{"defaults":{},"path":"/rails/info/properties"},"rails_info_routes":{"defaults":{},"path":"/rails/info/routes"},"rails_info":{"defaults":{},"path":"/rails/info"},"rails_mailers":{"defaults":{},"path":"/rails/mailers"},"new_user_session":{"defaults":{},"path":"/users/sign_in"},"user_session":{"defaults":{},"path":"/users/sign_in"},"destroy_user_session":{"defaults":{},"path":"/users/sign_out"},"user_facebook_omniauth_authorize":{"defaults":{},"path":"/users/auth/facebook"},"user_facebook_omniauth_callback":{"defaults":{},"path":"/users/auth/facebook/callback"},"new_user_password":{"defaults":{},"path":"/users/password/new"},"edit_user_password":{"defaults":{},"path":"/users/password/edit"},"user_password":{"defaults":{},"path":"/users/password"},"cancel_user_registration":{"defaults":{},"path":"/users/cancel"},"new_user_registration":{"defaults":{},"path":"/users/sign_up"},"edit_user_registration":{"defaults":{},"path":"/users/edit"},"user_registration":{"defaults":{},"path":"/users"},"manuals":{"defaults":{},"path":"/manuals"},"new_manual":{"defaults":{},"path":"/manuals/new"},"edit_manual":{"defaults":{},"path":"/manuals/:id/edit"},"manual":{"defaults":{},"path":"/manuals/:id"},"root":{"defaults":{},"path":"/"}};
+        routes = {"rails_info_properties":{"defaults":{},"path":"/rails/info/properties"},"rails_info_routes":{"defaults":{},"path":"/rails/info/routes"},"rails_info":{"defaults":{},"path":"/rails/info"},"rails_mailers":{"defaults":{},"path":"/rails/mailers"},"new_user_session":{"defaults":{},"path":"/users/sign_in"},"user_session":{"defaults":{},"path":"/users/sign_in"},"destroy_user_session":{"defaults":{},"path":"/users/sign_out"},"user_facebook_omniauth_authorize":{"defaults":{},"path":"/users/auth/facebook"},"user_facebook_omniauth_callback":{"defaults":{},"path":"/users/auth/facebook/callback"},"cancel_user_registration":{"defaults":{},"path":"/users/cancel"},"new_user_registration":{"defaults":{},"path":"/users/sign_up"},"edit_user_registration":{"defaults":{},"path":"/users/edit"},"user_registration":{"defaults":{},"path":"/users"},"manuals":{"defaults":{},"path":"/manuals"},"new_manual":{"defaults":{},"path":"/manuals/new"},"edit_manual":{"defaults":{},"path":"/manuals/:id/edit"},"manual":{"defaults":{},"path":"/manuals/:id"},"root":{"defaults":{},"path":"/"}};
 
     self.defaultParams = {}
 

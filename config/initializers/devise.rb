@@ -35,6 +35,7 @@ Devise.setup do |config|
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [:email]
+  config.authentication_keys = [:uid]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -46,12 +47,14 @@ Devise.setup do |config|
   # Configure which authentication keys should be case-insensitive.
   # These keys will be downcased upon creating or modifying a user and when used
   # to authenticate or find a user. Default is :email.
-  config.case_insensitive_keys = [:email]
+  # config.case_insensitive_keys = [:email]
+  config.case_insensitive_keys = [:uid]
 
   # Configure which authentication keys should have whitespace stripped.
   # These keys will have whitespace before and after removed upon creating or
   # modifying a user and when used to authenticate or find a user. Default is :email.
-  config.strip_whitespace_keys = [:email]
+  # config.strip_whitespace_keys = [:email]
+  config.strip_whitespace_keys = [:uid]
 
   # Tell if authentication through request.params is enabled. True by default.
   # It can be set to an array that will enable params authentication only for the
@@ -251,7 +254,7 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "341349279632556", "b293a0628555c41bf5a6626cb875e008", scope: 'email', callback_url: "http://localhost:3000/users/auth/facebook/callback"
+  config.omniauth :facebook, "341349279632556", "b293a0628555c41bf5a6626cb875e008", scope: 'email,user_birthday', callback_url: "http://localhost:3000/users/auth/facebook/callback"
   # config.omniauth :twitter, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/twitter/callback"
   # config.omniauth :vk, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/vk/callback"
 
