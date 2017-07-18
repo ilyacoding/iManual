@@ -1,16 +1,29 @@
 class ManualsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!, only: [:new, :update, :destroy]
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /manuals
   # GET /manuals.json
   def index
     @manuals = Manual.all
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @manuals
+      }
+    end
   end
 
   # GET /manuals/1
   # GET /manuals/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @manual
+      }
+    end
   end
 
   # GET /manuals/new
@@ -26,6 +39,7 @@ class ManualsController < ApplicationController
   # POST /manuals.json
   def create
     @manual = Manual.new(manual_params)
+    @manual.user_id = current_user.id
 
     respond_to do |format|
       if @manual.save
