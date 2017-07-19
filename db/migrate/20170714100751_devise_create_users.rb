@@ -33,8 +33,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       # t.datetime :locked_at
 
       # Omniauth
-      t.string :provider
-      t.string :uid, null: false, default: ""
+      t.string :provider, null: false
+      t.string :uid, null: false
 
       t.timestamps null: false
     end

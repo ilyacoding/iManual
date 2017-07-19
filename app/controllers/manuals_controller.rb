@@ -43,7 +43,7 @@ class ManualsController < ApplicationController
 
     respond_to do |format|
       if @manual.save
-        format.html { redirect_to @manual, notice: 'Manual was successfully created.' }
+        format.html { redirect_to edit_manual_path(@manual), notice: 'Manual was successfully created.' }#@manual, notice: 'Manual was successfully created.' }
         format.json { render :show, status: :created, location: @manual }
       else
         format.html { render :new }
