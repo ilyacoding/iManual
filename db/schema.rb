@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717163309) do
+ActiveRecord::Schema.define(version: 20170718231349) do
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "type"
     t.bigint "step_id"
     t.datetime "created_at", null: false
@@ -22,20 +22,21 @@ ActiveRecord::Schema.define(version: 20170717163309) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "content"
+    t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "manuals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_manuals_on_user_id"
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "pade_id"
+    t.integer "page_id", null: false
     t.bigint "manual_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,7 +56,7 @@ ActiveRecord::Schema.define(version: 20170717163309) do
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.string "resource_type"
     t.bigint "resource_id"
     t.datetime "created_at", null: false
@@ -66,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170717163309) do
   end
 
   create_table "steps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "page_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,8 +83,8 @@ ActiveRecord::Schema.define(version: 20170717163309) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.string "provider"
-    t.string "uid", default: "", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["uid"], name: "index_users_on_uid", unique: true
@@ -98,6 +99,7 @@ ActiveRecord::Schema.define(version: 20170717163309) do
   end
 
   add_foreign_key "blocks", "steps"
+  add_foreign_key "manuals", "users"
   add_foreign_key "pages", "manuals"
   add_foreign_key "steps", "pages"
 end
