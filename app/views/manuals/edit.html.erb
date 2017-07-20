@@ -95,41 +95,111 @@
         $(".sortable").sortable();
         $(".sortable").disableSelection();
     } );
+
+    function create_page() {
+        $.ajax({
+            type: 'POST',
+            url: "/manuals/1/pages",
+            dataType: 'html',
+            success: function (data)
+            {
+                alert(JSON.stringify(data));
+                $("#page-list").append(data);
+                $("#sortable").trigger("sortupdate");
+            },
+            error: function (data)
+            {
+                alert("Connection error.");
+            }
+        });
+    }
 </script>
 
+<div id="page-list" class="column" style="width:100%;">
+  <p><a onclick="create_page()">No pages found Create page</a></p>
+    <% if @pages.any? %>
+        <%= render @pages %>
+    <% else %>
+
+    <% end %>
 
 
-<div class="column" style="width:100%;">
+  <!--<div class="portlet">-->
+    <!--<div class="portlet-header">Page 1</div>-->
+    <!--<div class="portlet-content">-->
+      <!--<ul class="sortable">-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="portlet">
-    <div class="portlet-header">Page 1</div>
-    <div class="portlet-content">
-      <ul class="sortable">
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="portlet">
-    <div class="portlet-header">Page 2</div>
-    <div class="portlet-content">
-      <ul class="sortable">
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 4</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 5</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 6</li>
-        <li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 7</li>
-      </ul>
-    </div>
-  </div>
+  <!--<div class="portlet">-->
+    <!--<div class="portlet-header">Page 2</div>-->
+    <!--<div class="portlet-content">-->
+      <!--<ul class="sortable">-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 1</li>-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 2</li>-->
+        <!--<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span>Item 3</li>-->
+      <!--</ul>-->
+    <!--</div>-->
+  <!--</div>-->
 
 </div>
 
+<script>
+
+
+    angular.module('todoApp', ['ui.sortable'])
+        .controller('TodoListController', function() {
+            var todoList = this;
+            todoList.todos = [
+                {text:'learn AngularJS', done:true},
+                {text:'build an AngularJS app', done:false}];
+
+            todoList.addTodo = function() {
+                todoList.todos.push({text:todoList.todoText, done:false});
+                todoList.todoText = '';
+            };
+
+            todoList.remaining = function() {
+                var count = 0;
+                angular.forEach(todoList.todos, function(todo) {
+                    count += todo.done ? 0 : 1;
+                });
+                return count;
+            };
+
+            todoList.archive = function() {
+                var oldTodos = todoList.todos;
+                todoList.todos = [];
+                angular.forEach(oldTodos, function(todo) {
+                    if (!todo.done) todoList.todos.push(todo);
+                });
+            };
+        });
+
+
+</script>
+
+<div ng-app="todoApp">
+  <h2>Todo</h2>
+  <div ng-controller="TodoListController as todoList">
+    <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
+    [ <a href="" ng-click="todoList.archive()">archive</a> ]
+    <ul ui-sortable class="unstyled">
+      <li ng-repeat="todo in todoList.todos">
+        <label class="checkbox">
+          <input type="checkbox" ng-model="todo.done">
+          <span class="done-{{todo.done}}">{{todo.text}}</span>
+        </label>
+      </li>
+    </ul>
+    <form ng-submit="todoList.addTodo()">
+      <input type="text" ng-model="todoList.todoText"  size="30"
+             placeholder="add new todo here">
+      <input class="btn-primary" type="submit" value="add">
+    </form>
+  </div>
+</div>

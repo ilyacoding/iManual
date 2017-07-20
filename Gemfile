@@ -55,8 +55,11 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 
+gem 'angularjs-rails'
+
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'rails-angular-ui-sortable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

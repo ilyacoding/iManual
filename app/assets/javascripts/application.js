@@ -43,5 +43,10 @@
 
 //= require jquery-ui/effect.all
 
+//= require angular
+//= require angular-animate
+//= require angular-resource
+//= require angular-ui-sortable
+
 //= require_self
 
