@@ -1,7 +1,7 @@
 class ManualsController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :update, :destroy]
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  # load_and_authorize_resource
 
   # GET /manuals
   # GET /manuals.json
@@ -33,6 +33,7 @@ class ManualsController < ApplicationController
 
   # GET /manuals/1/edit
   def edit
+    @pages = @manual.pages.to_a
   end
 
   # POST /manuals

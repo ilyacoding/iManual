@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20170718231349) do
   end
 
   create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "page_id", null: false
+    t.integer "priority", null: false
     t.bigint "manual_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
