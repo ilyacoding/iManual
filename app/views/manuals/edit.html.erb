@@ -65,29 +65,33 @@
     margin-left: -1.3em;
   }
 
+  .fa-close {
+    cursor: pointer;
+  }
 </style>
 
 <script>
-    $( function() {
-        $( ".column" ).sortable({
-            connectWith: ".column",
-            handle: ".portlet-header",
-            cancel: ".portlet-toggle",
-            placeholder: "portlet-placeholder ui-corner-all"
-        });
+//    $( function() {
+//        $( ".column" ).sortable({
+//            connectWith: ".column",
+//            handle: ".portlet-header",
+//            cancel: ".portlet-toggle",
+//            placeholder: "portlet-placeholder ui-corner-all"
+//        });
+//
+//        $( ".portlet" )
+//            .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
+//            .find( ".portlet-header" )
+//            .addClass( "ui-widget-header ui-corner-all" )
+//            .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
+//
+//        $( ".portlet-toggle" ).on( "click", function() {
+//            var icon = $( this );
+//            icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
+//            icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
+//        });
+//    } );
 
-        $( ".portlet" )
-            .addClass( "ui-widget ui-widget-content ui-helper-clearfix ui-corner-all" )
-            .find( ".portlet-header" )
-            .addClass( "ui-widget-header ui-corner-all" )
-            .prepend( "<span class='ui-icon ui-icon-minusthick portlet-toggle'></span>");
-
-        $( ".portlet-toggle" ).on( "click", function() {
-            var icon = $( this );
-            icon.toggleClass( "ui-icon-minusthick ui-icon-plusthick" );
-            icon.closest( ".portlet" ).find( ".portlet-content" ).toggle();
-        });
-    } );
 </script>
 
 <script>
@@ -100,12 +104,12 @@
         $.ajax({
             type: 'POST',
             url: "/manuals/1/pages",
-            dataType: 'html',
+            dataType: 'json',
             success: function (data)
             {
                 alert(JSON.stringify(data));
-                $("#page-list").append(data);
-                $("#sortable").trigger("sortupdate");
+//                $("#page-list").append(data);
+//                $("#sortable").trigger("sortupdate");
             },
             error: function (data)
             {
@@ -149,57 +153,125 @@
 </div>
 
 <script>
+    $(function() {
+        $( "#sortable" ).sortable();
+        $( "#sortable" ).disableSelection();
+    });
+
+  function PageListCtrl($scope)
+  {
+      var tmpList = [];
+      $scope.list = [
+          { "id":10, "priority":1, "manual_id":1, "steps": [{ name: "Do good" }, { name: "Do next thing" }] },
+          { "id":11, "priority":2, "manual_id":1, "steps": [{ name: "Do good 2" }, { name: "Do next thing 3" }] },
+          { "id":12, "priority":3, "manual_id":1, "steps": [{ name: "Do good 3" }] }
+      ];
+
+      $scope.sortableOptions = {
+          cursor: "move",
+          update: function (e, ui) {
+              var $list = ui.item.parent();
+              $scope.$apply(function () {
+                  $scope.currSort = $list.sortable("toArray")
+
+              })
+          }
+      };
+
+      $scope.syncOrder = function (elemPositions) {
+          $scope.list.forEach(function (obj) {
+              elemPositions.forEach(function (elemId, index) {
+                  var id = parseInt(elemId.replace(/object-/, ''));
+                  if (id === obj.id) {
+                      obj.priority = index + 1;
+                  }
+              });
+          });
+      };
+
+      $scope.addPage = function() {
+          $scope.list.push({ "id":0, "priority": list.length + 1, "manual_id":1 });
+      }
+
+      $scope.deletePage = function(index) {
+          $scope.list.splice(index, 1);
+          $('#page-list').sortable();
+          $('$page-list').trigger('sortupdate');
+      }
+
+      $scope.updateOrder = function (element) {
+          $scope.syncOrder(element.sortable('toArray'));
+      }
+//      this.addPage = function() {
+//          alert('TODO: ADD');
+////                pagesList.todos.push({ text: pagesList.todoText, done: false });
+////                pagesList.todoText = '';
+//      };
 
 
-    angular.module('todoApp', ['ui.sortable'])
-        .controller('TodoListController', function() {
-            var todoList = this;
-            todoList.todos = [
-                {text:'learn AngularJS', done:true},
-                {text:'build an AngularJS app', done:false}];
+//            pagesList.remaining = function() {
+//                var count = 0;
+//                angular.forEach(todoList.todos, function(todo) {
+//                    count += todo.done ? 0 : 1;
+//                });
+//                return count;
+//            };
 
-            todoList.addTodo = function() {
-                todoList.todos.push({text:todoList.todoText, done:false});
-                todoList.todoText = '';
-            };
+//            pagesList.remove = function() {
+//                var oldTodos = todoList.todos;
+//                todoList.todos = [];
+//                angular.forEach(oldTodos, function(todo) {
+//                    if (!todo.done) todoList.todos.push(todo);
+//                });
+//            };
 
-            todoList.remaining = function() {
-                var count = 0;
-                angular.forEach(todoList.todos, function(todo) {
-                    count += todo.done ? 0 : 1;
-                });
-                return count;
-            };
+  }
 
-            todoList.archive = function() {
-                var oldTodos = todoList.todos;
-                todoList.todos = [];
-                angular.forEach(oldTodos, function(todo) {
-                    if (!todo.done) todoList.todos.push(todo);
-                });
-            };
-        });
+    var app = angular.module('manualApp', ['ui.sortable'])
+        .controller('PageListCtrl', ['$scope', PageListCtrl]);
 
+    app.directive('sortable', function ($timeout) {
+        return function ($scope, element, attributes) {
+            element.sortable({
+                stop : function(event, ui) {
+                    $scope.$apply(function () {
+                        $scope.updateOrder(element)
+//                        $scope.syncOrder(element.sortable('toArray'));
+                    });
+                }
+            });
+        };
+    });
 
 </script>
 
-<div ng-app="todoApp">
+<div ng-app="manualApp">
   <h2>Todo</h2>
-  <div ng-controller="TodoListController as todoList">
-    <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-    [ <a href="" ng-click="todoList.archive()">archive</a> ]
-    <ul ui-sortable class="unstyled">
-      <li ng-repeat="todo in todoList.todos">
-        <label class="checkbox">
-          <input type="checkbox" ng-model="todo.done">
-          <span class="done-{{todo.done}}">{{todo.text}}</span>
-        </label>
+  <div ng-controller="PageListCtrl">
+    <!--<span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>-->
+    <!--[ <a href="" ng-click="todoList.archive()">archive</a> ]-->
+    <ul id="page-list" sortable>
+      <li id="object-{{page.id}}" ng-repeat="page in list">
+        <hr>
+        <div class="portlet">
+          <div  class="portlet-header" style="text-align: center;">
+            Page {{page.priority}}
+            <span class="glyphicon glyphicon-remove" ng-click="deletePage($index)" style="float: right;"></span>
+          </div>
+            <div class="portlet-content">
+              <ul>
+                <li ng-repeat="step in page.steps">{{step.name}}</li>
+              </ul>
+            </div>
+        </div>
+        <hr>
       </li>
     </ul>
-    <form ng-submit="todoList.addTodo()">
-      <input type="text" ng-model="todoList.todoText"  size="30"
-             placeholder="add new todo here">
-      <input class="btn-primary" type="submit" value="add">
-    </form>
+    <button type="button" class="btn btn-primary" ng-click="addPage()">Add page</button>
+    <!--<form ng-submit="todoList.addTodo()">-->
+      <!--<input type="text" ng-model="todoList.todoText"  size="30"-->
+             <!--placeholder="add new todo here">-->
+      <!--<input class="btn-primary" type="submit" value="add">-->
+    <!--</form>-->
   </div>
 </div>

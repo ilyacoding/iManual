@@ -34,3 +34,7 @@
  *= require jquery-ui/tabs
  *= require jquery-ui/tooltip
  */
+
+ul {
+    list-style: none outside none;
+}
