@@ -44,8 +44,6 @@ GEM
     arel (8.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
-    bower (0.0.5)
-      multi_json
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (2.0.0)
@@ -275,7 +273,6 @@ PLATFORMS
 
 DEPENDENCIES
   angularjs-rails
-  bower
   byebug
   cancancan
   capybara (~> 2.13)
@@ -314,4 +311,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
