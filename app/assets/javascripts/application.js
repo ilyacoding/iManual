@@ -47,7 +47,6 @@
 //= require angular-animate
 //= require angular-resource
 //= require angular-ui-sortable
-//= require angular-sortable
-
+//= require_tree .
 //= require_self
 
