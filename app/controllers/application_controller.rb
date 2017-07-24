@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :store_current_location, :unless => :devise_controller?
+
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.json { head :forbidden, content_type: 'text/html' }
@@ -30,6 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   private
   # override the devise helper to store the current location so we can

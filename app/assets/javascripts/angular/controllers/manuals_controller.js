@@ -1,5 +1,43 @@
-var app = angular.module('manualApp', ['ui.sortable'])
-    .controller('PageListCtrl', ['$scope', PageListCtrl]);
+// app.controller('ForumIndexController', function($scope, Forum) {
+//     //Скачиваем все форумы с сервера
+//     $scope.items = Forum.query();
+//     //Метод для разрушения форума
+//     $scope.destroy = function(index) {
+//         //Командует серверу удалить объект
+//         Forum.remove({
+//             id: $scope.items[index].id
+//         }, function() {
+//             //Если успешно, удалим его из нашей коллекции
+//             $scope.items.splice(index, 1);
+//         });
+//     }
+// });
+
+// app.controller('ForumCreateController', function($scope, $location, Forum) {
+//     //Метод сохранения, вызывается когда пользователь решил отослать его данные
+//     $scope.save = function() {
+//         //Создаем объект форума для посылки бекенду
+//         var forum = new Forum($scope.forum);
+//         //Сохраняем объект форума
+//         forum.$save(function() {
+//             //Редиректимся на главную
+//             $location.path('/');
+//         }, function(response) {
+//             //Post response objects to the view
+//             $scope.errors = response.data.errors;
+//         });
+//     }
+// });
+
+//Контроллер для показа форума во всей красе
+app.controller('ManualShowController', function($scope, Manual, Page, $routeParams) {
+    //Тянем форум с сервера
+    $scope.manual = Manual.get({
+        id: $routeParams.id
+    })
+});
+
+app.controller('PageListCtrl', ['$scope', PageListCtrl]);
 
 function PageListCtrl($scope)
 {

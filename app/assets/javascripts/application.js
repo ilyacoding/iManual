@@ -48,6 +48,7 @@
 //= require angular-resource
 //= require angular-ui-sortable
 //= require angularjs/rails/resource
+
 //= require_tree .
 //= require_self
 
