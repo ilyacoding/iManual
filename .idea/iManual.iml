@@ -134,6 +134,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.5.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="angularjs-rails (v1.6.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="angularjs-rails-resource (v2.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v8.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.11, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.5.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />

@@ -21,7 +21,7 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: @manual
+        render json: @manual, include: :pages
       }
     end
   end

@@ -41,7 +41,6 @@ gem 'jbuilder', '~> 2.5'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
-# gem 'oxymoron'
 gem 'thinking-sphinx', '~> 3.3.0'
 
 # Authorization
@@ -59,6 +58,7 @@ gem 'angularjs-rails'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'rails-angular-ui-sortable'
+gem 'angularjs-rails-resource', '~> 2.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
