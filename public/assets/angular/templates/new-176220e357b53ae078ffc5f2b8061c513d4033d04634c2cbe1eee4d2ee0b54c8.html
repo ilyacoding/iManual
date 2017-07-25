@@ -1,0 +1,15 @@
+<h2>New Forum</h2>
+<!-- Когда сабмитим форму вызывается метод save -->
+<form ng-submit="save()" class="form-vertical">
+    <!-- The control-group, control-label, and controls classes are Bootstrap specific -->
+    <div class="control-group"> <label class="control-label">Forum Name:</label>
+        <div class="controls">
+            <!-- Это поле связано с forum.name --><input type="text" ng-model="forum.name" />
+            <!-- Все ошибки отобразим здесь -->
+            <div ng-repeat="error in errors.name">{{error}}</div>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls"> <input class="btn btn-primary" type="submit" value="Create!" /> </div>
+    </div>
+</form>

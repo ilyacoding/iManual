@@ -21,7 +21,7 @@ class ManualsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: @manual, include: :pages
+        render json: @manual, include: :steps
       }
     end
   end
@@ -33,7 +33,6 @@ class ManualsController < ApplicationController
 
   # GET /manuals/1/edit
   def edit
-    @pages = @manual.pages.to_a
   end
 
   # POST /manuals
