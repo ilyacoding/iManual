@@ -8,14 +8,14 @@ class ApplicationController < ActionController::Base
       format.js   { head :forbidden, content_type: 'text/html' }
     end
   end
-  # layout proc {
-  #   if request.xhr?
-  #     false
-  #   else
-  #     index
-  #     'application' # или другой лейаут
-  #   end
-  # }
+  layout proc {
+    if request.xhr?
+      false
+    else
+      index
+      'application' # или другой лейаут
+    end
+  }
 
   # def authenticate_user!
   #   unless current_user

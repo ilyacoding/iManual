@@ -1,9 +1,0 @@
-{
-  "name": "iManual app",
-  "version": "1.0",
-  "main": "iManual",
-  "private": true,
-  "dependencies": {
-    "angular-sortable": "^0.3.4"
-  }
-}

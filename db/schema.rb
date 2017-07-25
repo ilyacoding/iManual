@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170718231349) do
+ActiveRecord::Schema.define(version: 20170724122525) do
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
@@ -33,14 +33,6 @@ ActiveRecord::Schema.define(version: 20170718231349) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_manuals_on_user_id"
-  end
-
-  create_table "pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "priority", null: false
-    t.bigint "manual_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["manual_id"], name: "index_pages_on_manual_id"
   end
 
   create_table "rails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,10 +60,10 @@ ActiveRecord::Schema.define(version: 20170718231349) do
 
   create_table "steps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
-    t.bigint "page_id"
+    t.bigint "manual_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["page_id"], name: "index_steps_on_page_id"
+    t.index ["manual_id"], name: "index_steps_on_manual_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -100,6 +92,4 @@ ActiveRecord::Schema.define(version: 20170718231349) do
 
   add_foreign_key "blocks", "steps"
   add_foreign_key "manuals", "users"
-  add_foreign_key "pages", "manuals"
-  add_foreign_key "steps", "pages"
 end

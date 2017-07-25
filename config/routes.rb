@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'manuals#index'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
-  resources :manuals, :defaults => {format: :json} do
-    resources :pages
+
+  resources :manuals do
+    resource :steps
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  # root to: 'manuals#index'
+
+  root to: 'manuals#index'
 end
