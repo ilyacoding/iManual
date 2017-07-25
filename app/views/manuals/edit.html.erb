@@ -73,8 +73,9 @@
         });
 
         $scope.cl = function () {
-            alert($scope.manual["steps"]);
-            alert($scope.list);
+            $scope.list.forEach(function (obj) {
+                alert(JSON.stringify(obj));
+            });
         };
 
         $scope.form = {
@@ -93,19 +94,17 @@
 //            { "id":3, "priority":3, "manual_id":1, "name": "Finish" }
 //        ];
 
-        $scope.i = 4;
-
 //        $scope.list.push(Step.get({id: 1}));
 
         $scope.sortableOptions = {
-            cursor: "move",
-            update: function (e, ui) {
-                var $list = ui.item.parent();
-                $scope.$apply(function () {
-                    $scope.currSort = $list.sortable("toArray")
-
-                })
-            }
+            cursor: "move"//,
+//            update: function (e, ui) {
+//                var $list = ui.item.parent();
+//                $scope.$apply(function () {
+//                    $scope.currSort = $list.sortable("toArray")
+//
+//                })
+//            }
         };
 
         $scope.syncOrder = function (elemPositions) {
@@ -117,6 +116,7 @@
                     }
                 });
             });
+            $scope.updateOrderBackend();
         };
 
         $scope.addStep = function(formData) {
@@ -134,33 +134,37 @@
             }
         };
 
-        $scope.syncPositions = function () {
-            var i = 1;
+        $scope.syncPositions = function (priority) {
             $scope.list.forEach(function(obj)
             {
-                obj.priority = i++;
-//                alert(JSON.stringify(obj));
-                Step.update({ id: obj.id }, obj, function (response) {
-                    alert(JSON.stringify(response));
-                });
-//                Step.get({id: obj.id}).$promise.then(function (result) {
-//                    alert(JSON.stringify(result));
-////                    Step.update(result);
-//                });
+                if (obj.priority > priority)
+                {
+                    alert(JSON.stringify(obj));
+                    obj.priority -= 1;
+                }
             });
         };
 
-        $scope.deleteStep = function(index) {
+        $scope.deleteStep = function(item) {
+            var index = $scope.list.indexOf(item);
+            var priority = item.priority;
             Step.delete({id: $scope.list[index].id}, function () {
                 $scope.list.splice(index, 1);
-                $scope.syncPositions();
+                $scope.syncPositions(priority);
+                $scope.updateOrderBackend();
             });
         };
 
-        $scope.updateOrder = function (element) {
-            $scope.syncOrder(element.sortable('toArray'));
-            $scope.syncPositions();
-        };
+        $scope.updateOrderBackend = function () {
+            $scope.list.forEach(function (obj) {
+                Step.update({ id: obj.id }, obj, function (response) {});
+            });
+        }
+
+//        $scope.updateOrder = function (element) {
+//            $scope.syncOrder(element.sortable('toArray'));
+////            $scope.syncPositions();
+//        };
     }]);
 
 
@@ -173,7 +177,7 @@
 //                        $scope.updateOrder(element);
                         $scope.syncOrder(element.sortable('toArray'));
                     });
-                    $scope.syncPositions();
+//                    $scope.syncPositions();
                 }
             });
         };
@@ -218,15 +222,15 @@
       </div>
     </form>
 
-    <h2>Steps list</h2>
+    <h2 style="text-align: center;">Steps</h2>
 
     <ul class="draggable" id="step-list" sortable>
-      <li id="object-{{step.id}}" ng-repeat="step in list">
+      <li id="object-{{step.id}}" ng-repeat="step in list | orderBy:'priority'">
         <hr>
         <div class="portlet">
           <div  class="portlet-header" style="text-align: center;">
             <a href="/steps/{{step.id}}">Step {{step.priority}}: {{step.name}}</a>
-            <span class="glyphicon glyphicon-remove removable" ng-click="deleteStep($index)" style="float: right;"></span>
+            <span class="glyphicon glyphicon-remove removable" ng-click="deleteStep(step)" style="float: right;"></span>
           </div>
         </div>
         <hr>
