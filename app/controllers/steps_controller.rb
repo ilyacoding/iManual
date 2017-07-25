@@ -5,11 +5,23 @@ class StepsController < ApplicationController
   # GET /steps.json
   def index
     @steps = Step.all
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @steps
+      }
+    end
   end
 
   # GET /steps/1
   # GET /steps/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: @step
+      }
+    end
   end
 
   # GET /steps/new
@@ -69,6 +81,7 @@ class StepsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def step_params
-      params.fetch(:step, {})
+      params.require(:step).permit(:name, :priority, :manual_id)
+      # params.fetch(:step, {})
     end
 end
