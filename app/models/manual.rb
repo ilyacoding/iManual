@@ -1,6 +1,6 @@
 class Manual < ApplicationRecord
   resourcify
-  has_many :pages
-  has_many :comments, as: :commentable
   belongs_to :user
+  has_many :steps
+  has_many :comments, as: :commentable
 end

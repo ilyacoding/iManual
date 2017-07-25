@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170724122525) do
 
   create_table "steps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
+    t.bigint "priority", null: false
     t.bigint "manual_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
