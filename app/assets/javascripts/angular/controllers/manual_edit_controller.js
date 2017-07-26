@@ -1,11 +1,13 @@
 angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 'Steps', function ($scope, Manual, Step, Steps)
 {
-    $scope.manual = Manual.get({id: 1});
+    $scope.getManual = function(manualId) {
+        $scope.manual = Manual.get({id: manualId});
 
-    $scope.manual.$promise.then(function (result) {
-        $scope.list = result.steps;
-        $scope.form.data.text = result.name;
-    });
+        $scope.manual.$promise.then(function (result) {
+            $scope.list = result.steps;
+            $scope.form.data.text = result.name;
+        });
+    };
 
     $scope.cl = function () {
         $scope.list.forEach(function (obj) {
@@ -22,25 +24,6 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
         $scope.manual.name = $scope.form.data.text;
         Manual.update({ id: $scope.manual["id"] }, $scope.manual);
     };
-
-//            [
-//            { "id":1, "priority":1, "manual_id":1, "name": "Prepare" },
-//            { "id":2, "priority":2, "manual_id":1, "name": "Cook" },
-//            { "id":3, "priority":3, "manual_id":1, "name": "Finish" }
-//        ];
-
-//        $scope.list.push(Step.get({id: 1}));
-
-//     $scope.sortableOptions = {
-//         cursor: "move"//,
-// //            update: function (e, ui) {
-// //                var $list = ui.item.parent();
-// //                $scope.$apply(function () {
-// //                    $scope.currSort = $list.sortable("toArray")
-// //
-// //                })
-// //            }
-//     };
 
     $scope.syncOrder = function (elemPositions) {
         $scope.list.forEach(function (obj) {
