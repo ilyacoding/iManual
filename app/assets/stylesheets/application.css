@@ -38,3 +38,10 @@
 ul {
     list-style: none outside none;
 }
+
+.draggable:hover {
+    cursor: move;
+}
+.removable:hover {
+    cursor: pointer;
+}

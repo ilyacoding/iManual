@@ -26,5 +26,5 @@
 //= require angular-ui-sortable
 //= require angular-resource
 
-//= require_tree .
+//= require manuals.js
 
