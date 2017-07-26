@@ -26,6 +26,5 @@
 //= require angular-ui-sortable
 //= require angular-resource
 
-//= require app.js
 //= require_tree .
 
