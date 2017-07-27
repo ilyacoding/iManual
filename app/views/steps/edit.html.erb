@@ -36,7 +36,7 @@
               {{block.content}}
             </div>
             <div ng-switch-when="Markdown">
-              <textarea cols="95" ng-change="updateBlock(block)" ng-model="block.content"></textarea>
+              <textarea style="border: none" cols="95" ng-change="updateBlock(block)" ng-model="block.content"></textarea>
             </div>
           </div>
 
@@ -47,20 +47,30 @@
     <a ng-click="cl()">aaaaa</a>
     <div class="text-center">
       <div class="btn-group">
-        <button type="button" class="btn btn-secondary disabled">New</button>
         <button type="button" class="btn btn-primary" ng-click="addText()">Text</button>
         <button type="button" class="btn btn-primary" ng-click="addImage()">Image</button>
         <button type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
       </div>
     </div>
 
-    <form>
-      Upload image <input type="file" ng-model="img" accept="image/*" id="file" />
+    <!--<form action>-->
+      <!--<input type="file" fileread="uploadme.src">-->
+      <!--<img ng-src="{{ uploadme.src }}">-->
+    <!--</form>-->
 
-      <!-- executes js upload function with uploaded images -->
-      <button ng-click="upload()">Submit</button>
+    <!--<input type="file" ng-model="uploaded_image" accept="image/*" app-filereader />-->
 
-    </form>
-
+    <!--<div class="image-container">-->
+      <!--<img ng-src={{image}} />-->
+      <!--<span class="file-name">{{imageFileName}}</span>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;<input type="file" nv-file-select="" uploader="uploader">&ndash;&gt;-->
+      <!--&lt;!&ndash; executes js upload function with uploaded images &ndash;&gt;-->
+      <!--<button ng-click="upload()">Submit</button>-->
+    <!--<div class="input-group">-->
+      <!--<input id="image" class="hidden" type="file" img-upload ng-model="imageName" name="imageName">-->
+      <!--<img ng-src="{{image}}" height="100" width="100" ng-show="image"/>-->
+      <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
+    <!--</div>-->
   </div>
 </div>
