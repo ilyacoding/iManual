@@ -1,54 +1,7 @@
-angular.module('app').directive('fileButton', function() {
-    return {
-        link: function(scope, element, attributes) {
-
-            var el = angular.element(element);
-            var button = el.children()[0];
-
-            el.css({
-                position: 'relative',
-                overflow: 'hidden',
-                width: button.offsetWidth,
-                height: button.offsetHeight
-            });
-
-            var fileInput = angular.element('<input type="file" class="button" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />')
-            fileInput.css({
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                'z-index': '2',
-                width: '100%',
-                height: '100%',
-                opacity: '0',
-                cursor: 'pointer'
-            });
-
-            el.append(fileInput);
-        }
-    }
-});
-
-angular.module('app').directive('elastic', [
-    '$timeout',
-    function($timeout) {
-        return {
-            restrict: 'A',
-            link: function($scope, element) {
-                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
-                var resize = function() {
-                    element[0].style.height = $scope.initialHeight;
-                    element[0].style.height = "" + element[0].scrollHeight + "px";
-                };
-                element.on("input change", resize);
-                $timeout(resize, 0);
-            }
-        };
-    }
-]);
-
-angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Step', 'Block', 'Markdowns', 'Images', 'imgur', function ($scope, $http, $location, Step, Block, Markdowns, Images, imgur)
+angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Step', 'Block', 'Markdowns', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Step, Block, Markdowns, Images, Videos, imgur)
 {
+
+    $scope.theBestVideo = 'L0_ZvF0AN5k';
 
     $scope.loading = false;
 
@@ -95,7 +48,28 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
 
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
+            var fileType = file.type;
+
+
+            var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+
+            var isValidFile = false;
+
+            for(var index in allowedExtension) {
+
+                if(fileType === allowedExtension[index]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+
+            if(!isValidFile) {
+                alert('Only images allowed');
+                return;
+            }
+
             $scope.loading = true;
+
             imgur.upload(file).then(function then(model) {
                 $scope.loading = false;
                 $scope.addImage(model.link);
@@ -129,8 +103,30 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         });
     };
 
-    $scope.addVideo = function () {
+    $scope.parseYoutubeUrl = function youtube_parser(url){
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        return (match&&match[7].length==11)? match[7] : false;
+    }
 
+    $scope.addVideo = function () {
+        var url = prompt('Youtube link', "");
+        var parsedData = $scope.parseYoutubeUrl(url);
+        if (parsedData == false)
+        {
+            alert('Invalid link');
+            return;
+        }
+
+        var video = new Block();
+        video.content = parsedData;
+        video.priority = $scope.list.length + 1;
+        video.step_id = $scope.step.id;
+        Videos.create(video, function(response) {
+            Block.get({id: response.id}).$promise.then(function (result) {
+                $scope.list.push(result);
+            });
+        });
     };
 
     $scope.syncPositions = function (priority) {

@@ -1,1 +1,1 @@
-angular.module('app', ['ui.sortable', 'ngResource', 'ngImgur']);
+angular.module('app', ['ui.sortable', 'ngResource', 'ngImgur', 'youtube-embed']);
