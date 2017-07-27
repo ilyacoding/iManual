@@ -19,7 +19,7 @@ class StepsController < ApplicationController
     respond_to do |format|
       format.html
       format.json {
-        render json: @step
+        render json: @step, include: :blocks
       }
     end
   end

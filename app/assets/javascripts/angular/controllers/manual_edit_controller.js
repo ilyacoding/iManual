@@ -57,7 +57,6 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
         {
             if (obj.priority > priority)
             {
-                alert(JSON.stringify(obj));
                 obj.priority -= 1;
             }
         });

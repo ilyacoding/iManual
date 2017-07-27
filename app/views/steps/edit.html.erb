@@ -2,4 +2,65 @@
 <div class="page-header">
   <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
-<%= render :partial => 'form' %>
+
+<style>
+  img {
+    max-height: 800px;
+    max-width: 800px;
+    height: auto;
+    width: auto;
+  }
+</style>
+
+<div>
+  <div ng-controller="StepEditCtrl">
+    Name:
+    <input name="text" ng-change="updateName()" ng-model="step.name"/>
+
+    <input type="hidden" ng-init="getStep(<%= @step.id %>)">
+    <h2 style="text-align: center;">Blocks</h2>
+
+    <ul class="draggable" id="block-list" sortable>
+      <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority'">
+        <hr>
+        <div class="portlet">
+          <div  class="portlet-header" style="text-align: center;">
+            <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
+          </div>
+
+          <div class="portlet-content" ng-switch="block.type">
+            <div ng-switch-when="Image">
+              <img src="{{block.content}}" />
+            </div>
+            <div ng-switch-when="Video">
+              {{block.content}}
+            </div>
+            <div ng-switch-when="Markdown">
+              <textarea cols="95" ng-change="updateBlock(block)" ng-model="block.content"></textarea>
+            </div>
+          </div>
+
+        </div>
+        <hr>
+      </li>
+    </ul>
+    <a ng-click="cl()">aaaaa</a>
+    <div class="text-center">
+      <div class="btn-group">
+        <button type="button" class="btn btn-secondary disabled">New</button>
+        <button type="button" class="btn btn-primary" ng-click="addText()">Text</button>
+        <button type="button" class="btn btn-primary" ng-click="addImage()">Image</button>
+        <button type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
+      </div>
+    </div>
+
+    <form>
+      Upload image <input type="file" ng-model="img" accept="image/*" id="file" />
+
+      <!-- executes js upload function with uploaded images -->
+      <button ng-click="upload()">Submit</button>
+
+    </form>
+
+  </div>
+</div>
