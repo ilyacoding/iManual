@@ -29,6 +29,29 @@
   }
 </style>
 
+<script>
+    function validateFile()
+    {
+        var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+
+        var isValidFile = false;
+
+        for(var index in allowedExtension) {
+
+            if(fileExtension === allowedExtension[index]) {
+                isValidFile = true;
+                break;
+            }
+        }
+
+        if(!isValidFile) {
+            alert('Allowed Extensions are : *.' + allowedExtension.join(', *.'));
+        }
+
+        return isValidFile;
+    }
+  </script>
+
 <div>
   <div ng-controller="StepEditCtrl">
     <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 25%; position: fixed; z-index: 9999; background: white;"><img src="/loader.gif"></div>
@@ -45,13 +68,13 @@
           <div  class="portlet-header" style="text-align: center;">
             <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
           </div>
-
+          {{block.priority}}
           <div class="portlet-content" ng-switch="block.type">
             <div ng-switch-when="Image">
               <img src="{{block.content}}" />
             </div>
             <div ng-switch-when="Video">
-              {{block.content}}
+              <youtube-video video-id="block.content"></youtube-video>
             </div>
             <div ng-switch-when="Markdown">
               <textarea elastic style="border: none" cols="95" rows="1" ng-change="updateBlock(block)" ng-model="block.content" placeholder="Write some text here"></textarea>
@@ -71,6 +94,5 @@
     </div>
         <button type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
     </div>
-
   </div>
 </div>
