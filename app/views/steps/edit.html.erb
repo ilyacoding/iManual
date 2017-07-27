@@ -6,14 +6,32 @@
 <style>
   img {
     max-height: 800px;
-    max-width: 800px;
+    max-width: 785px;
     height: auto;
     width: auto;
+  }
+
+  .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+  }
+  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
   }
 </style>
 
 <div>
   <div ng-controller="StepEditCtrl">
+    <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 25%; position: fixed; z-index: 9999; background: white;"><img src="/loader.gif"></div>
     Name:
     <input name="text" ng-change="updateName()" ng-model="step.name"/>
 
@@ -36,7 +54,7 @@
               {{block.content}}
             </div>
             <div ng-switch-when="Markdown">
-              <textarea style="border: none" cols="95" ng-change="updateBlock(block)" ng-model="block.content"></textarea>
+              <textarea elastic style="border: none" cols="95" rows="1" ng-change="updateBlock(block)" ng-model="block.content" placeholder="Write some text here"></textarea>
             </div>
           </div>
 
@@ -44,33 +62,15 @@
         <hr>
       </li>
     </ul>
-    <a ng-click="cl()">aaaaa</a>
+
     <div class="text-center">
-      <div class="btn-group">
         <button type="button" class="btn btn-primary" ng-click="addText()">Text</button>
-        <button type="button" class="btn btn-primary" ng-click="addImage()">Image</button>
+    <div class="fileUpload btn btn-primary">
+      <span>Image</span>
+      <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+    </div>
         <button type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
-      </div>
     </div>
 
-    <!--<form action>-->
-      <!--<input type="file" fileread="uploadme.src">-->
-      <!--<img ng-src="{{ uploadme.src }}">-->
-    <!--</form>-->
-
-    <!--<input type="file" ng-model="uploaded_image" accept="image/*" app-filereader />-->
-
-    <!--<div class="image-container">-->
-      <!--<img ng-src={{image}} />-->
-      <!--<span class="file-name">{{imageFileName}}</span>-->
-    <!--</div>-->
-    <!--&lt;!&ndash;<input type="file" nv-file-select="" uploader="uploader">&ndash;&gt;-->
-      <!--&lt;!&ndash; executes js upload function with uploaded images &ndash;&gt;-->
-      <!--<button ng-click="upload()">Submit</button>-->
-    <!--<div class="input-group">-->
-      <!--<input id="image" class="hidden" type="file" img-upload ng-model="imageName" name="imageName">-->
-      <!--<img ng-src="{{image}}" height="100" width="100" ng-show="image"/>-->
-      <!--<label for="image" class="btn btn-success btn-xs pull-center" name="upload" Value="">Upload Photo</label>-->
-    <!--</div>-->
   </div>
 </div>
