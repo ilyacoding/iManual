@@ -1,61 +1,56 @@
-angular.module('app').directive('imgUpload', ['$rootScope',function (rootScope) {
+angular.module('app').directive('fileButton', function() {
     return {
-        restrict: 'A',
-        link: function (scope, elem, attrs) {
-            var canvas = document.createElement("canvas");
-            var extensions = 'jpeg ,jpg, png, gif';
-            elem.on('change', function () {
-                reader.readAsDataURL(elem[0].files[0]);
-                var filename = elem[0].files[0].name;
+        link: function(scope, element, attributes) {
 
-                var extensionlist = filename.split('.');
-                var extension =extensionlist[extensionlist.length - 1];
-                if(extensions.indexOf(extension) == -1){
-                    alert("File extension , Only 'jpeg', 'jpg', 'png', 'gif', 'bmp' are allowed.");
+            var el = angular.element(element);
+            var button = el.children()[0];
 
-                }else{
-                    scope.file = elem[0].files[0];
-                    scope.imageName = filename;
-                }
+            el.css({
+                position: 'relative',
+                overflow: 'hidden',
+                width: button.offsetWidth,
+                height: button.offsetHeight
             });
 
-            var reader = new FileReader();
-            reader.onload = function (e) {
+            var fileInput = angular.element('<input type="file" class="button" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />')
+            fileInput.css({
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                'z-index': '2',
+                width: '100%',
+                height: '100%',
+                opacity: '0',
+                cursor: 'pointer'
+            });
 
-                scope.image = e.target.result;
-                scope.$apply();
-
-            }
+            el.append(fileInput);
         }
     }
-}]);
-//     .directive("fileread", [function () {
-//     return {
-//         scope: {
-//             fileread: "="
-//         },
-//         link: function (scope, element, attributes) {
-//             element.bind("change", function (changeEvent) {
-//                 var reader = new FileReader();
-//                 reader.onload = function (loadEvent) {
-//                     scope.$apply(function () {
-//                         scope.fileread = loadEvent.target.result;
-//                     });
-//                 };
-//                 reader.readAsDataURL(changeEvent.target.files[0]);
-//             });
-//         }
-//     }
-// }]);
+});
 
-angular.module('app').controller('StepEditCtrl', ['$scope', '$http', 'Step', 'Block', 'Markdowns', function ($scope, $http, Step, Block, Markdowns)
+angular.module('app').directive('elastic', [
+    '$timeout',
+    function($timeout) {
+        return {
+            restrict: 'A',
+            link: function($scope, element) {
+                $scope.initialHeight = $scope.initialHeight || element[0].style.height;
+                var resize = function() {
+                    element[0].style.height = $scope.initialHeight;
+                    element[0].style.height = "" + element[0].scrollHeight + "px";
+                };
+                element.on("input change", resize);
+                $timeout(resize, 0);
+            }
+        };
+    }
+]);
+
+angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Step', 'Block', 'Markdowns', 'Images', 'imgur', function ($scope, $http, $location, Step, Block, Markdowns, Images, imgur)
 {
 
-    $scope.image = null;
-    $scope.imageFileName = '';
-
-    $scope.uploadme = {};
-    $scope.uploadme.src = '';
+    $scope.loading = false;
 
     $scope.getStep = function(stepId) {
         $scope.step = Step.get({id: stepId});
@@ -72,9 +67,11 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', 'Step', 'Bl
 
     $scope.cl = function () {
         $scope.list.forEach(function (obj) {
-            alert(JSON.stringify(obj));
+            // alert(JSON.stringify(obj));
         });
+        alert($scope.image);
         // alert($scope.imageName);
+
     };
 
     $scope.updateName = function () {
@@ -93,47 +90,20 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', 'Step', 'Bl
         $scope.updateOrderBackend();
     };
 
-    // $scope.upload = function() {
-    //     $http({
-    //         headers: { Authorization: 'Client-ID 6cc23ba30a5dc03' },
-    //         method: 'POST',
-    //         url: 'https://api.imgur.com/3/image',
-    //         dataType: 'json',
-    //         data: {
-    //             'image': $scope.uploadme.src,
-    //             'type': 'base64'
-    //         }
-    //     }).then(function successCallback(response) {
-    //         alert(JSON.stringify(response));
-    //         // self.num = 2;
-    //         // $log.log('called and successful', response);
-    //     }, function errorCallback(err) {
-    //         alert(JSON.stringify(err));
-    //         console.log(err);
-    //         // self.num = 3;
-    //         // $log.log('called but error', err);
-    //     });
-    //
-    //     // $.ajax({
-    //     //     url: "https://api.imgur.com/3/upload",
-    //     //     type: "POST",
-    //     //     datatype: "json",
-    //     //     data: {
-    //     //         'image': iurl,
-    //     //         'type': 'base64'
-    //     //     },
-    //     //     success: fdone,
-    //     //     error: function(){
-    //     //         $('#loader_img').hide();
-    //     //         alert("failed");
-    //     //     },
-    //     //     beforeSend: function (xhr) {
-    //     //         $('#loader_img').show();
-    //     //         xhr.setRequestHeader("Authorization", "Client-ID " + clientId);
-    //     //     }
-    //     // });
-    //
-    // };
+    $scope.imageUpload = function(event){
+        var files = event.target.files;
+
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            $scope.loading = true;
+            imgur.upload(file).then(function then(model) {
+                $scope.loading = false;
+                $scope.addImage(model.link);
+            });
+        }
+    };
+
+
 
     $scope.addText = function () {
         var markdown = new Block();
@@ -147,8 +117,16 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', 'Step', 'Bl
         });
     };
 
-    $scope.addImage = function () {
-
+    $scope.addImage = function (link) {
+        var image = new Block();
+        image.content = link;
+        image.priority = $scope.list.length + 1;
+        image.step_id = $scope.step.id;
+        Images.create(image, function(response) {
+            Block.get({id: response.id}).$promise.then(function (result) {
+                $scope.list.push(result);
+            });
+        });
     };
 
     $scope.addVideo = function () {
