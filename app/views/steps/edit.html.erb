@@ -29,28 +29,6 @@
   }
 </style>
 
-<script>
-    function validateFile()
-    {
-        var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-
-        var isValidFile = false;
-
-        for(var index in allowedExtension) {
-
-            if(fileExtension === allowedExtension[index]) {
-                isValidFile = true;
-                break;
-            }
-        }
-
-        if(!isValidFile) {
-            alert('Allowed Extensions are : *.' + allowedExtension.join(', *.'));
-        }
-
-        return isValidFile;
-    }
-  </script>
 
 <div>
   <div ng-controller="StepEditCtrl">
