@@ -16,15 +16,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      redirect_to user_path(@user.id)
-    else
-      render 'edit'
+    respond_to do |format|
+      if @user.update_attributes(user_params)
+        format.html { redirect_to @user, notice: 'User updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -38,9 +40,9 @@ class UsersController < ApplicationController
   def correct_user
     # .to_i converts values to integers here because params[:id] is a string
     # Without this current_user.id and params[:id] would never match
-    if current_user.id != params[:id].to_i
-      redirect_to root_url
-    end
+    # if current_user.id != params[:id].to_i
+    #   redirect_to root_url
+    # end
   end
 
   def user_params
