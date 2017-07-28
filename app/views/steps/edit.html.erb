@@ -68,7 +68,6 @@
           <div  class="portlet-header" style="text-align: center;">
             <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
           </div>
-          {{block.priority}}
           <div class="portlet-content" ng-switch="block.type">
             <div ng-switch-when="Image">
               <img src="{{block.content}}" />
@@ -80,12 +79,10 @@
               <textarea elastic style="border: none" cols="95" rows="1" ng-change="updateBlock(block)" ng-model="block.content" placeholder="Write some text here"></textarea>
             </div>
           </div>
-
+          <hr>
         </div>
-        <hr>
       </li>
     </ul>
-
     <div class="text-center">
         <button type="button" class="btn btn-primary" ng-click="addText()">Text</button>
     <div class="fileUpload btn btn-primary">

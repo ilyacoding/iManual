@@ -42,6 +42,7 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
         {
             var step = new Step();
             step.name = formData.name;
+            formData.name = "";
             step.priority = $scope.list.length + 1;
             step.manual_id = $scope.manual.id;
             Steps.create(step, function(response) {
