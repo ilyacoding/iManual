@@ -1,8 +1,5 @@
 angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Step', 'Block', 'Markdowns', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Step, Block, Markdowns, Images, Videos, imgur)
 {
-
-    $scope.theBestVideo = 'L0_ZvF0AN5k';
-
     $scope.loading = false;
 
     $scope.getStep = function(stepId) {
