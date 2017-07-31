@@ -32,6 +32,7 @@
 
 <div>
   <div ng-controller="StepEditCtrl">
+    <a ng-click="cl()">aaaaa</a>
     <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 25%; position: fixed; z-index: 9999; background: white;"><img src="/loader.gif"></div>
     Name:
     <input name="text" ng-change="updateName()" ng-model="step.name"/>
@@ -40,10 +41,11 @@
     <h2 style="text-align: center;">Blocks</h2>
 
     <ul class="draggable" id="block-list" sortable>
-      <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority'">
+      <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority' track by block.priority">
         <hr>
         <div class="portlet">
           <div  class="portlet-header" style="text-align: center;">
+            priority:{{block.priority}} | id:{{block.id}}
             <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
           </div>
           <div class="portlet-content" ng-switch="block.type">

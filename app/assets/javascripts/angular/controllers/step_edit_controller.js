@@ -1,4 +1,4 @@
-angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Step', 'Block', 'Markdowns', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Step, Block, Markdowns, Images, Videos, imgur)
+angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Markdowns', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Manual, Step, Block, Markdowns, Images, Videos, imgur)
 {
     $scope.loading = false;
 
@@ -17,9 +17,9 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
 
     $scope.cl = function () {
         $scope.list.forEach(function (obj) {
-            // alert(JSON.stringify(obj));
+            alert(JSON.stringify(obj));
         });
-        alert($scope.image);
+        // alert($scope.image);
         // alert($scope.imageName);
 
     };
