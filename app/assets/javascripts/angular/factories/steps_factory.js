@@ -1,5 +1,5 @@
 angular.module('app').factory('Steps', function ($resource) {
-    return $resource('/api/steps', {}, {
+    return $resource('/steps.json', {}, {
         query: { method: 'GET', isArray: true },
         create: { method: 'POST' }
     })

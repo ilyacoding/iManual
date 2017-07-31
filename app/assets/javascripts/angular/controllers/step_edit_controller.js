@@ -10,18 +10,10 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         });
     };
 
-    $scope.updateBlock = function (block) {
-        var index = $scope.list.indexOf(block);
-        Block.update({ id: block.id }, block, function (response) {});
-    };
-
     $scope.cl = function () {
         $scope.list.forEach(function (obj) {
             alert(JSON.stringify(obj));
         });
-        // alert($scope.image);
-        // alert($scope.imageName);
-
     };
 
     $scope.updateName = function () {
@@ -103,13 +95,13 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     $scope.parseYoutubeUrl = function youtube_parser(url){
         var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
         var match = url.match(regExp);
-        return (match&&match[7].length==11)? match[7] : false;
-    }
+        return (match && match[7].length == 11)? match[7] : false;
+    };
 
     $scope.addVideo = function () {
         var url = prompt('Youtube link', "");
         var parsedData = $scope.parseYoutubeUrl(url);
-        if (parsedData == false)
+        if (!parsedData)
         {
             alert('Invalid link');
             return;
@@ -136,6 +128,12 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         });
     };
 
+    $scope.updateOrderBackend = function () {
+        $scope.list.forEach(function (obj) {
+            $scope.updateBlock(obj);
+        });
+    };
+
     $scope.deleteBlock = function(block) {
         var index = $scope.list.indexOf(block);
         var priority = block.priority;
@@ -146,9 +144,8 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         });
     };
 
-    $scope.updateOrderBackend = function () {
-        $scope.list.forEach(function (obj) {
-            Block.update({ id: obj.id }, obj, function (response) { });
-        });
-    }
+    $scope.updateBlock = function (block) {
+        var index = $scope.list.indexOf(block);
+        Block.update({ id: block.id }, block, function (response) {});
+    };
 }]);
