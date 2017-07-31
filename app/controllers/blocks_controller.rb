@@ -37,7 +37,7 @@ class BlocksController < ApplicationController
   # POST /blocks.json
   def create
     @block = Block.new(block_params)
-    @block.type = params[:type]
+    @block.type = params[:type].capitalize
 
     respond_to do |format|
       if @block.save
