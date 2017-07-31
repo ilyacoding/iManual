@@ -21,6 +21,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     };
 
     $scope.syncOrder = function (elemPositions) {
+        $scope.loading = true;
         $scope.list.forEach(function (obj) {
             elemPositions.forEach(function (elemId, index) {
                 var id = parseInt(elemId.replace(/object-/, ''));
@@ -30,20 +31,16 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
             });
         });
         $scope.updateOrderBackend();
+        $scope.loading = false;
     };
 
     $scope.imageUpload = function(event){
         var files = event.target.files;
-
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
             var fileType = file.type;
-
-
             var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-
             var isValidFile = false;
-
             for(var index in allowedExtension) {
 
                 if(fileType === allowedExtension[index]) {
@@ -51,14 +48,11 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
                     break;
                 }
             }
-
             if(!isValidFile) {
                 alert('Only images allowed');
                 return;
             }
-
             $scope.loading = true;
-
             imgur.upload(file).then(function then(model) {
                 $scope.loading = false;
                 $scope.addImage(model.link);
@@ -66,9 +60,8 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         }
     };
 
-
-
     $scope.addText = function () {
+        $scope.loading = true;
         var markdown = new Block();
         markdown.content = "";
         markdown.priority = $scope.list.length + 1;
@@ -76,18 +69,21 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         Markdowns.create(markdown, function(response) {
             Block.get({id: response.id}).$promise.then(function (result) {
                 $scope.list.push(result);
+                $scope.loading = false;
             });
         });
     };
 
     $scope.addImage = function (link) {
+        $scope.loading = true;
         var image = new Block();
         image.content = link;
         image.priority = $scope.list.length + 1;
         image.step_id = $scope.step.id;
         Images.create(image, function(response) {
-            Block.get({id: response.id}).$promise.then(function (result) {
+            Block.get({ id: response.id }).$promise.then(function (result) {
                 $scope.list.push(result);
+                $scope.loading = false;
             });
         });
     };
@@ -106,7 +102,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
             alert('Invalid link');
             return;
         }
-
+        $scope.loading = true;
         var video = new Block();
         video.content = parsedData;
         video.priority = $scope.list.length + 1;
@@ -114,6 +110,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         Videos.create(video, function(response) {
             Block.get({id: response.id}).$promise.then(function (result) {
                 $scope.list.push(result);
+                $scope.loading = false;
             });
         });
     };
@@ -135,12 +132,14 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     };
 
     $scope.deleteBlock = function(block) {
+        $scope.loading = true;
         var index = $scope.list.indexOf(block);
         var priority = block.priority;
         Block.delete({id: block.id}, function () {
             $scope.list.splice(index, 1);
             $scope.syncPositions(priority);
             $scope.updateOrderBackend();
+            $scope.loading = false;
         });
     };
 
