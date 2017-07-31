@@ -5,7 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook, :twitter, :vk, :google_oauth2]
 
-
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.uid = auth.uid
@@ -21,7 +20,6 @@ class User < ApplicationRecord
     super.tap do |user|
       if data = session["devise.provider_data"] && session["devise.provider_data"]["extra"]["raw_info"]
         user.uid = data["uid"] if user.uid.blank?
-        # user.email = data["email"] if user.email.blank?
       end
     end
   end
