@@ -1,19 +1,97 @@
-<%- model_class = Manual -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
-</div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @manual.name %></dd>
-</dl>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              manuals_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_manual_path(@manual), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+<!-- Blog Post Content Column -->
+<div>
+
+  <!-- Blog Post -->
+
+  <!-- Title -->
+  <h1><%= @manual.name %></h1>
+
+  <!-- Author -->
+  <p class="lead">by <%= link_to @manual.user.name, user_path(@manual.user) %></p>
+
+  <hr>
+
+  <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_manual_path(@manual), :class => 'btn btn-default btn-xs' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               manual_path(@manual),
-              :method => 'delete',
+              :method => :delete,
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+              :class => 'btn btn-xs btn-danger' %>
+  <hr>
+
+  <!-- Date/Time -->
+  <p><span class="glyphicon glyphicon-time"></span> Posted on <%=l @manual.created_at %></p>
+
+  <hr>
+
+  <!-- Post Content -->
+
+  <% @manual.steps.each do |step| %>
+      <h2>Step <%= step.priority %>: <%= step.name %></h2>
+      <% step.blocks.each do |block| %>
+
+      <% end %>
+      <hr>
+  <% end %>
+
+  <hr>
+
+  <!-- Blog Comments -->
+
+  <!-- Comments Form -->
+  <div class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form">
+      <div class="form-group">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <!-- Posted Comments -->
+
+  <!-- Comment -->
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">Start Bootstrap
+        <small>August 25, 2014 at 9:30 PM</small>
+      </h4>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </div>
+
+  <!-- Comment -->
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">Start Bootstrap
+        <small>August 25, 2014 at 9:30 PM</small>
+      </h4>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+      <!-- Nested Comment -->
+      <div class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="http://placehold.it/64x64" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">Nested Start Bootstrap
+            <small>August 25, 2014 at 9:30 PM</small>
+          </h4>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+      <!-- End Nested Comment -->
+    </div>
+  </div>
+
+</div>

@@ -59,6 +59,7 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'angularjs-rails'
 gem 'rails-angular-ui-sortable'
+gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
