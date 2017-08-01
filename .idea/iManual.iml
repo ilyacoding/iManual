@@ -205,6 +205,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rake (v12.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.10.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.9.10, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redcarpet (v3.4.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ref (v2.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v2.4.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="riddle (v2.2.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
