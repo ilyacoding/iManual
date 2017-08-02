@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-lg-8">
                   <p class="text-left"><strong><%= user.name %></strong></p>
-                  <p class="text-left small">correoElectronico@email.com</p>
+                  <p class="text-left small">by <%= user.provider %></p>
                   <p class="text-left">
                     <%= link_to 'Edit profile', edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
                   </p>
