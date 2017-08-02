@@ -1,5 +1,9 @@
 module ApplicationHelper
-  def render_markdown(text)
+  def categories
+    Category.all
+  end
+
+  def markdown(text)
     options = {
         filter_html:     true,
         hard_wrap:       true,

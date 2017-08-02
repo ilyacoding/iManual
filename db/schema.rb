@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731223109) do
+ActiveRecord::Schema.define(version: 20170801131609) do
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content", null: false
@@ -20,6 +20,12 @@ ActiveRecord::Schema.define(version: 20170731223109) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["step_id"], name: "index_blocks_on_step_id"
+  end
+
+  create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -34,6 +40,8 @@ ActiveRecord::Schema.define(version: 20170731223109) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "preview", default: "/no_image.jpg"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_manuals_on_category_id"
     t.index ["user_id"], name: "index_manuals_on_user_id"
   end
 
@@ -98,5 +106,6 @@ ActiveRecord::Schema.define(version: 20170731223109) do
   end
 
   add_foreign_key "blocks", "steps"
+  add_foreign_key "manuals", "categories"
   add_foreign_key "manuals", "users"
 end

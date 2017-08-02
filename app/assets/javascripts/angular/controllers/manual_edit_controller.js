@@ -1,11 +1,17 @@
-angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 'Steps', function ($scope, Manual, Step, Steps)
+angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categories', 'Step', 'Steps', function ($scope, Manual, Categories, Step, Steps)
 {
     $scope.getManual = function(manualId) {
         $scope.manual = Manual.get({id: manualId});
+        $scope.categories = Categories.get();
 
-        $scope.manual.$promise.then(function (result) {
+        $scope.manual.$promise.then(function (result)
+        {
             $scope.list = result.steps;
             $scope.form.data.text = result.name;
+        });
+
+        $scope.categories.$promise.then(function (result) {
+            $scope.category = $scope.manual.category_id;
         });
     };
 
@@ -22,7 +28,11 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
 
     $scope.saveForm = function() {
         $scope.manual.name = $scope.form.data.text;
-        Manual.update({ id: $scope.manual["id"] }, $scope.manual);
+        $scope.updateManual();
+    };
+
+    $scope.updateManual = function () {
+        Manual.update({ id: $scope.manual.id }, $scope.manual);
     };
 
     $scope.syncOrder = function (elemPositions) {
@@ -44,9 +54,8 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
             step.name = formData.name;
             formData.name = "";
             step.priority = $scope.list.length + 1;
-            step.manual_id = $scope.manual.id;
-            Steps.create(step, function(response) {
-                Step.get({id: response.id}).$promise.then(function (result) {
+            Steps.create({ manual_id: $scope.manual.id }, step, function(response) {
+                Step.get({ manual_id: $scope.manual.id, id: step.priority }).$promise.then(function (result) {
                     $scope.list.push(result);
                 });
             });
@@ -66,7 +75,7 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
     $scope.deleteStep = function(item) {
         var index = $scope.list.indexOf(item);
         var priority = item.priority;
-        Step.delete({id: $scope.list[index].id}, function () {
+        Step.delete({ manual_id: $scope.manual.id, id: priority }, function () {
             $scope.list.splice(index, 1);
             $scope.syncPositions(priority);
             $scope.updateOrderBackend();
@@ -75,7 +84,7 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Step', 
 
     $scope.updateOrderBackend = function () {
         $scope.list.forEach(function (obj) {
-            Step.update({ id: obj.id }, obj, function (response) {});
+            Step.update({ manual_id: $scope.manual.id, id: obj.id }, obj, function (response) {});
         });
     }
 }]);
