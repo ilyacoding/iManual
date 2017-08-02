@@ -3,7 +3,7 @@
   <!-- Blog Post -->
 
   <!-- Title -->
-  <h1><%= @step.manual.name %>
+  <h1><%= link_to @step.manual.name, manual_path(@step.manual), :class => 'col-xs' %>
     <small class="pull-right">
       <%= link_to edit_manual_path(@step.manual), :class => 'btn btn-primary' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
       <%= link_to manual_path(@step.manual),
@@ -26,9 +26,9 @@
   <hr>
   <% @blocks.each do |block| %>
     <% case block.type
-       when 'Text' %><%= render 'text', content: block.content %>
-      <% when 'Image' %><%= render 'image', src: block.content %>
-      <% when 'Video' %><%= render 'video', src: block.content %>
+       when 'Text' %><%= render 'layouts/markdown', content: block.content %>
+      <% when 'Image' %><%= render 'layouts/image', src: block.content %>
+      <% when 'Video' %><%= render 'layouts/video', src: block.content %>
     <% end %>
     <br>
   <% end %>

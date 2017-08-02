@@ -1,5 +1,7 @@
-angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categories', 'Step', 'Steps', function ($scope, Manual, Categories, Step, Steps)
+angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categories', 'Step', 'Steps', 'imgur', function ($scope, Manual, Categories, Step, Steps, imgur)
 {
+    $scope.loading = false;
+
     $scope.getManual = function(manualId) {
         $scope.manual = Manual.get({id: manualId});
         $scope.categories = Categories.get();
@@ -58,6 +60,34 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categor
                 Step.get({ manual_id: $scope.manual.id, id: step.priority }).$promise.then(function (result) {
                     $scope.list.push(result);
                 });
+            });
+        }
+    };
+
+    $scope.imageUpload = function(event){
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var fileType = file.type;
+            var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+            var isValidFile = false;
+            for(var index in allowedExtension) {
+
+                if(fileType === allowedExtension[index]) {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if(!isValidFile) {
+                alert('Only images allowed');
+                return;
+            }
+            $scope.loading = true;
+            imgur.upload(file).then(function then(model) {
+                $scope.loading = false;
+                $scope.manual.preview = model.link;
+                $scope.updateManual();
+                alert(JSON.stringify($scope.manual));
             });
         }
     };
