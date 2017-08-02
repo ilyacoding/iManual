@@ -12,6 +12,7 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
+ *= require bootstrap-tagsinput
  *= require jquery-ui
  *= require jquery-ui/core
  *= require jquery-ui/theme
@@ -73,4 +74,23 @@ footer {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+.navbar-login
+{
+    width: 305px;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.navbar-login-session
+{
+    padding: 10px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.icon-size
+{
+    font-size: 87px;
 }

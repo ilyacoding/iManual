@@ -17,6 +17,7 @@
   <p><span class="glyphicon glyphicon-time"></span> Posted on <%= local_time(@manual.created_at) %></p>
   <p><span class="glyphicon glyphicon-user"></span> Author: <%= link_to @manual.user.name, user_path(@manual.user) %></p>
   <p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to @manual.category.name, category_path(@manual.category) %></p>
+  <p><span class="glyphicon glyphicon-tags"></span> Tags: <%= render 'layouts/tags', tags: @manual.tags %></p>
 
   <hr>
     <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>

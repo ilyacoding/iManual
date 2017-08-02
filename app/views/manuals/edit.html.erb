@@ -19,7 +19,9 @@
       </div>
     </form>
 
-
+    Tags: <tags-input ng-model="manual.tags" display-property="name" on-tag-added="updateManual()" on-tag-removed="updateManual()">
+      <auto-complete source="loadTags($query)"></auto-complete>
+    </tags-input>
 
     Category: <select ng-model="manual.category_id" ng-options="category.id as category.name for category in categories" ng-change="updateManual()"></select>
 <br>

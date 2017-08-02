@@ -7,7 +7,11 @@ class ManualsController < ApplicationController
   # GET /manuals
   # GET /manuals.json
   def index
-    @manuals = Manual.all
+    if params[:tag]
+      @manuals = Manual.tagged_with(params[:tag])
+    else
+      @manuals = Manual.all
+    end
     respond_to do |format|
       format.html
       format.json { render json: @manuals }
@@ -19,7 +23,7 @@ class ManualsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json { render json: @manual, include: :steps }
+      format.json { render json: @manual, include: [:steps, :tags] }
     end
   end
 
@@ -53,6 +57,7 @@ class ManualsController < ApplicationController
   # PATCH/PUT /manuals/1
   # PATCH/PUT /manuals/1.json
   def update
+    @manual.tag_list = params[:tags].map { |tag| tag[:name] }
     respond_to do |format|
       if @manual.update(manual_params)
         format.html { redirect_to @manual, notice: 'Manual was successfully updated.' }
@@ -86,6 +91,6 @@ class ManualsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def manual_params
-    params.require(:manual).permit(:name, :preview, :category_id)
+    params.require(:manual).permit(:name, :preview, :category_id, :tags)
   end
 end

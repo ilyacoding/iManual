@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :steps
   end
 
-  resources :categories, :blocks, :users
+  resources :categories, :blocks, :users, :tags
 
   resources :textes, controller: 'blocks', type: 'Text'
   resources :videos, controller: 'blocks', type: 'Video'

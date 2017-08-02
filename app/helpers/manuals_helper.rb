@@ -1,4 +1,6 @@
 module ManualsHelper
+  include ActsAsTaggableOn::TagsHelper
+
   def resource_name
     :user
   end

@@ -18,8 +18,10 @@
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/position
+//= require autocomplete-rails
 
 //= require twitter/bootstrap
+//= require bootstrap-tagsinput
 
 //= require angular
 //= require angular-animate

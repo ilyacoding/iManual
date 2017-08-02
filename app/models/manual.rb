@@ -1,4 +1,5 @@
 class Manual < ApplicationRecord
+  acts_as_taggable
   resourcify
   belongs_to :user
   belongs_to :category

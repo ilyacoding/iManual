@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :manuals
+  acts_as_taggable_on :skills
   rolify
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :omniauthable,

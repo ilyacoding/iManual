@@ -56,12 +56,14 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 
 gem 'jquery-rails'
+gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
 gem 'angularjs-rails'
 gem 'rails-angular-ui-sortable'
 gem 'redcarpet'
 gem 'local_time'
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+gem 'bootstrap-tagsinput-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
