@@ -86,6 +86,6 @@ class ManualsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def manual_params
-    params.require(:manual).permit(:name, :category_id)
+    params.require(:manual).permit(:name, :preview, :category_id)
   end
 end

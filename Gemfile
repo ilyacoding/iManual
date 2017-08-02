@@ -61,6 +61,7 @@ gem 'angularjs-rails'
 gem 'rails-angular-ui-sortable'
 gem 'redcarpet'
 gem 'local_time'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

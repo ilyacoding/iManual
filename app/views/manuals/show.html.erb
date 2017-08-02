@@ -19,14 +19,12 @@
   <p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to @manual.category.name, category_path(@manual.category) %></p>
 
   <hr>
+    <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>
 
-  <!-- Post Content -->
-
-  <h2>Steps</h2>
   <hr>
   <% @steps.each do |step| %>
       <h4><%= link_to "Step #{step.priority}: #{step.name}", { :controller => "steps", :action => "show",
-                                                               :manual_id => @manual.id, :id => step.priority }%></h4>
+                                                               :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %></h4>
       <hr>
   <% end %>
 

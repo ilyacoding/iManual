@@ -6,6 +6,10 @@
 <div>
   <div ng-controller="ManualEditCtrl">
 
+    <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 18%; position: fixed; z-index: 99;">
+      <img src="/loader.gif">
+    </div>
+
     <a class="pull-right" href="/manuals/{{manual.id}}"target="_blank"><span class="glyphicon glyphicon-play"></span></a>
     <a ng-click="cl()">aaaaa</a>
     <form name="form.state" auto-save-form="saveForm()">
@@ -15,7 +19,20 @@
       </div>
     </form>
 
+
+
     Category: <select ng-model="manual.category_id" ng-options="category.id as category.name for category in categories" ng-change="updateManual()"></select>
+<br>
+<br>
+    <img src="{{manual.preview}}" class="img-responsive center-block" />
+
+    <div class="text-center">
+      <div ng-show="!loading" class="fileUpload btn btn-primary">
+        <span>Preview image</span>
+        <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+      </div>
+    </div>
+<hr>
 
     <input type="hidden" ng-init="getManual(<%= @manual.id %>)">
     <h2 style="text-align: center;">Steps</h2>
