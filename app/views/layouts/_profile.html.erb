@@ -1,0 +1,60 @@
+<% if user_signed_in? %>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-user"></span> 
+          <strong><%= user.name %></strong>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <div class="navbar-login">
+              <div class="row">
+                <div class="col-lg-4">
+                  <p class="text-center">
+                    <span class="glyphicon glyphicon-user icon-size"></span>
+                  </p>
+                </div>
+                <div class="col-lg-8">
+                  <p class="text-left"><strong><%= user.name %></strong></p>
+                  <p class="text-left small">correoElectronico@email.com</p>
+                  <p class="text-left">
+                    <%= link_to 'Edit profile', edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <div class="navbar-login navbar-login-session">
+              <div class="row">
+                <div class="col-lg-12">
+                  <p>
+                    <%= link_to('Logout', destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-block") %>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+<% else %>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <strong>Sign in</strong>
+          <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+        <ul class="dropdown-menu">
+          <% if devise_mapping.omniauthable? %>
+              <% resource_class.omniauth_providers.each do |provider| %>
+                  <li><%= link_to t('.sign_in_with_provider', provider: provider.to_s.titleize, default: "Sign in with #{provider.to_s.titleize}"), omniauth_authorize_path(resource_name, provider) %></li>
+              <% end %>
+          <% end %>
+
+        </ul>
+      </li>
+    </ul>
+<% end %>

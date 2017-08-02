@@ -3,6 +3,10 @@ module ApplicationHelper
     Category.all
   end
 
+  def tags
+    ActsAsTaggableOn::Tag.most_used(30)
+  end
+
   def markdown(text)
     options = {
         filter_html:     true,

@@ -1,4 +1,4 @@
-angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categories', 'Step', 'Steps', 'imgur', function ($scope, Manual, Categories, Step, Steps, imgur)
+angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'Tags', 'imgur', function ($scope, $http, Manual, Categories, Step, Steps, Tags, imgur)
 {
     $scope.loading = false;
 
@@ -19,8 +19,13 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', 'Manual', 'Categor
 
     $scope.cl = function () {
         $scope.list.forEach(function (obj) {
-            alert(JSON.stringify(obj));
+            // alert(JSON.stringify(obj));
         });
+        alert(JSON.stringify($scope.manual));
+    };
+
+    $scope.loadTags = function(query) {
+        return $http.get('/tags.json?query=' + query);
     };
 
     $scope.form = {
