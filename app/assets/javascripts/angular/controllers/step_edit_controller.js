@@ -1,9 +1,9 @@
-angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Markdowns', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Manual, Step, Block, Markdowns, Images, Videos, imgur)
+angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Textes', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur)
 {
     $scope.loading = false;
 
-    $scope.getStep = function(stepId) {
-        $scope.step = Step.get({id: stepId});
+    $scope.getStep = function(stepId, manualId) {
+        $scope.step = Step.get({ manual_id: manualId, id: stepId });
 
         $scope.step.$promise.then(function (result) {
             $scope.list = result.blocks;
@@ -17,7 +17,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     };
 
     $scope.updateName = function () {
-        Step.update({ id: $scope.step.id }, $scope.step);
+        Step.update({ manual_id: $scope.step.manual_id, id: $scope.step.id }, $scope.step);
     };
 
     $scope.syncOrder = function (elemPositions) {
@@ -66,7 +66,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         markdown.content = "";
         markdown.priority = $scope.list.length + 1;
         markdown.step_id = $scope.step.id;
-        Markdowns.create(markdown, function(response) {
+        Textes.create(markdown, function(response) {
             Block.get({id: response.id}).$promise.then(function (result) {
                 $scope.list.push(result);
                 $scope.loading = false;

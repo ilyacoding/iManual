@@ -1,23 +1,103 @@
-<%- model_class = Step -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+<!-- Blog Post Content Column -->
+<div>
+  <!-- Blog Post -->
+
+  <!-- Title -->
+  <h1><%= @step.manual.name %>
+    <small class="pull-right">
+      <%= link_to edit_manual_path(@step.manual), :class => 'btn btn-primary' do %><span class="glyphicon glyphicon-pencil"></span><% end %>
+      <%= link_to manual_path(@step.manual),
+                  :method => :delete,
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                  :class => 'btn btn-danger' do %><span class="glyphicon glyphicon-trash"></span><% end %>
+    </small></h1>
+
+  <hr>
+
+  <p><span class="glyphicon glyphicon-time"></span> Posted on <%= local_time(@step.manual.created_at) %></p>
+  <p><span class="glyphicon glyphicon-user"></span> Author: <%= link_to @step.manual.user.name, user_path(@step.manual.user) %></p>
+  <p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to @step.manual.category.name, category_path(@step.manual.category) %></p>
+
+  <hr>
+
+  <!-- Post Content -->
+
+  <h2>Step <%= @step.priority %>: <%= @step.name %></h2>
+  <hr>
+  <% @blocks.each do |block| %>
+    <% case block.type
+       when 'Text' %><%= render 'text', content: block.content %>
+      <% when 'Image' %><%= render 'image', src: block.content %>
+      <% when 'Video' %><%= render 'video', src: block.content %>
+    <% end %>
+    <br>
+  <% end %>
+
+  <hr>
+  <!-- Pager -->
+  <ul class="pager">
+    <li class="previous">
+      <%= link_to('← Previous', :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => previous_step.priority) if previous_step.present? %>
+    </li>
+    <li class="next">
+      <%= link_to('Next →', :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => next_step.priority) if next_step.present? %>
+    </li>
+  </ul>
+  <!-- Blog Comments -->
+
+  <!-- Comments Form -->
+  <div class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form">
+      <div class="form-group">
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+  <hr>
+
+  <!-- Posted Comments -->
+
+  <!-- Comment -->
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">Start Bootstrap
+        <small>August 25, 2014 at 9:30 PM</small>
+      </h4>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </div>
+
+
+  <!-- Comment -->
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" src="http://placehold.it/64x64" alt="">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">Start Bootstrap
+        <small>August 25, 2014 at 9:30 PM</small>
+      </h4>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+      <!-- Nested Comment -->
+      <div class="media">
+        <a class="pull-left" href="#">
+          <img class="media-object" src="http://placehold.it/64x64" alt="">
+        </a>
+        <div class="media-body">
+          <h4 class="media-heading">Nested Start Bootstrap
+            <small>August 25, 2014 at 9:30 PM</small>
+          </h4>
+          Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+      </div>
+      <!-- End Nested Comment -->
+    </div>
+  </div>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @step.name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:priority) %>:</strong></dt>
-  <dd><%= @step.priority %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:manual_id) %>:</strong></dt>
-  <dd><%= @step.manual_id %></dd>
-</dl>
-
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              steps_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_step_path(@step), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              step_path(@step),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>

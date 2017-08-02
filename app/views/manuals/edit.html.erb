@@ -6,13 +6,17 @@
 <div>
   <div ng-controller="ManualEditCtrl">
 
-
+    <a class="pull-right" href="/manuals/{{manual.id}}"target="_blank"><span class="glyphicon glyphicon-play"></span></a>
+    <a ng-click="cl()">aaaaa</a>
     <form name="form.state" auto-save-form="saveForm()">
       <div>Name:
         <input name="text" ng-model="form.data.text"/>
         <span ng-if="form.state.$dirty && form.state.$valid">Updating ...</span>
       </div>
     </form>
+
+    Category: <select ng-model="manual.category_id" ng-options="category.id as category.name for category in categories" ng-change="updateManual()"></select>
+
     <input type="hidden" ng-init="getManual(<%= @manual.id %>)">
     <h2 style="text-align: center;">Steps</h2>
 
@@ -21,7 +25,7 @@
         <hr>
         <div class="portlet">
           <div  class="portlet-header" style="text-align: center;">
-            <a href="/steps/{{step.id}}/edit">Step {{step.priority}}: {{step.name}}</a>
+            <a href="/manuals/{{manual.id}}/steps/{{step.priority}}/edit">Step {{step.priority}}: {{step.name}}</a>
             <span class="glyphicon glyphicon-remove removable" ng-click="deleteStep(step)" style="float: right;"></span>
           </div>
         </div>

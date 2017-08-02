@@ -1,8 +1,8 @@
 class StepsController < ApplicationController
-  before_action :set_step, only: [:show, :edit, :update, :destroy]
+  before_action :set_update_step, only: [:update]
+  before_action :set_show_step, only: [:show, :edit, :destroy]
+  before_action :set_blocks, only: [:show]
 
-  # GET /steps
-  # GET /steps.json
   def index
     @steps = Step.all
     respond_to do |format|
@@ -13,8 +13,6 @@ class StepsController < ApplicationController
     end
   end
 
-  # GET /steps/1
-  # GET /steps/1.json
   def show
     respond_to do |format|
       format.html
@@ -24,24 +22,21 @@ class StepsController < ApplicationController
     end
   end
 
-  # GET /steps/new
   def new
     @step = Step.new
   end
 
-  # GET /steps/1/edit
   def edit
   end
 
-  # POST /steps
-  # POST /steps.json
   def create
     @step = Step.new(step_params)
+    @step.manual_id = params[:manual_id]
 
     respond_to do |format|
       if @step.save
         format.html { redirect_to @step, notice: 'Step was successfully created.' }
-        format.json { render :show, status: :created, location: @step }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json { render json: @step.errors, status: :unprocessable_entity }
@@ -49,13 +44,11 @@ class StepsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /steps/1
-  # PATCH/PUT /steps/1.json
   def update
     respond_to do |format|
       if @step.update(step_params)
         format.html { redirect_to @step, notice: 'Step was successfully updated.' }
-        format.json { render :show, status: :ok, location: @step }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @step.errors, status: :unprocessable_entity }
@@ -63,8 +56,6 @@ class StepsController < ApplicationController
     end
   end
 
-  # DELETE /steps/1
-  # DELETE /steps/1.json
   def destroy
     @step.destroy
     respond_to do |format|
@@ -74,14 +65,20 @@ class StepsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_step
-      @step = Step.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def step_params
-      params.require(:step).permit(:name, :priority, :manual_id)
-      # params.fetch(:step, {})
-    end
+  def set_update_step
+    @step = Step.find(params[:id])
+  end
+
+  def set_show_step
+    @step = Step.where(manual_id: params[:manual_id]).where(priority: params[:id]).first
+  end
+
+  def set_blocks
+    @blocks = @step.ordered_blocks
+  end
+
+  def step_params
+    params.require(:step).permit(:name, :priority)
+  end
 end
