@@ -1,7 +1,8 @@
 class User < ApplicationRecord
+  rolify
+  resourcify
   has_many :manuals
   acts_as_taggable_on :skills
-  rolify
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook, :twitter, :vk, :google_oauth2]
@@ -10,8 +11,6 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.uid = auth.uid
       user.password = Devise.friendly_token[0,20]
-      # user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
       user.save
       user.add_role "user"
     end
@@ -31,5 +30,9 @@ class User < ApplicationRecord
 
   def will_save_change_to_uid?
     true
+  end
+
+  def get_name
+    name.empty? ? "ID_#{id}" : name
   end
 end

@@ -14,12 +14,17 @@
   <hr>
 
   <p><span class="glyphicon glyphicon-time"></span> Posted on <%= local_time(manual.created_at) %></p>
-  <p><span class="glyphicon glyphicon-user"></span> Author: <%= render 'users/user_link', user: manual.user %></p>
+  <p><span class="glyphicon glyphicon-user"></span> Author: <%= link_to manual.user.get_name, user_path(manual.user) %></p>
   <p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to manual.category.name, category_path(manual.category) %></p>
 
   <div class="panel-body">
     <hr>
     <%= link_to image_tag(manual.preview, :class => "img-responsive center-block"), manual_path(manual) %>
-
   </div>
+
+  <hr>
+
+  <div class="pull-left">Rating: 0</div>
+  <div class="pull-right">Comments: 0</div>
+  <div class="clearfix"></div>
 </div>

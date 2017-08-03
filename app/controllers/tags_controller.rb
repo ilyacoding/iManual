@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def index
     if params[:query]
-      @tags = ActsAsTaggableOn::Tag.all.where("name LIKE :q", q: "%#{params[:query]}%")
+      @tags = ActsAsTaggableOn::Tag.all.where("name LIKE :q", q: "%#{params[:query].downcase}%")
     else
       @tags = ActsAsTaggableOn::Tag.all
     end
