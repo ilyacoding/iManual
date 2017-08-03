@@ -1,9 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1 class="page-header">
+  Manuals from category <%= @category.name %>
+  <small><%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %></small>
+</h1>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
-
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<%= render @category.manuals if @category.manuals.length > 0 %>
+<%= render 'layouts/not_found', details: "There are no manuals in this category now." if @category.manuals.length.zero? %>
