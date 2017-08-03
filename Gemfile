@@ -64,6 +64,7 @@ gem 'redcarpet'
 gem 'local_time'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'bootstrap-tagsinput-rails'
+gem 'angular_rails_csrf'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

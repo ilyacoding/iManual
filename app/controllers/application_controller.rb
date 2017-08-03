@@ -1,13 +1,14 @@
 class ApplicationController < ActionController::Base
   before_action :store_current_location, :unless => :devise_controller?
+  after_action :set_csrf_cookie_for_ng
 
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
-      format.html { redirect_to main_app.root_url, alert: exception.message }
-      format.js   { head :forbidden, content_type: 'text/html' }
-    end
-  end
+  # rescue_from CanCan::AccessDenied do |exception|
+  #   respond_to do |format|
+  #     format.json { head :forbidden, content_type: 'text/html' }
+  #     format.html { redirect_to main_app.root_url, alert: exception.message }
+  #     format.js   { head :forbidden, content_type: 'text/html' }
+  #   end
+  # end
   layout proc {
     if request.xhr?
       false
@@ -30,8 +31,8 @@ class ApplicationController < ActionController::Base
     Devise.mappings[:user]
   end
 
-  protect_from_forgery with: :exception
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :exception
+  protect_from_forgery
 
   private
   # override the devise helper to store the current location so we can
@@ -46,5 +47,21 @@ class ApplicationController < ActionController::Base
   # root_path is there as a backup
   def after_sign_out_path_for(resource)
     request.referrer || root_path
+  end
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+
+  protected
+
+  # In Rails 4.2 and above
+  def verified_request?
+    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+  end
+
+  # In Rails 4.1 and below
+  def verified_request?
+    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 end

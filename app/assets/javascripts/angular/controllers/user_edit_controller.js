@@ -7,4 +7,8 @@ angular.module('app').controller('UserEditCtrl', ['$scope', '$http', '$location'
     $scope.updateUser = function () {
         User.update({ id: $scope.user.id }, $scope.user, function (response) {});
     };
+
+    $scope.cl = function () {
+
+    };
 }]);

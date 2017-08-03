@@ -12,10 +12,15 @@ class Ability
       can :update, Manual, user_id: user.id
       can :destroy, Manual, user_id: user.id
 
-      can :update, User, id: user.id
+      can :manage, User, id: user.id
+      can :read, User
+
+      can :manage, Step, :manual => { :user_id => user.id }
+      can :manage, Block, :step => { :user_id => user.id }
     else
       can :read, :all
     end
+
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

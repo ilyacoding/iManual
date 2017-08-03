@@ -1,6 +1,10 @@
 <h1 class="page-header">
   All manuals
-  <small><%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %></small>
+  <% if can? :create, Manual %>
+    <small>
+      <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %>
+    </small>
+  <% end %>
 </h1>
 
 <%= render @manuals %>
