@@ -132,11 +132,13 @@
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="acts-as-taggable-on (v5.0.0@4d9a10, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.5.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="angularjs-rails (v1.6.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="arel (v8.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.11, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.5.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bootstrap-tagsinput-rails (v0.4.2.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.15.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v9.0.6, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
@@ -201,6 +203,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails-angularjs (v1.5.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.0.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-jquery-autocomplete (v1.0.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-jquery-ui-sortable (v1.11.4, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v12.0.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
