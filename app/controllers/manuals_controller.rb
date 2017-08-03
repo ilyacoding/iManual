@@ -1,7 +1,8 @@
 class ManualsController < ApplicationController
-  load_and_authorize_resource
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
+  # skip_before_action :verify_authenticity_token
+  load_and_authorize_resource
 
   # GET /manuals
   # GET /manuals.json
@@ -40,7 +41,6 @@ class ManualsController < ApplicationController
   def create
     @manual = Manual.new(manual_params)
     @manual.user_id = current_user.id
-    @manual.category_id = Category.first.id
 
     respond_to do |format|
       if @manual.save
@@ -91,5 +91,9 @@ class ManualsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def manual_params
     params.require(:manual).permit(:name, :preview, :category_id, :tags)
+  end
+
+  def manual
+    Manual.find(params[:manual_id])
   end
 end

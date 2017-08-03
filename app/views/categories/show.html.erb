@@ -1,6 +1,8 @@
 <h1 class="page-header">
   Manuals from category <%= @category.name %>
-  <small><%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %></small>
+  <small>
+    <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path(category_id: @category.id), :class => 'btn btn-primary pull-right' %>
+  </small>
 </h1>
 
 <%= render @category.manuals if @category.manuals.length > 0 %>

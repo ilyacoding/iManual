@@ -1,5 +1,7 @@
 class BlocksController < ApplicationController
   before_action :set_block, only: [:show, :edit, :update, :destroy]
+  load_resource :step
+  load_and_authorize_resource :block, :through => :step
 
   # GET /blocks
   # GET /blocks.json

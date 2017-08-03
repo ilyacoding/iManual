@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  rolify
   resourcify
+  rolify
   has_many :manuals
   acts_as_taggable_on :skills
 

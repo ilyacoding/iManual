@@ -2,6 +2,14 @@ class StepsController < ApplicationController
   before_action :set_update_step, only: [:update]
   before_action :set_show_step, only: [:show, :edit, :destroy]
   before_action :set_blocks, only: [:show]
+  load_resource :manual
+  load_and_authorize_resource :step, :through => :manual
+  # load_and_authorize_resource :manual
+  # load_and_authorize_resource through: :manual
+  # skip_before_action :verify_authenticity_token
+  # load_resource :manual
+  # load_and_authorize_resource :manual, :class => 'Manual'
+  # load_and_authorize_resource :step, :through => :manual
 
   def index
     @steps = Step.all
@@ -31,6 +39,7 @@ class StepsController < ApplicationController
 
   def create
     @step = Step.new(step_params)
+    @step.user_id = current_user.id
     @step.manual_id = params[:manual_id]
 
     respond_to do |format|
