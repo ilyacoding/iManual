@@ -1,19 +1,16 @@
 class ManualsController < ApplicationController
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
+  before_action :set_manuals, only: [:index]
   # skip_before_action :verify_authenticity_token
   load_and_authorize_resource
 
   # GET /manuals
   # GET /manuals.json
   def index
-    if params[:tag]
-      @manuals = Manual.tagged_with(params[:tag])
-    else
-      @manuals = Manual.all
-    end
     respond_to do |format|
       format.html
+      format.js
       format.json { render json: @manuals }
     end
   end
@@ -40,7 +37,7 @@ class ManualsController < ApplicationController
   # POST /manuals.json
   def create
     @manual = Manual.new(manual_params)
-    @manual.user_id = current_user.id
+    # @manual.user_id = current_user.id
 
     respond_to do |format|
       if @manual.save
@@ -79,16 +76,25 @@ class ManualsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_manual
     @manual = Manual.find(params[:id])
+  end
+
+  def set_manuals
+    if params[:tag]
+      @manuals = Manual.tagged_with(params[:tag]).order(:id).page params[:page]
+    elsif params[:category]
+      @manuals = Manual.where(category_id: params[:category]).order(:id).page params[:page]
+    else
+      @manuals = Manual.all.order(:id).page params[:page]
+    end
   end
 
   def set_steps
     @steps = @manual.ordered_steps
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def manual_params
     params.require(:manual).permit(:name, :preview, :category_id, :tags)
   end

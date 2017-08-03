@@ -18,6 +18,7 @@
 //= require jquery-ui/core
 //= require jquery-ui/widget
 //= require jquery-ui/position
+//= require jquery.infinite-pages
 //= require autocomplete-rails
 
 //= require twitter/bootstrap
@@ -32,3 +33,5 @@
 //= require angular-bootstrap.js
 
 //= require local_time
+
+//= require scroll.js

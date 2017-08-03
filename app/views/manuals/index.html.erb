@@ -1,3 +1,4 @@
+
 <h1 class="page-header">
   All manuals
   <% if can? :create, Manual %>
@@ -7,4 +8,14 @@
   <% end %>
 </h1>
 
-<%= render @manuals %>
+
+<div class="infinite-table">
+  <table>
+    <%= render :partial => 'manuals', :object => @manuals %>
+  </table>
+  <div class="text-center">
+    <p class="pagination">
+      <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
+    </p>
+  </div>
+</div>
