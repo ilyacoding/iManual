@@ -1,11 +1,6 @@
-<%- model_class = Manual -%>
 <h1 class="page-header">
-  <%=t '.title', :default => model_class.model_name.human.pluralize.titleize %>
-  <small><%= link_to t('.new', :default => t("helpers.links.new")),
-                     new_manual_path,
-                     :class => 'btn btn-primary pull-right' %></small>
+  All manuals
+  <small><%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %></small>
 </h1>
 
 <%= render @manuals %>
-
-
