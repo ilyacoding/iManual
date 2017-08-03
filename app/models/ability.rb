@@ -11,6 +11,8 @@ class Ability
       can :create, Manual
       can :update, Manual, user_id: user.id
       can :destroy, Manual, user_id: user.id
+
+      can :update, User, id: user.id
     else
       can :read, :all
     end

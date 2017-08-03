@@ -4,7 +4,7 @@
     <p>Name: <%= @user.name %></p>
     <p>About: <%= @user.about %></p>
     <p>Interests: <%= @user.interests %></p>
-    <% if current_user.id == @user.id %>
+    <% if can? :update, @user %>
         <p><a href="<%= edit_user_path(@user.id) %>" class="btn btn-primary" role="button">Edit Profile</a></p>
     <% end %>
   </div>

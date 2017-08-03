@@ -1,8 +1,7 @@
 class ManualsController < ApplicationController
-  # before_action :authenticate_user!, only: [:new, :update, :destroy]
+  load_and_authorize_resource
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
-  # load_and_authorize_resource
 
   # GET /manuals
   # GET /manuals.json
