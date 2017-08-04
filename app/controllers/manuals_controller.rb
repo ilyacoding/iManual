@@ -18,6 +18,7 @@ class ManualsController < ApplicationController
   # GET /manuals/1
   # GET /manuals/1.json
   def show
+    @comment = Comment.new
     respond_to do |format|
       format.html
       format.json { render json: @manual, include: [:steps, :tags] }
@@ -37,7 +38,7 @@ class ManualsController < ApplicationController
   # POST /manuals.json
   def create
     @manual = Manual.new(manual_params)
-    # @manual.user_id = current_user.id
+    @manual.user_id = current_user.id
 
     respond_to do |format|
       if @manual.save

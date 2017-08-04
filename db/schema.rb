@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804120811) do
+ActiveRecord::Schema.define(version: 20170804154502) do
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170804120811) do
     t.bigint "user_id"
     t.string "preview", default: "/no_image.jpg"
     t.bigint "category_id"
+    t.integer "comments_count", default: 0, null: false
     t.index ["category_id"], name: "index_manuals_on_category_id"
     t.index ["user_id"], name: "index_manuals_on_user_id"
   end
