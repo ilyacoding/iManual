@@ -66,6 +66,8 @@ gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 gem 'bootstrap-tagsinput-rails'
 gem 'kaminari'
 gem 'jquery-infinite-pages'
+gem 'ratyrate'
+gem "breadcrumbs_on_rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

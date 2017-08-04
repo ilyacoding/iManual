@@ -5,40 +5,44 @@
 $(function () {
     this.App = {};
 
-    App.cable = ActionCable.createConsumer();
-
     var comments = $('#comments');
 
-    App.global_manual = App.cable.subscriptions.create({
-        channel: "CommentsChannel",
-        manual_id: comments.data('id')
-        },
-        {
-        connected: function() {},
-        disconnected: function() {},
-        received: function(data) {
-            comments.append(data['comment']);
-            comments.children("div").last().effect("highlight", {}, 2000);
-        },
-        send_message: function(data, manual_id) {
-            return this.perform('send_message', {
-                content: data,
-                manual_id: manual_id
-            });
-        }
-    });
+    if (comments.data['id'] != null)
+    {
+        App.cable = ActionCable.createConsumer();
 
-    $('#new_comment').submit(function(e) {
-        e.preventDefault();
-        var $this, textarea;
-        $this = $(this);
-        textarea = $this.find('#comment_content');
-        if ($.trim(textarea.val()).length > 1) {
-            App.global_manual.send_message(textarea.val(), comments.data('id'));
-            textarea.val('');
-        }
-        return false;
-    });
+
+        App.global_manual = App.cable.subscriptions.create({
+            channel: "CommentsChannel",
+            manual_id: comments.data('id')
+            },
+            {
+            connected: function() {},
+            disconnected: function() {},
+            received: function(data) {
+                comments.append(data['comment']);
+                comments.children("div").last().effect("highlight", {}, 2000);
+            },
+            send_message: function(data, manual_id) {
+                return this.perform('send_message', {
+                    content: data,
+                    manual_id: manual_id
+                });
+            }
+        });
+
+        $('#new_comment').submit(function(e) {
+            e.preventDefault();
+            var $this, textarea;
+            $this = $(this);
+            textarea = $this.find('#comment_content');
+            if ($.trim(textarea.val()).length > 1) {
+                App.global_manual.send_message(textarea.val(), comments.data('id'));
+                textarea.val('');
+            }
+            return false;
+        });
+    }
 });
 // App.messages = App.cable.subscriptions.create('CommentsChannel', {
 //     received: function(data) {

@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   before_action :store_current_location, :unless => :devise_controller?
+  add_breadcrumb "Home", :root_path
   after_action :set_csrf_cookie_for_ng
 
+  protect_from_forgery
   # rescue_from CanCan::AccessDenied do |exception|
   #   respond_to do |format|
   #     format.json { head :forbidden, content_type: 'text/html' }
@@ -32,7 +34,6 @@ class ApplicationController < ActionController::Base
   end
 
   # protect_from_forgery with: :exception
-  protect_from_forgery
 
   private
   # override the devise helper to store the current location so we can
@@ -55,13 +56,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  # In Rails 4.2 and above
   def verified_request?
     super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
-  end
-
-  # In Rails 4.1 and below
-  def verified_request?
-    super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
   end
 end
