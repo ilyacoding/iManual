@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803161622) do
+ActiveRecord::Schema.define(version: 20170804120811) do
 
   create_table "blocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text "content", null: false
@@ -30,9 +30,13 @@ ActiveRecord::Schema.define(version: 20170803161622) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "content", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "manual_id"
+    t.index ["manual_id"], name: "index_comments_on_manual_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "manuals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -134,6 +138,8 @@ ActiveRecord::Schema.define(version: 20170803161622) do
   end
 
   add_foreign_key "blocks", "steps"
+  add_foreign_key "comments", "manuals"
+  add_foreign_key "comments", "users"
   add_foreign_key "manuals", "categories"
   add_foreign_key "manuals", "users"
   add_foreign_key "steps", "users"
