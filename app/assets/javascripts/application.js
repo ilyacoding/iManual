@@ -11,6 +11,7 @@
 // about supported directives.
 //
 
+
 //= require jquery
 //= require jquery_ujs
 
@@ -35,3 +36,5 @@
 //= require local_time
 
 //= require scroll.js
+
+//= require_tree ./channels

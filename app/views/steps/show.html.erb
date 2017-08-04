@@ -43,28 +43,6 @@
       <%= link_to('Next →', :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => next_step.priority) if next_step.present? %>
     </li>
   </ul>
-  <!-- Blog Comments -->
 
- <!-- Posted Comments -->
-
-  <hr>
-  <h3>Comments</h3>
-  <hr>
-  <% @step.comments.each do |comment| %>
-      <!-- Comment -->
-      <div class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading"><%= comment.user.get_name %>
-            <small><%= comment.created_at %></small>
-          </h4>
-          <%= comment.content %>
-        </div>
-      </div>
-  <% end %>
-
-  `<%= render partial: "comments/form", locals: { commentable: @step, manualable: @step.manual, commentable_type: "Step" } %>
 </div>
 

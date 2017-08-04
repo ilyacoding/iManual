@@ -28,28 +28,14 @@
   <small class="pull-left"><span class="glyphicon glyphicon-pencil"></span> Updated <%= local_time_ago(@manual.updated_at) %></small>
 <br>
 
-
-
-
   <!-- Posted Comments -->
 
   <hr>
   <h3>Comments</h3>
   <hr>
-  <% @manual.comments.each do |comment| %>
-      <!-- Comment -->
-      <div class="media">
-        <a class="pull-left" href="#">
-          <img class="media-object" src="http://placehold.it/64x64" alt="">
-        </a>
-        <div class="media-body">
-          <h4 class="media-heading"><%= comment.user.get_name %>
-            <small><%= comment.created_at %></small>
-          </h4>
-          <%= comment.content %>
-        </div>
-      </div>
-  <% end %>
-
-  `<%= render partial: "comments/form", locals: { manualable: nil, commentable: @manual, commentable_type: "Manual" } %>
+  <div id="comments" data-id="<%= @manual.id %>">
+    <%= render partial: @manual.comments %>
+  </div>
+<hr>
+  <%= render partial: "comments/form", locals: { manual: @manual, comment: @comment } %>
 </div>
