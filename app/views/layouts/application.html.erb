@@ -76,7 +76,9 @@
 
       <!-- Blog Entries Column -->
       <div class="col-md-9">
-
+        <ol class="breadcrumb">
+          <%= render_breadcrumbs :tag => :li, :separator => "" %>
+        </ol>
         <%= bootstrap_flash %>
         <%= yield %>
 

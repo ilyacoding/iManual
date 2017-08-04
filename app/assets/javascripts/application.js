@@ -20,6 +20,7 @@
 //= require jquery-ui/widget
 //= require jquery-ui/position
 //= require jquery.infinite-pages
+
 //= require autocomplete-rails
 
 //= require twitter/bootstrap
@@ -38,3 +39,6 @@
 //= require scroll.js
 
 //= require_tree ./channels
+
+//= require jquery.raty
+//= require ratyrate

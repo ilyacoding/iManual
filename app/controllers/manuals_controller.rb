@@ -8,6 +8,7 @@ class ManualsController < ApplicationController
   # GET /manuals
   # GET /manuals.json
   def index
+    add_breadcrumb "Manuals", manuals_path
     respond_to do |format|
       format.html
       format.js
@@ -28,6 +29,7 @@ class ManualsController < ApplicationController
   # GET /manuals/new
   def new
     @manual = Manual.new
+    @category_id = params[:category_id] || Category.first.id
   end
 
   # GET /manuals/1/edit
@@ -38,7 +40,7 @@ class ManualsController < ApplicationController
   # POST /manuals.json
   def create
     @manual = Manual.new(manual_params)
-    @manual.user_id = current_user.id
+    @manual.user = current_user
 
     respond_to do |format|
       if @manual.save

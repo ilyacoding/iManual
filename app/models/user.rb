@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   resourcify
   rolify
+  ratyrate_rater
   has_many :manuals
   has_many :comments
   # acts_as_taggable_on :skills

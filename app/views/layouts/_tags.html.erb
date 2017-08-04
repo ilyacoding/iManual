@@ -1,4 +1,4 @@
 <% tags.each do |tag| %>
-  <%= link_to tag.name, { :controller => "manuals", :action => "index", tag: tag.name } %>
+  <%= link_to "##{tag.name}", { :controller => "manuals", :action => "index", tag: tag.name } %>
     <%= ',' unless tag.equal?(tags.last) %>
 <% end %>
