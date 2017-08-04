@@ -2,7 +2,8 @@ class User < ApplicationRecord
   resourcify
   rolify
   has_many :manuals
-  acts_as_taggable_on :skills
+  has_many :comments
+  # acts_as_taggable_on :skills
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook, :twitter, :vk, :google_oauth2]

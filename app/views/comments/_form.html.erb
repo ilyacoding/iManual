@@ -1,0 +1,13 @@
+<%= form_for [manualable, commentable, Comment.new] do |f| %>
+
+  <div class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form">
+      <div class="form-group">
+        <%= f.text_area :content, class: "form-control", rows: 5, placeholder: "Add a comment" %>
+      </div>
+      <%= f.hidden_field :commentable_type, value: commentable_type %>
+      <%= f.submit class: "btn btn-primary" %>
+    </form>
+  </div>
+<% end %>
