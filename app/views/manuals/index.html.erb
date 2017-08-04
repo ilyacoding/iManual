@@ -1,4 +1,9 @@
-
+<style>
+  .css1 { font-size: 1.0em; }
+  .css2 { font-size: 1.2em; }
+  .css3 { font-size: 1.4em; }
+  .css4 { font-size: 1.6em; }
+</style>
 <h1 class="page-header">
   All manuals
   <% if can? :create, Manual %>
@@ -8,6 +13,9 @@
   <% end %>
 </h1>
 
+<% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+    <%= link_to "##{tag.name}", { :controller => "manuals", :action => "index", tag: tag.name }, :class => css_class %>
+<% end %>
 
 <div class="infinite-table">
   <table>

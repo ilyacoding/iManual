@@ -2,6 +2,7 @@ class ManualsController < ApplicationController
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
   before_action :set_manuals, only: [:index]
+  before_action :set_tags
   # skip_before_action :verify_authenticity_token
   load_and_authorize_resource
 
@@ -76,6 +77,10 @@ class ManualsController < ApplicationController
       format.html { redirect_to manuals_url, notice: 'Manual was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def set_tags
+    @tags = Manual.tag_counts_on(:tags)
   end
 
   private
