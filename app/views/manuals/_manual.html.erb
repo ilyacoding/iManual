@@ -14,13 +14,12 @@
   <p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to manual.category.name, category_path(manual.category) %></p>
 
   <div class="panel-body">
-    <hr>
     <%= link_to image_tag(manual.preview, :class => "img-responsive center-block"), manual_path(manual) %>
   </div>
 
   <hr>
 
-  <div class="pull-left"><%= rating_for manual, 'rating' %></div>
-  <div class="pull-right">Comments: <%= manual.comments_count %></div>
+  <div class="pull-left">Comments: <span class="badge"><%= manual.comments_count %></span></div>
+  <div class="pull-right"><%= link_to "Read", manual_path(manual), class: "btn btn-primary" %></div>
   <div class="clearfix"></div>
 </div>

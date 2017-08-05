@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :homes
   post '/rate' => 'rater#create', :as => 'rate'
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
@@ -12,6 +11,7 @@ Rails.application.routes.draw do
     resources :steps
   end
 
+  resources :searches, only: [:index]
   resources :categories, :blocks, :users, :tags
 
   resources :textes, controller: 'blocks', type: 'Text'

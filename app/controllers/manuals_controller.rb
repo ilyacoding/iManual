@@ -92,8 +92,6 @@ class ManualsController < ApplicationController
   def set_manuals
     if params[:tag]
       @manuals = Manual.tagged_with(params[:tag]).order(:id).page params[:page]
-    elsif params[:category]
-      @manuals = Manual.where(category_id: params[:category]).order(:id).page params[:page]
     elsif params[:search]
       @manuals = Manual.search params[:search], :page => params[:page]
     else
