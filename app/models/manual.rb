@@ -11,4 +11,8 @@ class Manual < ApplicationRecord
   def ordered_steps
     steps.order('priority ASC')
   end
+
+  def nested_contents
+    steps.map { |step| (step.blocks.collect(&:content) << step.name).join(' ') }.join(' ')
+  end
 end

@@ -23,7 +23,7 @@
           </div>
           <div class="portlet-content" ng-switch="block.type">
             <div ng-switch-when="Image">
-              <img src="{{block.content}}" class="img-responsive" />
+              <img ng-src="{{block.content}}" class="img-responsive" />
             </div>
             <div ng-switch-when="Video">
               <youtube-video video-id="block.content"></youtube-video>

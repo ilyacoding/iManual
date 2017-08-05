@@ -1,9 +1,20 @@
 <h1 class="page-header">
   Manuals from category <%= @category.name %>
-  <small>
-    <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path(category_id: @category.id), :class => 'btn btn-primary pull-right' %>
-  </small>
+  <% if can? :create, Manual %>
+      <small>
+        <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path(category_id: @category.id), :class => 'btn btn-primary pull-right' %>
+      </small>
+  <% end %>
 </h1>
 
-<%= render @category.manuals if @category.manuals.length > 0 %>
-<%= render 'layouts/not_found', details: "There are no manuals in this category now." if @category.manuals.length.zero? %>
+<div class="infinite-table">
+  <table>
+    <%= render @manuals %>
+    <%= render :partial => 'manuals/not_found'  if @manuals.empty? %>
+  </table>
+  <div class="text-center">
+    <p class="pagination">
+      <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
+    </p>
+  </div>
+</div>
