@@ -1,0 +1,7 @@
+$("<%=j render(@manuals) %>").appendTo($(".infinite-table table"));
+
+<% if @manuals.last_page? %>
+  $('.pagination').html("That's all!");
+<% else %>
+  $('.pagination').html("<%=j link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>");
+<% end %>
