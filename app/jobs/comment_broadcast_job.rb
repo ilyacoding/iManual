@@ -8,6 +8,8 @@ class CommentBroadcastJob < ApplicationJob
   private
 
   def render_comment(comment)
-    CommentsController.render partial: 'comments/comment', locals: { comment: comment }
+    # rendered = CommentsController.render.new
+    # renderer.instance_variable_set(:@env, {"warden" => env["warden"]})
+    CommentsController.render partial: 'comments/comment_broadcast', locals: { comment: comment }
   end
 end

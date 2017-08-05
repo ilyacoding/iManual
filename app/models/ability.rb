@@ -12,8 +12,12 @@ class Ability
       can :update, Manual, user_id: user.id
       can :destroy, Manual, user_id: user.id
 
-      can :manage, User, id: user.id
+      can :create, Comment
+      can :destroy, Comment, user_id: user.id
+
       can :read, User
+      can :update, User, id: user.id
+      can :destroy, User, id: user.id
 
       can :manage, Step, :manual => { :user_id => user.id }
       can :manage, Block, :step => { :user_id => user.id }
