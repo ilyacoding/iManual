@@ -1,14 +1,15 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show]
+  before_action :set_comment, only: [:show, :destroy]
+  load_and_authorize_resource
 
   # GET /manuals/1
   # GET /manuals/1.json
-  def show
-    respond_to do |format|
-      format.html
-      format.json { render json: @comment }
-    end
-  end
+  # def show
+  #   respond_to do |format|
+  #     format.html
+  #     format.json { render json: @comment }
+  #   end
+  # end
 
   # GET /manuals/new
   def new
@@ -30,10 +31,20 @@ class CommentsController < ApplicationController
     end
   end
 
+  # DELETE /manuals/1
+  # DELETE /manuals/1.json
+  def destroy
+    @comment.destroy
+    respond_to do |format|
+      format.html { redirect_to manual_path(params[:manual_id]), notice: 'Comment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def set_comment
-
+    @comment = Comment.find(params[:id])
   end
 
   def comment_params

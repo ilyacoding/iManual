@@ -7,7 +7,7 @@ $(function () {
 
     var comments = $('#comments');
 
-    if (comments.data['id'] != null)
+    if (comments.data('id') != null)
     {
         App.cable = ActionCable.createConsumer();
 
@@ -22,26 +22,30 @@ $(function () {
             received: function(data) {
                 comments.append(data['comment']);
                 comments.children("div").last().effect("highlight", {}, 2000);
-            },
-            send_message: function(data, manual_id) {
-                return this.perform('send_message', {
-                    content: data,
-                    manual_id: manual_id
-                });
             }
+            // send_message: function(data, manual_id) {
+            //     return this.perform('send_message', {
+            //         content: data,
+            //         manual_id: manual_id
+            //     });
+            // }
         });
 
-        $('#new_comment').submit(function(e) {
-            e.preventDefault();
-            var $this, textarea;
-            $this = $(this);
-            textarea = $this.find('#comment_content');
-            if ($.trim(textarea.val()).length > 1) {
-                App.global_manual.send_message(textarea.val(), comments.data('id'));
-                textarea.val('');
-            }
-            return false;
+        $("#new_comment").bind("ajax:complete", function(event,xhr,status){
+            $('#comment_content').val('');
         });
+
+        // $('#new_comment').submit(function(e) {
+        //     e.preventDefault();
+        //     var $this, textarea;
+        //     $this = $(this);
+        //     textarea = $this.find('#comment_content');
+        //     if ($.trim(textarea.val()).length > 1) {
+        //         App.global_manual.send_message(textarea.val(), comments.data('id'));
+        //         textarea.val('');
+        //     }
+        //     return false;
+        // });
     }
 });
 // App.messages = App.cable.subscriptions.create('CommentsChannel', {

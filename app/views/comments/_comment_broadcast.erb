@@ -5,9 +5,6 @@
   <div class="media-body">
     <h4 class="media-heading"><%= comment.user.get_name %>
       <small><%= comment.created_at %></small>
-      <small class="pull-right">
-        <%= render 'comments/edit_buttons', manual: comment.manual, comment: comment %>
-      </small>
     </h4>
     <%= comment.content %>
   </div>

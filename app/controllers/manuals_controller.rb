@@ -5,11 +5,11 @@ class ManualsController < ApplicationController
   before_action :set_tags
   # skip_before_action :verify_authenticity_token
   load_and_authorize_resource
+  add_breadcrumb "Manuals"
 
   # GET /manuals
   # GET /manuals.json
   def index
-    add_breadcrumb "Manuals", manuals_path
     respond_to do |format|
       format.html
       format.js
