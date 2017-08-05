@@ -52,93 +52,27 @@
 
         <%= render 'layouts/profile', user: current_user %>
 
-        <form class="nav navbar-form navbar-right">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search">
-            <span class="input-group-btn">
-                                <div class="dropdown dropdown-lg">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                          <label for="filter">Filter by</label>
-                          <select class="form-control">
-                            <option value="0" selected>All Snippets</option>
-                            <option value="1">Featured</option>
-                            <option value="2">Most popular</option>
-                            <option value="3">Top rated</option>
-                            <option value="4">Most commented</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="contain">Author</label>
-                          <input class="form-control" type="text" />
-                        </div>
-                        <div class="form-group">
-                          <label for="contain">Contains the words</label>
-                          <input class="form-control" type="text" />
-                        </div>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                      </form>
-                    </div>
-                  </div>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                    </span>
-          </div>
-        </form>
+
+
+        <%= form_tag(manuals_path, method: :get, class: "nav navbar-form navbar-right") do %>
+            <div class="form-group">
+              <!--<span class="input-group-btn">-->
+                <%= text_field_tag :search, params[:search], class: "form-control" %>
+              <!--</span>-->
+              <%= submit_tag('Search', class: "btn btn-default") do %>
+                <span class="glyphicon glyphicon-search"></span>
+              <% end %>
+            </div>
+        <% end %>
 
       </div>
 
-
-      <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
+
   </nav>
 
   <!-- Page Content -->
   <div class="container">
-
-    <div class="row">
-
-        <div class="row">
-          <div class="col-md-12">
-            <div class="input-group" id="adv-search">
-              <input type="text" class="form-control" placeholder="Search for snippets" />
-              <div class="input-group-btn">
-                <div class="btn-group" role="group">
-                  <div class="dropdown dropdown-lg">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                    <div class="dropdown-menu dropdown-menu-right" role="menu">
-                      <form class="form-horizontal" role="form">
-                        <div class="form-group">
-                          <label for="filter">Filter by</label>
-                          <select class="form-control">
-                            <option value="0" selected>All Snippets</option>
-                            <option value="1">Featured</option>
-                            <option value="2">Most popular</option>
-                            <option value="3">Top rated</option>
-                            <option value="4">Most commented</option>
-                          </select>
-                        </div>
-                        <div class="form-group">
-                          <label for="contain">Author</label>
-                          <input class="form-control" type="text" />
-                        </div>
-                        <div class="form-group">
-                          <label for="contain">Contains the words</label>
-                          <input class="form-control" type="text" />
-                        </div>
-                        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                      </form>
-                    </div>
-                  </div>
-                  <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Blog Entries Column -->
       <div class="col-md-9">
@@ -185,7 +119,6 @@
 
 
 
-      </div>
 
     </div>
     <!-- /.row -->

@@ -10,6 +10,7 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @manuals = @category.manuals.page params[:page]
   end
 
   # # GET /categories/new

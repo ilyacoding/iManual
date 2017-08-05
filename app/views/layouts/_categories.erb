@@ -1,5 +1,5 @@
 <% categories.each do |category| %>
-    <%= link_to({ :controller => "manuals", :action => "index", category: category.id }, :class => "list-group-item list-group-item-action") do
+    <%= link_to(category_path(category), :class => "list-group-item list-group-item-action") do
         simple_format "<h4>#{category.name} <span class='badge badge-default badge-pill pull-right'>#{category.manuals_count}</span></h4>"
       end
     %>
