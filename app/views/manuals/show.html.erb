@@ -1,38 +1,28 @@
-<!-- Blog Post Content Column -->
 <div class="col-md-12">
-  <!-- Blog Post -->
-
-  <!-- Title -->
   <h1>
     <%= @manual.name %>
     <small class="pull-right">
       <%= render 'manuals/edit_buttons', manual: @manual%>
     </small>
   </h1>
-
   <%= render 'manuals/metadata', manual: @manual %>
-
   <hr>
-    <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>
-
+  <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>
   <hr>
   <% @steps.each do |step| %>
-      <h4><%= link_to t('activerecord.attributes.step.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
+      <h4 class="text-center"><%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
                                                                :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %></h4>
       <hr>
   <% end %>
-
-
   <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> <%= t('activerecord.models.tag.many') %>: <%= render 'layouts/tags', tags: @manual.tags %></span>
   <span class="pull-right"><%= rating_for @manual, 'rating' %></span>
   <div class="clearfix"></div>
-  <!-- Posted Comments -->
-
   <hr>
   <h2><%= t('activerecord.models.comment.many') %></h2>
   <hr>
   <div id="comments" data-id="<%= @manual.id %>">
     <%= render partial: @manual.comments %>
+    <%= render 'comments/not_found' if @manual.comments.empty? %>
   </div>
   <hr>
   <%= render partial: "comments/form", locals: { manual: @manual, comment: @comment } %>

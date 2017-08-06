@@ -1,0 +1,8 @@
+<ul class="pager">
+  <li class="previous">
+    <%= link_to(t('helpers.links.navigation.previous'), :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => previous_step.priority) if previous_step.present? %>
+  </li>
+  <li class="next">
+    <%= link_to(t('helpers.links.navigation.next'), :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => next_step.priority) if next_step.present? %>
+  </li>
+</ul>

@@ -40,17 +40,17 @@
             <li class="active">
               <a class="switch" id="1" data-target="profile" href="#">
                 <i class="glyphicon glyphicon-home"></i>
-                Profile </a>
+                <%= t('activerecord.attributes.user.profile') %> </a>
             </li>
             <li>
               <a class="switch" id="2" data-target="manuals" href="#">
                 <i class="glyphicon glyphicon-th-large"></i>
-                Manuals <span class='badge badge-default badge-pill pull-right'><%= @user.manuals_count %></span></a>
+                <%= t('activerecord.models.category.many') %> <span class='badge badge-default badge-pill pull-right'><%= @user.manuals_count %></span></a>
             </li>
             <li>
               <a class="switch" id="3" data-target="comments" href="#">
                 <i class="glyphicon glyphicon-comment"></i>
-                Comments <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
+                <%= t('activerecord.models.comment.many') %> <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
             </li>
           </ul>
         </div>
@@ -61,7 +61,7 @@
       <div id="profile" class="profile-content" style="display: block;">
         <div class="panel panel-default">
           <div class="panel-heading">
-            About
+            <%= t('activerecord.attributes.user.about') %>
           </div>
           <div class="panel-body">
             <%= @user.about %>
@@ -70,7 +70,7 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            Interests
+            <%= t('activerecord.attributes.user.interests') %>
           </div>
           <div class="panel-body">
             <%= @user.interests %>

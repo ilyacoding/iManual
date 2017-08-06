@@ -1,11 +1,23 @@
 ru:
+  main:
+    name: "iManual"
+    copyright: "Copyright"
   helpers:
     links:
       cancel: "Отмена"
       create: "Создать"
       edit: "Редактировать"
+      editing: "Редактирование"
       confirm: "Вы уверены?"
       send: "Отправить"
+      new:
+        male: "Новый"
+        female: "Новая"
+      more: "Ещё"
+      all: "Это всё."
+      navigation:
+        next: "Вперёд →"
+        previous: "← Назад"
   activerecord:
     models:
       manual:
@@ -21,39 +33,74 @@ ru:
       comment:
         one: "Комментарий"
         many: "Комментарии"
+      step:
+        one: "Шаг"
+        many: "Шаги"
+      block:
+        one: "Блок"
+        many: "Блоки"
+        text:
+          name: "Текст"
+          placeholder: "Добавьте сюда текст. Вы можете использовать Markdown :)"
+        video:
+          name: "Видео"
+        image:
+          name: "Картинка"
     attributes:
       manual:
         name: "Название"
+        preview: "Заглавное изображение"
+        metadata:
+          updated: "Обновлено"
+          created_at: "Опубликовано"
+          author: "Автор"
       step:
-        name: "Шаг %{priority}: %{name}"
+        name: "Название"
+      user:
+        profile: "Профиль"
+        about: "О себе"
+        interests: "Интересы"
     controllers:
+      manual:
+        index:
+          title: "Все инструкции"
+          read: "Прочитать"
+        new:
+          title: "Новая инструкция"
+        edit:
+          title: "Редактирование инструкции с id"
+          preview: "Предпросмотр"
+      step:
+        edit:
+          title: "Редактирование шага с id"
+          back: "Назад к инструкции"
+        show:
+          name: "Шаг %{priority}: %{name}"
       comment:
         create: "Оставить комментарий"
       user:
+        sign_in: "Войти"
+        sign_in_through: "Войти через %{provider}"
         logout: "Выйти"
+      search:
+        title: "Результаты поиска по запросу %{query}"
+        button: "Поиск"
+      categories:
+        show:
+          title: "Инструкции из категории %{category}"
+  angular:
+    form:
+      status:
+        saved: "Все изменения успешно сохранены!"
+        unsaved: "Есть несохранённые изменения."
   errors:
     oops: "Упс!"
     search:
       not_found: "Ничего не найдено по вашему запросу"
-    manual:
-      not_found: "В данной категории пока что ничего нет. Может вы хотите добавить свою инструкцию?"
+    category:
+      not_found: "Здесь пока что ничего нет. Может вы хотите добавить свою инструкцию?"
       main_path: "На главную"
+    comment:
+      not_found: "К данной публикации пока нет комментариев."
     not_found:
       message: "Не найдено"
-  manuals:
-    metadata:
-      updated: "Обновлено"
-      created_at: "Опубликовано"
-      author: "Автор"
-      category: "Категория"
-      name: "Название"
-    links:
-      new: "Новая инструкция"
-    index:
-      title: "Все инструкции"
-      read: "Прочитать"
-  search:
-    button_search: "Поиск"
-  categories:
-    show:
-      title: "Инструкции из категории %{category}"

@@ -1,6 +1,6 @@
-<small class="pull-right"><span class="glyphicon glyphicon-pencil"></span> <%= t('manuals.metadata.updated') %> <%= l(manual.updated_at) %></small>
+<small class="pull-right"><span class="glyphicon glyphicon-pencil"></span> <%= t('activerecord.attributes.manual.metadata.updated') %> <%= l(manual.updated_at) %></small>
 <hr>
 
-<p><span class="glyphicon glyphicon-time"></span> <%= t('manuals.metadata.created_at') %> <%= l(manual.created_at) %></p>
-<p><span class="glyphicon glyphicon-user"></span> <%= t('manuals.metadata.author') %>: <%= link_to manual.user.get_name, user_path(manual.user) %></p>
-<p><span class="glyphicon glyphicon-check"></span> <%= t('manuals.metadata.category') %>: <%= link_to manual.category.name, category_path(manual.category) %></p>
+<p><span class="glyphicon glyphicon-time"></span> <%= t('activerecord.attributes.manual.metadata.created_at') %>: <%= l(manual.created_at) %></p>
+<p><span class="glyphicon glyphicon-user"></span> <%= t('activerecord.attributes.manual.metadata.author') %>: <%= link_to manual.user.get_name, user_path(manual.user) %></p>
+<p><span class="glyphicon glyphicon-check"></span> <%= t('activerecord.models.category.one') %>: <%= link_to manual.category.name, category_path(manual.category) %></p>

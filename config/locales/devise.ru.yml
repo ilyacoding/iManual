@@ -1,0 +1,5 @@
+ru:
+  devise:
+    omniauth_callbacks:
+      failure: "Невозможно выполнить вход при помощи %{kind} по причине \"%{reason}\"."
+      success: "Вы успешно вошли при помощи %{kind} аккаунта."

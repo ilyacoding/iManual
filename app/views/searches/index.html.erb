@@ -1,5 +1,5 @@
 <h1 class="page-header">
-  Search results for <%= @query %>
+  <%= t('activerecord.controllers.search.title', query: @query) %>
 </h1>
 
 <div class="infinite-table">
@@ -9,7 +9,7 @@
   </table>
   <div class="text-center">
     <p class="pagination">
-      <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
+      <%= link_to_next_page(@manuals, t('helpers.links.more'), :remote => true, :class => "btn btn-primary btn-block") %>
     </p>
   </div>
 </div>

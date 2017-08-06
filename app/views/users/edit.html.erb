@@ -23,13 +23,13 @@
                 <li>
                   <%= link_to user_path(@user) do %>
                     <i class="glyphicon glyphicon-home"></i>
-                    Profile
+                      <%= t('activerecord.attributes.user.profile') %>
                   <% end %>
                 </li>
                 <li class="active">
                   <a>
                     <i class="glyphicon glyphicon-edit"></i>
-                    Edit
+                    <%= t('helpers.links.editing') %>
                   </a>
                 </li>
               </ul>
@@ -43,10 +43,10 @@
 
         <div class="form-group">
           <span ng-if="(form.state.$dirty && form.state.$valid)">
-            <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> Unsaved changes</div>
+            <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> <%= t('angular.form.status.unsaved') %></div>
           </span>
-          <span ng-if="!(form.state.$dirty && form.state.$valid)">
-            <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> All changes saved!</div>
+              <span ng-if="!(form.state.$dirty && form.state.$valid)">
+            <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> <%= t('angular.form.status.saved') %></div>
           </span>
         </div>
 
@@ -54,7 +54,7 @@
           <div id="profile" class="profile-content" style="display: block;">
             <div class="panel panel-default">
               <div class="panel-heading">
-                About
+                <%= t('activerecord.attributes.user.about') %>
               </div>
               <div class="panel-body">
                 <textarea msd-elastic class="form-control" cols="78" rows="1" ng-model="user.about" placeholder="Write some text about yourself here"></textarea>
@@ -63,20 +63,15 @@
 
             <div class="panel panel-default">
               <div class="panel-heading">
-                Interests
+                <%= t('activerecord.attributes.user.interests') %>
               </div>
               <div class="panel-body">
                 <textarea msd-elastic class="form-control" cols="78" rows="1" ng-model="user.interests" placeholder="Write some text about yourself here"></textarea>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
   </form>
 </div>
-
-
-
-

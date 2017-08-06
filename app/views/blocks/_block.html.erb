@@ -1,0 +1,6 @@
+<% case block.type
+     when 'Text' %> <%= render 'blocks/markdown', content: block.content %>
+  <% when 'Image' %><%= render 'blocks/image', src: block.content %>
+  <% when 'Video' %><%= render 'blocks/video', src: block.content %>
+<% end %>
+<br>

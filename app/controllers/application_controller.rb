@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_action :set_locale
   before_action :store_current_location, :unless => :devise_controller?
-  add_breadcrumb "Home", :root_path
   after_action :set_csrf_cookie_for_ng
 
   rescue_from CanCan::AccessDenied do |exception|

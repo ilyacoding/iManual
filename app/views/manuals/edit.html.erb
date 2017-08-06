@@ -1,9 +1,9 @@
 <div ng-controller="ManualEditCtrl">
   <div class="page-header">
-    <h1>Editing manual with id {{manual.id}}
+    <h1><%= t('activerecord.controllers.manual.edit.title') %> {{manual.id}}
       <small>
-        <a class="pull-right" href="/manuals/{{manual.id}}"target="_blank">
-          <span class="glyphicon glyphicon-play"></span> Preview
+        <a class="pull-right" href="/manuals/{{manual.id}}?locale=<%= params[:locale] %>" target="_blank">
+          <span class="glyphicon glyphicon-play"></span> <%= t('activerecord.controllers.manual.edit.preview') %>
         </a>
       </small>
     </h1>
@@ -11,14 +11,14 @@
 
   <form name="form.state" auto-save-form="saveForm()" class="form-horizontal">
     <div class="form-group">
-      <label for="name" class="control-label col-md-1">Name</label>
+      <label for="name" class="control-label col-md-1"><%= t('activerecord.attributes.manual.name') %></label>
       <div class="col-md-11">
         <input type="text" ng-model="form.data.name" class="form-control" id="name">
       </div>
     </div>
 
     <div class="form-group">
-      <label for="tags" class="control-label col-md-1">Tags</label>
+      <label for="tags" class="control-label col-md-1"><%= t('activerecord.models.tag.many') %></label>
       <div class="col-md-11">
         <tags-input ng-model="form.data.tags" display-property="name">
           <auto-complete source="loadTags($query)"></auto-complete>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="form-group">
-      <label for="category" class="control-label col-md-1">Category</label>
+      <label for="category" class="control-label col-md-1"><%= t('activerecord.models.category.one') %></label>
       <div class="col-md-11">
         <select ng-model="form.data.category_id" ng-options="category.id as category.name for category in categories"></select>
       </div>
@@ -42,10 +42,10 @@
         <img src="/loader.gif">
       </div>
       <span ng-if="(form.state.$dirty && form.state.$valid)">
-        <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> Unsaved changes</div>
+        <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> <%= t('angular.form.status.unsaved') %></div>
       </span>
       <span ng-if="!(form.state.$dirty && form.state.$valid)">
-        <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> All changes saved!</div>
+        <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> <%= t('angular.form.status.saved') %></div>
       </span>
     </div>
   </form>
@@ -56,14 +56,14 @@
 
   <div class="text-center" style="margin-top: 5px;">
     <div ng-show="!loading" class="btn btn-primary fileUpload">
-      <span>Preview image</span>
+      <span><%= t('activerecord.attributes.manual.preview') %></span>
       <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().uploadImage(event)" multiple />
     </div>
   </div>
 
   <hr>
 
-  <h2 style="text-align: center;">Steps</h2>
+  <h2 style="text-align: center;"><%= t('activerecord.models.step.many') %></h2>
 
   <div>
     <ul class="col-md-12 draggable" id="step-list" sortable>
@@ -71,7 +71,7 @@
         <hr>
         <div class="portlet">
           <div  class="portlet-header" style="text-align: center;">
-            <a href="/manuals/{{manual.id}}/steps/{{step.priority}}/edit">Step {{step.priority}}: {{step.name}}</a>
+            <a href="/manuals/{{manual.id}}/steps/{{step.priority}}/edit?locale=<%= params[:locale] %>"><%= t('activerecord.models.step.one') %> {{step.priority}}: {{step.name}}</a>
             <span class="glyphicon glyphicon-remove removable" ng-click="deleteStep(step)" style="float: right;"></span>
           </div>
         </div>
@@ -83,10 +83,10 @@
   <form ng-submit="addStep(formData)" class="form-vertical">
     <div class="form-group">
       <div class="col-md-12">
-        <input type="text" ng-model="formData.stepName" class="form-control" placeholder="Add new step here">
+        <input type="text" ng-model="formData.stepName" class="form-control">
       </div>
       <div class="col-md-12" style="margin-top: 3px;">
-        <input type="submit" class="btn btn-primary" style="width: 100%" value="Add step">
+        <input type="submit" class="btn btn-primary" style="width: 100%" value="<%= t('helpers.links.new.male') %> <%= t('activerecord.models.step.one').downcase %>">
       </div>
     </div>
   </form>
