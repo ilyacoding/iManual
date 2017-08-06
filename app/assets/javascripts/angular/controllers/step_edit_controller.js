@@ -1,23 +1,25 @@
 angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Textes', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur)
 {
+    $scope.form = {
+        state: {},
+        data: {}
+    };
+
     $scope.loading = false;
 
-    $scope.getStep = function(stepId, manualId) {
+    $scope.initializeStep = function(stepId, manualId) {
         $scope.step = Step.get({ manual_id: manualId, id: stepId });
 
         $scope.step.$promise.then(function (result) {
+            $scope.form.data.name = result.name;
             $scope.list = result.blocks;
         });
     };
 
-    $scope.cl = function () {
-        $scope.list.forEach(function (obj) {
-            alert(JSON.stringify(obj));
-        });
-    };
-
-    $scope.updateName = function () {
+    $scope.saveForm = function () {
+        $scope.step.name = $scope.form.data.name;
         Step.update({ manual_id: $scope.step.manual_id, id: $scope.step.id }, $scope.step);
+        $scope.updateBlockBackend(true);
     };
 
     $scope.syncOrder = function (elemPositions) {
@@ -30,34 +32,35 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
                 }
             });
         });
-        $scope.updateOrderBackend();
+        $scope.updateBlockBackend();
         $scope.loading = false;
     };
 
-    $scope.imageUpload = function(event){
+    $scope.uploadImage = function(event) {
         var files = event.target.files;
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            var fileType = file.type;
-            var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-            var isValidFile = false;
-            for(var index in allowedExtension) {
-
-                if(fileType === allowedExtension[index]) {
-                    isValidFile = true;
-                    break;
-                }
-            }
-            if(!isValidFile) {
-                alert('Only images allowed');
+            if(!$scope.isValidImage(file.type)) {
                 return;
             }
             $scope.loading = true;
             imgur.upload(file).then(function then(model) {
+                $scope.manual.preview = model.link;
+                $scope.updateManual();
                 $scope.loading = false;
-                $scope.addImage(model.link);
             });
         }
+    };
+
+    $scope.isValidImage = function (fileType) {
+        var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
+        for(var index in allowedExtension) {
+
+            if(fileType === allowedExtension[index]) {
+                return true;
+            }
+        }
+        return false;
     };
 
     $scope.addText = function () {
@@ -95,11 +98,10 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     };
 
     $scope.addVideo = function () {
-        var url = prompt('Youtube link', "");
+        var url = prompt('Youtube', "");
         var parsedData = $scope.parseYoutubeUrl(url);
         if (!parsedData)
         {
-            alert('Invalid link');
             return;
         }
         $scope.loading = true;
@@ -125,7 +127,26 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         });
     };
 
-    $scope.updateOrderBackend = function () {
+    $scope.updateBlockBackend = function (onlyChange) {
+        onlyChange = onlyChange || false;
+        if (onlyChange)
+        {
+            $scope.updateChangedBlocks();
+            return;
+        }
+        $scope.updateAllBlocks();
+    };
+
+    $scope.updateChangedBlocks = function () {
+        $scope.list.forEach(function (obj) {
+            if (obj.update)
+            {
+                $scope.updateBlock(obj);
+            }
+        });
+    };
+
+    $scope.updateAllBlocks = function () {
         $scope.list.forEach(function (obj) {
             $scope.updateBlock(obj);
         });
@@ -138,13 +159,12 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
         Block.delete({id: block.id}, function () {
             $scope.list.splice(index, 1);
             $scope.syncPositions(priority);
-            $scope.updateOrderBackend();
+            $scope.updateBlockBackend();
             $scope.loading = false;
         });
     };
 
     $scope.updateBlock = function (block) {
-        var index = $scope.list.indexOf(block);
-        Block.update({ id: block.id }, block, function (response) {});
+        Block.update({ id: block.id }, block, function (response) { });
     };
 }]);

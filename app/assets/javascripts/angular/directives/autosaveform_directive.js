@@ -14,11 +14,10 @@ angular.module('app').directive('autoSaveForm', function($timeout) {
                         savePromise = null;
                         if($formCtrl.$valid) {
                             if($scope.$eval(expression) !== false) {
-                                console.log('Form data persisted -- setting prestine flag');
                                 $formCtrl.$setPristine();
                             }
                         }
-                    }, 4000);
+                    }, 2000);
                 }
             });
         }
