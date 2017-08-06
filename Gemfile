@@ -22,7 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -39,7 +39,6 @@ gem 'redis', '~> 3.2'
 # gem 'capistrano-rails', group: :development
 
 # bootstrap
-gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
 gem 'thinking-sphinx', '~> 3.3.0'
@@ -68,10 +67,10 @@ gem 'bootstrap-tagsinput-rails'
 gem 'kaminari'
 gem 'jquery-infinite-pages'
 gem 'ratyrate'
-gem "breadcrumbs_on_rails"
 gem 'thinking-sphinx', '~> 3.3.0'
 gem 'gravtastic'
 gem 'page_title_helper'
+gem 'russian'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

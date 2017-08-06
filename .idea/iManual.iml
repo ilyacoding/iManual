@@ -140,7 +140,6 @@
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.11, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bindex (v0.5.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bootstrap-tagsinput-rails (v0.4.2.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="breadcrumbs_on_rails (v3.0.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.15.3, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="byebug (v9.0.6, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />

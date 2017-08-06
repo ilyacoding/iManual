@@ -1,0 +1,59 @@
+ru:
+  helpers:
+    links:
+      cancel: "Отмена"
+      create: "Создать"
+      edit: "Редактировать"
+      confirm: "Вы уверены?"
+      send: "Отправить"
+  activerecord:
+    models:
+      manual:
+        one: "Инструкция"
+        other: "Инструкции"
+      category:
+        one: "Категория"
+        many: "Категории"
+      tag:
+        one: "Тег"
+        many: "Теги"
+        cloud: "Топ 30 тегов"
+      comment:
+        one: "Комментарий"
+        many: "Комментарии"
+    attributes:
+      manual:
+        name: "Название"
+      step:
+        name: "Шаг %{priority}: %{name}"
+    controllers:
+      comment:
+        create: "Оставить комментарий"
+      user:
+        logout: "Выйти"
+  errors:
+    oops: "Упс!"
+    search:
+      not_found: "Ничего не найдено по вашему запросу"
+    manual:
+      not_found: "В данной категории пока что ничего нет. Может вы хотите добавить свою инструкцию?"
+      main_path: "На главную"
+    not_found:
+      message: "Не найдено"
+  manuals:
+    metadata:
+      updated: "Обновлено"
+      created_at: "Опубликовано"
+      author: "Автор"
+      category: "Категория"
+      name: "Название"
+    links:
+      new: "Новая инструкция"
+    index:
+      title: "Все инструкции"
+      read: "Прочитать"
+  search:
+    button_search: "Поиск"
+  categories:
+    show:
+      title: "Инструкции из категории %{category}"

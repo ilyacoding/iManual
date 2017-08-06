@@ -1,9 +1,12 @@
 <div class="error-template">
-  <h1>Oops!</h1>
-  <h2>Nothing found</h2>
+  <h1><%= t('errors.oops') %></h1>
+  <h2><%= t('errors.not_found.message') %></h2>
   <div class="error-details">
-    Nothing found for your request.
+    <%= t('errors.manual.not_found') %>
   </div>
   <div class="error-actions">
-    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span></a></div>
+    <%= link_to root_path, class: "btn btn-primary btn-lg" do %>
+      <%= t('errors.manual.main_path') %> <span class="glyphicon glyphicon-home"></span>
+    <% end %>
+  </div>
 </div>

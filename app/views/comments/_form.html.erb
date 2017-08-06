@@ -1,13 +1,13 @@
 <% if can? :create, comment %>
   <%= form_for comment, url: manual_comments_path(manual), remote: true do |f| %>
     <div class="well">
-      <h4>Leave a Comment:</h4>
+      <h4><%= t('activerecord.controllers.comment.create') %>:</h4>
       <form role="form">
         <div class="form-group">
-          <%= f.text_area :content, class: "form-control", rows: 5, placeholder: "Add a comment" %>
+          <%= f.text_area :content, class: "form-control", rows: 5 %>
         </div>
         <%= f.hidden_field :manual_id, value: manual.id %>
-        <%= f.submit class: "btn btn-primary", value: "Send comment" %>
+        <%= f.submit class: "btn btn-primary", value: t('helpers.links.send') %>
       </form>
     </div>
   <% end %>

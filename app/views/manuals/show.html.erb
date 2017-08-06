@@ -17,19 +17,19 @@
 
   <hr>
   <% @steps.each do |step| %>
-      <h4><%= link_to "Step #{step.priority}: #{step.name}", { :controller => "steps", :action => "show",
+      <h4><%= link_to t('activerecord.attributes.step.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
                                                                :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %></h4>
       <hr>
   <% end %>
 
 
-  <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> Tags: <%= render 'layouts/tags', tags: @manual.tags %></span>
+  <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> <%= t('activerecord.models.tag.many') %>: <%= render 'layouts/tags', tags: @manual.tags %></span>
   <span class="pull-right"><%= rating_for @manual, 'rating' %></span>
   <div class="clearfix"></div>
   <!-- Posted Comments -->
 
   <hr>
-  <h2>Comments</h2>
+  <h2><%= t('activerecord.models.comment.many') %></h2>
   <hr>
   <div id="comments" data-id="<%= @manual.id %>">
     <%= render partial: @manual.comments %>
