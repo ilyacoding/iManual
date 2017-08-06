@@ -1,9 +1,9 @@
 <div class="col-md-9">
   <h1 class="page-header">
-    <%= t('manuals.index.title') %>
+    <%= t('activerecord.controllers.manual.index.title') %>
     <% if can? :create, Manual %>
       <small>
-        <%= link_to t('manuals.links.new'), new_manual_path, :class => 'btn btn-primary pull-right' %>
+        <%= link_to t('helpers.links.new.female'), new_manual_path, :class => 'btn btn-primary pull-right' %>
       </small>
     <% end %>
   </h1>
@@ -15,7 +15,7 @@
     </table>
     <div class="text-center">
       <p class="pagination">
-        <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
+        <%= link_to_next_page(@manuals, t('helpers.links.more'), :remote => true, :class => "btn btn-primary btn-block") %>
       </p>
     </div>
   </div>

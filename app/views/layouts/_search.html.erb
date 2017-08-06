@@ -2,7 +2,7 @@
   <%= form_tag(searches_path, method: :get, class: "nav navbar-form navbar-right") do %>
       <div class="form-group">
         <%= text_field_tag :query, params[:query], class: "form-control" %>
-        <%= submit_tag(t('search.button_search'), class: "btn btn-default") %>
+        <%= submit_tag(t('activerecord.controllers.search.button'), class: "btn btn-default") %>
       </div>
   <% end %>
 </div>

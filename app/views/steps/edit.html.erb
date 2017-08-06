@@ -1,10 +1,10 @@
 <div ng-controller="StepEditCtrl">
   <div class="page-header">
     <h1>
-      <p class="pull-right">Editing Step {{step.priority}}</p>
+      <p class="pull-right"><%= t('activerecord.controllers.step.edit.title') %> {{step.priority}}</p>
       <small>
-        <a class="pull-left" href="/manuals/{{step.manual_id}}/edit">
-          <span class="glyphicon glyphicon-backward"></span> Back to manual
+        <a class="pull-left" href="/manuals/{{step.manual_id}}/edit?locale=<%= params[:locale] %>">
+          <span class="glyphicon glyphicon-backward"></span> <%= t('activerecord.controllers.step.edit.back') %>
         </a>
       </small>
       <div class="clearfix"></div>
@@ -13,7 +13,7 @@
 
   <form name="form.state" auto-save-form="saveForm()" class="form-horizontal">
     <div class="form-group">
-      <label for="name" class="control-label col-md-1">Name</label>
+      <label for="name" class="control-label col-md-1"><%= t('activerecord.attributes.step.name') %></label>
       <div class="col-md-11">
         <input type="text" ng-model="form.data.name" class="form-control" id="name">
       </div>
@@ -28,14 +28,14 @@
         <img src="/loader.gif">
       </div>
       <span ng-if="(form.state.$dirty && form.state.$valid)">
-        <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> Unsaved changes</div>
+        <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> <%= t('angular.form.status.unsaved') %></div>
       </span>
       <span ng-if="!(form.state.$dirty && form.state.$valid)">
-        <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> All changes saved!</div>
+        <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> <%= t('angular.form.status.saved') %></div>
       </span>
     </div>
 
-    <h2 style="text-align: center;">Blocks</h2>
+    <h2 style="text-align: center;"><%= t('activerecord.models.block.many') %></h2>
 
     <ul class="draggable" id="block-list" sortable>
       <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority'">
@@ -52,7 +52,7 @@
               <youtube-video video-id="block.content"></youtube-video>
             </div>
             <div ng-switch-when="Text">
-              <textarea msd-elastic style="background-color: transparent; border: none; min-width: 100%" cols="80" ng-change="block.update = true" rows="1" ng-model="block.content" placeholder="Write some text here. You can use Markdown :)"></textarea>
+              <textarea msd-elastic style="background-color: transparent; border: none; min-width: 100%" cols="80" ng-change="block.update = true" rows="1" ng-model="block.content" placeholder="<%= t('activerecord.models.block.text.placeholder') %>"></textarea>
             </div>
           </div>
           <hr>
@@ -63,11 +63,11 @@
 
 
   <div class="text-center">
-    <button type="button" class="btn btn-primary" ng-show="!loading" ng-click="addText()">Text</button>
+    <button type="button" class="btn btn-primary" ng-show="!loading" ng-click="addText()"><%= t('activerecord.models.block.text.name') %></button>
     <div ng-show="!loading" class="fileUpload btn btn-primary">
-      <span>Image</span>
+      <span><%= t('activerecord.models.block.image.name') %></span>
       <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().uploadImage(event)" multiple />
     </div>
-    <button ng-show="!loading" type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
+    <button ng-show="!loading" type="button" class="btn btn-primary" ng-click="addVideo()"><%= t('activerecord.models.block.video.name') %></button>
   </div>
 </div>

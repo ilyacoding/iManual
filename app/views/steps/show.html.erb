@@ -1,35 +1,9 @@
-<!-- Blog Post Content Column -->
 <div class="col-md-12">
-  <!-- Blog Post -->
-
-  <!-- Title -->
-  <h3><%= link_to "Back to manual", manual_path(@step.manual), :class => 'col-xs' %></h3>
-
+  <h3><%= link_to t('activerecord.controllers.step.edit.back'), manual_path(@step.manual), :class => 'col-xs' %></h3>
   <hr>
-
-  <!-- Post Content -->
-
-  <h2>Step <%= @step.priority %>: <%= @step.name %></h2>
+  <h2><%= t('activerecord.controllers.step.show.name', priority: @step.priority, name: @step.name) %></h2>
   <hr>
-  <% @blocks.each do |block| %>
-    <% case block.type
-       when 'Text' %><%= render 'layouts/markdown', content: block.content %>
-      <% when 'Image' %><%= render 'layouts/image', src: block.content %>
-      <% when 'Video' %><%= render 'layouts/video', src: block.content %>
-    <% end %>
-    <br>
-  <% end %>
-
+  <%= render partial: "blocks/block", collection: @blocks, as: :block %>
   <hr>
-  <!-- Pager -->
-  <ul class="pager">
-    <li class="previous">
-      <%= link_to('← Previous', :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => previous_step.priority) if previous_step.present? %>
-    </li>
-    <li class="next">
-      <%= link_to('Next →', :controller => 'steps', :action => 'show', :manual_id => @step.manual.id, :id => next_step.priority) if next_step.present? %>
-    </li>
-  </ul>
-
+  <%= render 'steps/navigation', next_step: next_step, previous_step: previous_step %>
 </div>
-
