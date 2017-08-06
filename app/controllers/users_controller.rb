@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_related, only: [:show]
   load_and_authorize_resource
 
   def index
@@ -31,6 +31,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user.destroy
+    respond_to do |format|
+      format.html { redirect_to root_url, notice: 'User was successfully deleted.' }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -38,15 +46,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def correct_user
-    # .to_i converts values to integers here because params[:id] is a string
-    # Without this current_user.id and params[:id] would never match
-    # if current_user.id != params[:id].to_i
-    #   redirect_to root_url
-    # end
-  end
-
   def user_params
     params.require(:user).permit(:name, :about, :interests)
+  end
+
+  def set_related
+    @manuals = @user.manuals
+    @comments = @user.comments
   end
 end

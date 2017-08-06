@@ -1,12 +1,13 @@
 class User < ApplicationRecord
+  include Gravtastic
   resourcify
   rolify
   ratyrate_rater
-  has_many :manuals
-  has_many :comments
-  # acts_as_taggable_on :skills
+  gravtastic
+  has_many :manuals, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
-  devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable, :omniauthable,
+  devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable,
          :omniauth_providers => [:facebook, :twitter, :vk, :google_oauth2]
 
   def self.from_omniauth(auth)
