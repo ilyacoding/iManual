@@ -31,5 +31,8 @@
 
 en:
   manuals:
+    links:
+      new: "New"
     index:
-      title: "Manuals list"
+      title: "All Manuals"
+

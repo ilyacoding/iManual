@@ -19,7 +19,7 @@
                   <p class="text-left"><strong><%= link_to user.get_name, user_path(user) %></strong></p>
                   <p class="text-left small"><%= user.email %></p>
                   <p class="text-left">
-                    <%= link_to 'Edit profile', edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
+                    <%= link_to t('helpers.links.edit'), edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
                   </p>
                 </div>
               </div>
@@ -31,7 +31,7 @@
               <div class="row">
                 <div class="col-lg-12">
                   <p>
-                    <%= link_to('Logout', destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-block") %>
+                    <%= link_to(t('activerecord.controllers.user.logout'), destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-block") %>
                   </p>
                 </div>
               </div>

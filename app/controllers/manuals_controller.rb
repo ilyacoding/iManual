@@ -48,7 +48,7 @@ class ManualsController < ApplicationController
         format.html { redirect_to edit_manual_path(@manual), notice: 'Manual was successfully created.' }
         format.json { render :show, status: :created, location: @manual }
       else
-        format.html { render :new }
+        format.html { redirect_to new_manual_path, :flash => { :error => @manual.errors.full_messages.join(', ') } }
         format.json { render json: @manual.errors, status: :unprocessable_entity }
       end
     end

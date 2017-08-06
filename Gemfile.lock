@@ -60,7 +60,6 @@ GEM
     bindex (0.5.0)
     bootstrap-tagsinput-rails (0.4.2.1)
       railties (>= 3.1)
-    breadcrumbs_on_rails (3.0.1)
     builder (3.2.3)
     byebug (9.0.6)
     cancancan (2.0.0)
@@ -241,6 +240,8 @@ GEM
     rolify (5.1.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    russian (0.6.0)
+      i18n (>= 0.5.0)
     sass (3.5.1)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -316,7 +317,6 @@ DEPENDENCIES
   acts-as-taggable-on!
   angularjs-rails
   bootstrap-tagsinput-rails
-  breadcrumbs_on_rails
   byebug
   cancancan
   capybara (~> 2.13)
@@ -346,6 +346,7 @@ DEPENDENCIES
   redcarpet
   redis (~> 3.2)
   rolify
+  russian
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

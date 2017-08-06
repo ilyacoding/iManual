@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   end
 
   resources :searches, :tags, only: [:index]
-  resources :categories, :blocks, :users
+  resources :categories#, only: [:show]
+  resources :blocks, :users
 
   resources :textes, controller: 'blocks', type: 'Text'
   resources :videos, controller: 'blocks', type: 'Video'
