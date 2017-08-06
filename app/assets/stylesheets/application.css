@@ -219,3 +219,10 @@ footer {
     background: #fff;
     /*min-height: 460px;*/
 }
+
+#spinner {
+    top: 30px;
+    left: 0;
+    position: fixed;
+    z-index: 99;
+}

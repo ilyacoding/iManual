@@ -42,7 +42,6 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual',
             step.name = formData.stepName;
             formData.stepName = "";
             step.priority = $scope.list.length + 1;
-            alert(JSON.stringify(step));
             Steps.create({ manual_id: $scope.manual.id }, step, function(response) {
                 Step.get({ manual_id: $scope.manual.id, id: step.priority }).$promise.then(function (result) {
                     $scope.list.push(result);
