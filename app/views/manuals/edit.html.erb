@@ -1,45 +1,72 @@
-<%- model_class = Manual -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
-</div>
+<div ng-controller="ManualEditCtrl">
+  <div class="page-header">
+    <h1>Editing manual with id {{manual.id}}
+      <small>
+        <a class="pull-right" href="/manuals/{{manual.id}}"target="_blank">
+          <span class="glyphicon glyphicon-play"></span> Preview
+        </a>
+      </small>
+    </h1>
+  </div>
 
-<div>
-  <div ng-controller="ManualEditCtrl">
-
-    <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 18%; position: fixed; z-index: 99;">
-      <img src="/loader.gif">
-    </div>
-
-    <a class="pull-right" href="/manuals/{{manual.id}}"target="_blank"><span class="glyphicon glyphicon-play"></span></a>
-    <a ng-click="cl()">aaaaa</a>
-    <form name="form.state" auto-save-form="saveForm()">
-      <div>Name:
-        <input name="text" ng-model="form.data.text"/>
-        <span ng-if="form.state.$dirty && form.state.$valid">Updating ...</span>
-      </div>
-    </form>
-
-    Tags: <tags-input ng-model="manual.tags" display-property="name" on-tag-added="updateManual()" on-tag-removed="updateManual()">
-      <auto-complete source="loadTags($query)"></auto-complete>
-    </tags-input>
-
-    Category: <select ng-model="manual.category_id" ng-options="category.id as category.name for category in categories" ng-change="updateManual()"></select>
-<br>
-<br>
-    <img ng-src="{{manual.preview}}" class="img-responsive center-block" />
-
-    <div class="text-center">
-      <div ng-show="!loading" class="fileUpload btn btn-primary">
-        <span>Preview image</span>
-        <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+  <form name="form.state" auto-save-form="saveForm()" class="form-horizontal">
+    <div class="form-group">
+      <label for="name" class="control-label col-md-1">Name</label>
+      <div class="col-md-11">
+        <input type="text" ng-model="form.data.name" class="form-control" id="name">
       </div>
     </div>
-<hr>
 
-    <input type="hidden" ng-init="getManual(<%= @manual.id %>)">
-    <h2 style="text-align: center;">Steps</h2>
+    <div class="form-group">
+      <label for="tags" class="control-label col-md-1">Tags</label>
+      <div class="col-md-11">
+        <tags-input ng-model="form.data.tags" display-property="name">
+          <auto-complete source="loadTags($query)"></auto-complete>
+        </tags-input>
+      </div>
+    </div>
 
-    <ul class="draggable" id="step-list" sortable>
+    <div class="form-group">
+      <label for="category" class="control-label col-md-1">Category</label>
+      <div class="col-md-11">
+        <select ng-model="form.data.category_id" ng-options="category.id as category.name for category in categories"></select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="hidden" ng-init="initializeManual(<%= @manual.id %>)">
+    </div>
+
+    <div class="form-group">
+      <div id="spinner" ng-show="loading" style="position: fixed; z-index: 99;">
+        <img src="/loader.gif">
+      </div>
+      <span ng-if="(form.state.$dirty && form.state.$valid)">
+        <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> Unsaved changes</div>
+      </span>
+      <span ng-if="!(form.state.$dirty && form.state.$valid)">
+        <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> All changes saved!</div>
+      </span>
+    </div>
+  </form>
+
+  <hr>
+
+  <img ng-src="{{manual.preview}}" class="img-responsive center-block" />
+
+  <div class="text-center" style="margin-top: 5px;">
+    <div ng-show="!loading" class="btn btn-primary fileUpload">
+      <span>Preview image</span>
+      <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().uploadImage(event)" multiple />
+    </div>
+  </div>
+
+  <hr>
+
+  <h2 style="text-align: center;">Steps</h2>
+
+  <div>
+    <ul class="col-md-12 draggable" id="step-list" sortable>
       <li id="object-{{step.id}}" ng-repeat="step in list | orderBy:'priority'">
         <hr>
         <div class="portlet">
@@ -51,9 +78,17 @@
         <hr>
       </li>
     </ul>
-    <form name="FormAdd" ng-submit="addStep(formData)">
-      <input type="text" ng-model="formData.name" style="width:100%" placeholder="Add new step here">
-      <input type="submit" class="btn btn-primary" style="width:100%" value="Add">
-    </form>
   </div>
+
+  <form ng-submit="addStep(formData)" class="form-vertical">
+    <div class="form-group">
+      <div class="col-md-12">
+        <input type="text" ng-model="formData.stepName" class="form-control" placeholder="Add new step here">
+      </div>
+      <div class="col-md-12" style="margin-top: 3px;">
+        <input type="submit" class="btn btn-primary" style="width: 100%" value="Add step">
+      </div>
+    </div>
+  </form>
+
 </div>

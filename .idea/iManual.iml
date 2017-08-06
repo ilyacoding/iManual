@@ -131,6 +131,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activejob (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activerecord-session_store (v1.1.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.1.2, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="acts-as-taggable-on (v5.0.0@4d9a10, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.5.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
@@ -158,6 +159,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faraday (v0.12.1, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.18, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v0.4.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="gravtastic (v3.2.6, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashie (v3.5.6, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.8.6, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="innertube (v1.1.0, RVM: ruby-2.4.0 [iManual]) [gem]" level="application" />

@@ -18,7 +18,7 @@ angular.module('app').directive('autoSaveForm', function($timeout) {
                                 $formCtrl.$setPristine();
                             }
                         }
-                    }, 500);
+                    }, 4000);
                 }
             });
         }
