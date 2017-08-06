@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
-  # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
@@ -11,8 +10,8 @@ Rails.application.routes.draw do
     resources :steps
   end
 
-  resources :searches, only: [:index]
-  resources :categories, :blocks, :users, :tags
+  resources :searches, :tags, only: [:index]
+  resources :categories, :blocks, :users
 
   resources :textes, controller: 'blocks', type: 'Text'
   resources :videos, controller: 'blocks', type: 'Video'
