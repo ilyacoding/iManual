@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_action :set_locale
   before_action :store_current_location, :unless => :devise_controller?
   add_breadcrumb "Home", :root_path
   after_action :set_csrf_cookie_for_ng
@@ -52,6 +53,10 @@ class ApplicationController < ActionController::Base
 
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 
   protected

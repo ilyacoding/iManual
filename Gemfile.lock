@@ -189,6 +189,8 @@ GEM
     omniauth-vk (1.0.9)
       omniauth-oauth2 (~> 1.0)
     orm_adapter (0.5.0)
+    page_title_helper (2.1.0)
+      rails (>= 3.0.0)
     public_suffix (2.0.5)
     puma (3.9.1)
     rack (2.0.3)
@@ -335,6 +337,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   omniauth-twitter
   omniauth-vk
+  page_title_helper
   puma (~> 3.7)
   rails (~> 5.1.2)
   rails-angular-ui-sortable
