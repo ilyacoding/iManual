@@ -1,25 +1,82 @@
-<div class="row" ng-controller="UserEditCtrl">
-  <div class="col-md-6 col-md-offset-3 col-sm-12">
-    <h2 align="center">Updating id:<%= @user.id %></h2>
-    <form>
-      <a ng-click="cl()">aaaaaaaaaa</a>
-      <input type="hidden" ng-init="getUser(<%= @user.id %>)">
-      <div class="form-group">
-        <div class="form-group">
-          <label>Name</label>
-          <input name="text" ng-change="updateUser()" ng-model="user.name"/>
+<div class="form-group" ng-controller="UserEditCtrl">
+  <form name="form.state" auto-save-form="saveForm()">
+    <div class="col-md-12">
+      <div class="row profile">
+        <div class="col-md-3">
+          <div class="profile-sidebar">
+            <div class="profile-userpic">
+              <%= image_tag @user.gravatar_url, class: "img-responsive" %>
+            </div>
+            <div class="profile-usertitle">
+              <div class="profile-usertitle-name" style="text-align:center;">
+                <input name="text" ng-model="user.name" class="form-control"/>
+              </div>
+              <div class="profile-usertitle-job">
+                <%= @user.email %>
+              </div>
+            </div>
+            <div class="profile-userbuttons">
+              <%= render 'users/edit_buttons', user: @user %>
+            </div>
+            <div class="profile-usermenu">
+              <ul class="nav">
+                <li>
+                  <%= link_to user_path(@user) do %>
+                    <i class="glyphicon glyphicon-home"></i>
+                    Profile
+                  <% end %>
+                </li>
+                <li class="active">
+                  <a>
+                    <i class="glyphicon glyphicon-edit"></i>
+                    Edit
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <hr>
+
         <div class="form-group">
-          <label>About</label>
-          <textarea msd-elastic style="border: none" cols="78" rows="1" ng-change="updateUser()" ng-model="user.about" placeholder="Write some text about yourself here"></textarea>
+          <input type="hidden" ng-init="initializeUser(<%= @user.id %>)">
         </div>
-        <hr>
+
         <div class="form-group">
-          <label>Interests</label>
-          <textarea msd-elastic style="border: none" cols="78" rows="1" ng-change="updateUser()" ng-model="user.interests" placeholder="Write some text about yourself here"></textarea>
+          <span ng-if="(form.state.$dirty && form.state.$valid)">
+            <div class="btn btn-danger" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-remove"></span> Unsaved changes</div>
+          </span>
+          <span ng-if="!(form.state.$dirty && form.state.$valid)">
+            <div class="btn btn-success disabled" style="left: 5px; bottom: 5px; position: fixed; z-index: 999;"><span class="glyphicon glyphicon-floppy-saved"></span> All changes saved!</div>
+          </span>
+        </div>
+
+        <div class="col-md-9">
+          <div id="profile" class="profile-content" style="display: block;">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                About
+              </div>
+              <div class="panel-body">
+                <textarea msd-elastic class="form-control" cols="78" rows="1" ng-model="user.about" placeholder="Write some text about yourself here"></textarea>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                Interests
+              </div>
+              <div class="panel-body">
+                <textarea msd-elastic class="form-control" cols="78" rows="1" ng-model="user.interests" placeholder="Write some text about yourself here"></textarea>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
+
+
+
+
