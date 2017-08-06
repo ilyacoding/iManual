@@ -1,24 +1,24 @@
 class ApplicationController < ActionController::Base
+  protect_from_forgery
   before_action :store_current_location, :unless => :devise_controller?
   add_breadcrumb "Home", :root_path
   after_action :set_csrf_cookie_for_ng
 
-  protect_from_forgery
-  # rescue_from CanCan::AccessDenied do |exception|
-  #   respond_to do |format|
-  #     format.json { head :forbidden, content_type: 'text/html' }
-  #     format.html { redirect_to main_app.root_url, alert: exception.message }
-  #     format.js   { head :forbidden, content_type: 'text/html' }
-  #   end
-  # end
-  layout proc {
-    if request.xhr?
-      false
-    else
-      index
-      'application' # или другой лейаут
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json { head :forbidden, content_type: 'text/html' }
+      format.html { redirect_to main_app.root_url, alert: exception.message }
+      format.js   { head :forbidden, content_type: 'text/html' }
     end
-  }
+  end
+  # layout proc {
+  #   if request.xhr?
+  #     false
+  #   else
+  #     index
+  #     'application' # или другой лейаут
+  #   end
+  # }
 
   # def authenticate_user!
   #   unless current_user

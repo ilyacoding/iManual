@@ -1,5 +1,10 @@
 angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'Tags', 'imgur', function ($scope, $http, Manual, Categories, Step, Steps, Tags, imgur)
 {
+    $scope.form = {
+        state: {},
+        data: {}
+    };
+
     $scope.loading = false;
 
     $scope.initializeManual = function(manualId) {
@@ -17,11 +22,6 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual',
         $scope.categories.$promise.then(function (result) {
             $scope.category = $scope.manual.category_id;
         });
-    };
-
-    $scope.form = {
-        state: {},
-        data: {}
     };
 
     $scope.saveForm = function() {
