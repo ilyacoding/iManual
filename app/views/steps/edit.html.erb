@@ -1,48 +1,54 @@
-<div>
-  <div ng-controller="StepEditCtrl">
 
-    <div class="page-header">
-      <h1>Editing Step {{step.priority}}</h1>
-    </div>
+<div ng-controller="StepEditCtrl">
+  <div class="page-header">
+    <h1>
+      <p class="pull-right">Editing Step {{step.priority}}</p>
+      <small>
+        <a class="pull-left" href="/manuals/{{step.manual_id}}/edit">
+          <span class="glyphicon glyphicon-backward"></span> Back to manual
+        </a>
+      </small>
+      <div class="clearfix"></div>
+    </h1>
+  </div>
 
-    <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 18%; position: fixed; z-index: 99;">
-      <img src="/loader.gif">
-    </div>
+  <div id="spinner" ng-show="loading" class="center-block" style="margin-left: 18%; position: fixed; z-index: 99;">
+    <img src="/loader.gif">
+  </div>
 
-    Name: <input name="text" ng-change="updateName()" ng-model="step.name"/>
+  Name: <input name="text" ng-change="updateName()" ng-model="step.name"/>
 
-    <input type="hidden" ng-init="getStep(<%= @step.priority %>, <%= @step.manual_id %>)">
-    <h2 style="text-align: center;">Blocks</h2>
+  <input type="hidden" ng-init="getStep(<%= @step.priority %>, <%= @step.manual_id %>)">
+  <h2 style="text-align: center;">Blocks</h2>
 
-    <ul class="draggable" id="block-list" sortable>
-      <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority'">
-        <hr>
-        <div class="portlet">
-          <div  class="portlet-header" style="text-align: center;">
-            <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
-          </div>
-          <div class="portlet-content" ng-switch="block.type">
-            <div ng-switch-when="Image">
-              <img ng-src="{{block.content}}" class="img-responsive" />
-            </div>
-            <div ng-switch-when="Video">
-              <youtube-video video-id="block.content"></youtube-video>
-            </div>
-            <div ng-switch-when="Text">
-              <textarea msd-elastic style="border: none; min-width: 100%" cols="80" rows="1" ng-change="updateBlock(block)" ng-model="block.content" placeholder="Write some text here. You can use Markdown :)"></textarea>
-            </div>
-          </div>
-          <hr>
+  <ul class="draggable" id="block-list" sortable>
+    <li id="object-{{block.id}}" ng-repeat="block in list | orderBy:'priority'">
+      <hr>
+      <div class="portlet">
+        <div  class="portlet-header" style="text-align: center;">
+          <span class="glyphicon glyphicon-remove removable" ng-click="deleteBlock(block)" style="float: right;"></span>
         </div>
-      </li>
-    </ul>
-    <div class="text-center">
-      <button type="button" class="btn btn-primary" ng-show="!loading" ng-click="addText()">Text</button>
-      <div ng-show="!loading" class="fileUpload btn btn-primary">
-        <span>Image</span>
-        <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+        <div class="portlet-content" ng-switch="block.type">
+          <div ng-switch-when="Image">
+            <img ng-src="{{block.content}}" class="img-responsive" />
+          </div>
+          <div ng-switch-when="Video">
+            <youtube-video video-id="block.content"></youtube-video>
+          </div>
+          <div ng-switch-when="Text">
+            <textarea msd-elastic style="border: none; min-width: 100%" cols="80" rows="1" ng-change="updateBlock(block)" ng-model="block.content" placeholder="Write some text here. You can use Markdown :)"></textarea>
+          </div>
+        </div>
+        <hr>
       </div>
-      <button ng-show="!loading" type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
+    </li>
+  </ul>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary" ng-show="!loading" ng-click="addText()">Text</button>
+    <div ng-show="!loading" class="fileUpload btn btn-primary">
+      <span>Image</span>
+      <input type='file' class="upload" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
     </div>
+    <button ng-show="!loading" type="button" class="btn btn-primary" ng-click="addVideo()">Video</button>
   </div>
 </div>
