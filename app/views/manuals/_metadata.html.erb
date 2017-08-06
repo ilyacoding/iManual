@@ -1,0 +1,6 @@
+<small class="pull-right"><span class="glyphicon glyphicon-pencil"></span> Updated <%= local_time_ago(manual.updated_at) %></small>
+<hr>
+
+<p><span class="glyphicon glyphicon-time"></span> Posted on <%= local_time(manual.created_at) %></p>
+<p><span class="glyphicon glyphicon-user"></span> Author: <%= link_to manual.user.get_name, user_path(manual.user) %></p>
+<p><span class="glyphicon glyphicon-check"></span> Category: <%= link_to manual.category.name, category_path(manual.category) %></p>

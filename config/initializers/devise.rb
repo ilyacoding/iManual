@@ -254,12 +254,10 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :facebook, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/facebook/callback"
-  config.omniauth :vk, "6114220", "ntZxNqqwLcgmPeNYAI5L", callback_url: "http://localhost:3000/users/auth/vk/callback"
-  config.omniauth :twitter, "lPekvosd9ysYd3tDiSm26OWLy", "wLlOnAqK4Id0t2BeDZ0vYG9WgC3uHDX8GZFuRaLwbgpaa9prTQ", callback_url: "http://localhost:3000/users/auth/twitter/callback"
+  config.omniauth :facebook, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/facebook/callback", scope: 'email'
+  config.omniauth :vk, "6114220", "ntZxNqqwLcgmPeNYAI5L", callback_url: "http://localhost:3000/users/auth/vk/callback", scope: 'email'
+  config.omniauth :twitter, "lPekvosd9ysYd3tDiSm26OWLy", "wLlOnAqK4Id0t2BeDZ0vYG9WgC3uHDX8GZFuRaLwbgpaa9prTQ", callback_url: "http://localhost:3000/users/auth/twitter/callback", scope: 'email'
   config.omniauth :google_oauth2, "746170645489-4q5hoq0mkesvii3qfhr2bn9eh70msb09.apps.googleusercontent.com", "JPoM_9jsBmim02HYoscmD2ln", callback_url: "http://localhost:3000/users/auth/google_oauth2/callback"
-  # config.omniauth :twitter, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/twitter/callback"
-  # config.omniauth :vk, "341349279632556", "b293a0628555c41bf5a6626cb875e008", callback_url: "http://localhost:3000/users/auth/vk/callback"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -43,6 +43,7 @@ gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
 gem 'thinking-sphinx', '~> 3.3.0'
+gem 'activerecord-session_store'
 
 # Authorization
 gem 'devise'
@@ -69,6 +70,7 @@ gem 'jquery-infinite-pages'
 gem 'ratyrate'
 gem "breadcrumbs_on_rails"
 gem 'thinking-sphinx', '~> 3.3.0'
+gem 'gravtastic'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

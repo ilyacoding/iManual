@@ -1,14 +1,91 @@
-<div class="row">
-  <div class="col-md-3 col-sm-12">
-    <h1>ID: <%= @user.id %></h1>
-    <p>Name: <%= @user.name %></p>
-    <p>About: <%= @user.about %></p>
-    <p>Interests: <%= @user.interests %></p>
-    <% if can? :update, @user %>
-        <p><a href="<%= edit_user_path(@user.id) %>" class="btn btn-primary" role="button">Edit Profile</a></p>
-    <% end %>
-  </div>
-  <div class="col-md-9 col-sm-12">
-    <p>TODO: Show user's posts here</p>
+<script>
+  $(function () {
+    $('.switch').click(function() {
+      $('.profile-content').hide();
+      $('.nav li').removeClass("active");
+      $(this.parentNode).addClass("active");
+      var target = '#' + $(this).data('target');
+      $(target).show();
+    });
+  });
+</script>
+
+<div class="col-md-12">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <%= image_tag @user.gravatar_url, class: "img-responsive" %>
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            <%= @user.name %>
+          </div>
+          <div class="profile-usertitle-job">
+            <%= @user.email %>
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+          <%= render 'users/edit_buttons', user: @user %>
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a class="switch" id="1" data-target="profile" href="#">
+                <i class="glyphicon glyphicon-home"></i>
+                Profile </a>
+            </li>
+            <li>
+              <a class="switch" id="2" data-target="manuals" href="#">
+                <i class="glyphicon glyphicon-th-large"></i>
+                Manuals <span class='badge badge-default badge-pill pull-right'><%= @user.manuals_count %></span></a>
+            </li>
+            <li>
+              <a class="switch" id="3" data-target="comments" href="#">
+                <i class="glyphicon glyphicon-comment"></i>
+                Comments <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div id="profile" class="profile-content" style="display: block;">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            About
+          </div>
+          <div class="panel-body">
+            <%= @user.about %>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Interests
+          </div>
+          <div class="panel-body">
+            <%= @user.interests %>
+          </div>
+        </div>
+      </div>
+
+      <div id="manuals" class="profile-content" style="display: none;">
+        <%= render @manuals %>
+      </div>
+
+      <div id="comments" class="profile-content" style="display: none;">
+        <%= render @comments %>
+      </div>
+
+    </div>
   </div>
 </div>

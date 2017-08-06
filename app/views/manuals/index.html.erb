@@ -1,20 +1,29 @@
-<h1 class="page-header">
-  All manuals
-  <% if can? :create, Manual %>
-    <small>
-      <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %>
-    </small>
-  <% end %>
-</h1>
+<div class="col-md-9">
+  <h1 class="page-header">
+    All manuals
+    <% if can? :create, Manual %>
+      <small>
+        <%= link_to t('.new', :default => t("helpers.links.new")), new_manual_path, :class => 'btn btn-primary pull-right' %>
+      </small>
+    <% end %>
+  </h1>
 
-<div class="infinite-table">
-  <table>
-    <%= render @manuals %>
-    <%= render :partial => 'manuals/not_found'  if @manuals.empty? %>
-  </table>
-  <div class="text-center">
-    <p class="pagination">
-      <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
-    </p>
+  <div class="infinite-table">
+    <table>
+      <%= render @manuals %>
+      <%= render :partial => 'manuals/not_found'  if @manuals.empty? %>
+    </table>
+    <div class="text-center">
+      <p class="pagination">
+        <%= link_to_next_page(@manuals, 'More', :remote => true, :class => "btn btn-primary btn-block") %>
+      </p>
+    </div>
   </div>
 </div>
+
+<% content_for(:side_bar) do %>
+  <div class="col-md-3">
+    <%= render :partial => "shared/categories" %>
+    <%= render :partial => "shared/tags" %>
+  </div>
+<% end %>
