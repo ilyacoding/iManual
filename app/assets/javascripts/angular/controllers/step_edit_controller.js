@@ -45,8 +45,7 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
             }
             $scope.loading = true;
             imgur.upload(file).then(function then(model) {
-                $scope.manual.preview = model.link;
-                $scope.updateManual();
+                $scope.addImage(model.link);
                 $scope.loading = false;
             });
         }
