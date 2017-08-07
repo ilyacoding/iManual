@@ -7,7 +7,7 @@
     <title><%= content_for?(:title) ? yield(:title) : t('main.name') %></title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-
+    <%= favicon_link_tag '/favicon.ico' %>
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/ng-tags-input/3.2.0/ng-tags-input.min.css" %>
     <% stylesheet_link_tag "//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css" %>

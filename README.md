@@ -1,29 +1,17 @@
-<<<<<<< HEAD
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version: 2.4.0
 
-Things you may want to cover:
+* Rails version: 5.1
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
+* Services:
+  * Sphinx
+  
+* How to run:
+  * bundle
+  * rake ts:start
+  * rake ts:generate
+  * rails s
+  
 # iManual
 iManual to make it easy to deal with manuals.
->>>>>>> dd9e5112e529ac658f4997bfb88f7fbbf3462721
