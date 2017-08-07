@@ -38,11 +38,23 @@ gem 'redis', '~> 3.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# bootstrap
+# Bootstrap
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
 gem 'thinking-sphinx', '~> 3.3.0'
-gem 'activerecord-session_store'
+
+# Style
+gem 'jquery-rails'
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
+gem 'angularjs-rails'
+gem 'rails-angular-ui-sortable'
+gem 'redcarpet'
+gem 'local_time'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
+gem 'bootstrap-tagsinput-rails'
+gem 'kaminari'
+gem 'jquery-infinite-pages'
 
 # Authorization
 gem 'devise'
@@ -55,22 +67,12 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 
-gem 'jquery-rails'
-gem 'rails-jquery-autocomplete'
-gem 'jquery-ui-rails'
-gem 'angularjs-rails'
-gem 'rails-angular-ui-sortable'
-gem 'redcarpet'
-gem 'local_time'
-gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
-gem 'bootstrap-tagsinput-rails'
-gem 'kaminari'
-gem 'jquery-infinite-pages'
+# Core
+gem 'activerecord-session_store'
 gem 'ratyrate'
-gem 'thinking-sphinx', '~> 3.3.0'
 gem 'gravtastic'
-gem 'page_title_helper'
 gem 'russian'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
