@@ -83,11 +83,11 @@ ru:
         sign_in_through: "Войти через %{provider}"
         logout: "Выйти"
       search:
-        title: "Результаты поиска по запросу %{query}"
+        title: "Результаты поиска по запросу '%{query}'"
         button: "Поиск"
       categories:
         show:
-          title: "Инструкции из категории %{category}"
+          title: "Инструкции из категории '%{category}'"
   angular:
     form:
       status:

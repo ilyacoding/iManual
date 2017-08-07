@@ -1,4 +1,5 @@
 class Step < ApplicationRecord
+  validates :name, presence: true
   resourcify
   belongs_to :manual
   has_many :blocks, dependent: :destroy

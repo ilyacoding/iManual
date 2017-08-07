@@ -1,38 +1,106 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  manuals:
+  main:
+    name: "iManual"
+    copyright: "Copyright"
+  helpers:
     links:
-      new: "New"
-    index:
-      title: "All Manuals"
-
+      cancel: "Cancel"
+      create: "Create"
+      edit: "Edit"
+      editing: "Editing"
+      confirm: "Are you sure?"
+      send: "Send"
+      new:
+        male: "New"
+        female: "New"
+      more: "More"
+      all: "That's all."
+      navigation:
+        next: "Next →"
+        previous: "← Back"
+  activerecord:
+    models:
+      manual:
+        one: "Manual"
+        other: "Manuals"
+      category:
+        one: "Category"
+        many: "Categories"
+      tag:
+        one: "Tag"
+        many: "Tags"
+        cloud: "Top 30 tags"
+      comment:
+        one: "Comment"
+        many: "Comments"
+      step:
+        one: "Step"
+        many: "Steps"
+      block:
+        one: "Block"
+        many: "Blocks"
+        text:
+          name: "Text"
+          placeholder: "Add some text here. You can use Markdown :)"
+        video:
+          name: "Video"
+        image:
+          name: "Image"
+    attributes:
+      manual:
+        name: "Name"
+        preview: "Preview"
+        metadata:
+          updated: "Updated"
+          created_at: "Posted"
+          author: "Author"
+      step:
+        name: "Name"
+      user:
+        profile: "Profile"
+        about: "About"
+        interests: "Interests"
+    controllers:
+      manual:
+        index:
+          title: "All manuals"
+          read: "Read"
+        new:
+          title: "New manual"
+        edit:
+          title: "Editing manual with id"
+          preview: "Preview"
+      step:
+        edit:
+          title: "Editing step with id"
+          back: "Back to manual"
+        show:
+          name: "Step %{priority}: %{name}"
+      comment:
+        create: "Leave comment"
+      user:
+        sign_in: "Sign in"
+        sign_in_through: "Sign in with %{provider}"
+        logout: "Sign out"
+      search:
+        title: "Search result for query '%{query}'"
+        button: "Search"
+      categories:
+        show:
+          title: "Manuals from category '%{category}'"
+  angular:
+    form:
+      status:
+        saved: "All changed saved!"
+        unsaved: "Unsaved changes."
+  errors:
+    oops: "Oops!"
+    search:
+      not_found: "Nothing found for your request"
+    category:
+      not_found: "There is nothing here. Maybe you want to add your manual?"
+      main_path: "Home"
+    comment:
+      not_found: "There are no comments for this publication."
+    not_found:
+      message: "Not found"
