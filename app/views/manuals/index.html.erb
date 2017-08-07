@@ -9,7 +9,7 @@
   </h1>
 
   <div class="infinite-table">
-    <table>
+    <table class="col-md-12">
       <%= render @manuals %>
       <%= render :partial => 'manuals/not_found'  if @manuals.empty? %>
     </table>

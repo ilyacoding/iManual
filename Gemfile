@@ -71,7 +71,7 @@ gem 'omniauth-vk'
 gem 'activerecord-session_store'
 gem 'ratyrate'
 gem 'gravtastic'
-gem 'russian'
+gem 'russian', '~> 0.6.0'
 
 
 group :development, :test do

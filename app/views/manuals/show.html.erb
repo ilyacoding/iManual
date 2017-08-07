@@ -10,7 +10,7 @@
   <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>
   <hr>
   <% @steps.each do |step| %>
-      <h4 class="text-center"><%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
+      <h4><%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
                                                                :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %></h4>
       <hr>
   <% end %>
