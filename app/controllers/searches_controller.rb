@@ -17,6 +17,6 @@ class SearchesController < ApplicationController
   end
 
   def set_query
-    @query = ThinkingSphinx::Query.escape(params[:query])
+    @query = ThinkingSphinx::Query.escape(params[:query] || "")
   end
 end

@@ -1,60 +1,72 @@
 <% if user_signed_in? %>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <span class="glyphicon glyphicon-user"></span> 
-          <strong><%= user.get_name %></strong>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li>
-            <div class="navbar-login">
-              <div class="row">
-                <div class="col-lg-4">
-                  <p class="text-center">
-                    <%= link_to image_tag(user.gravatar_url), user_path(user) %>
-                  </p>
-                </div>
-                <div class="col-lg-8">
-                  <p class="text-left"><strong><%= link_to user.get_name, user_path(user) %></strong></p>
-                  <p class="text-left small"><%= user.email %></p>
-                  <p class="text-left">
-                    <%= link_to t('helpers.links.edit'), edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
-                  </p>
-                </div>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span> 
+        <strong><%= user.get_name %></strong>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <div class="navbar-login">
+            <div class="row">
+              <div class="col-lg-4">
+                <p class="text-center">
+                  <%= link_to image_tag(user.gravatar_url), user_path(user) %>
+                </p>
+              </div>
+              <div class="col-lg-8">
+                <p class="text-left"><strong><%= link_to user.get_name, user_path(user) %></strong></p>
+                <p class="text-left small"><%= user.email %></p>
+                <p class="text-left">
+                  <%= link_to t('helpers.links.edit'), edit_user_path(user), :class => "btn btn-primary btn-block btn-sm" %>
+                </p>
               </div>
             </div>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <div class="navbar-login navbar-login-session">
-              <div class="row">
-                <div class="col-lg-12">
-                  <p>
-                    <%= link_to(t('activerecord.controllers.user.logout'), destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-block") %>
-                  </p>
-                </div>
+          </div>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <div class="navbar-login navbar-login-session">
+            <div class="row">
+              <div class="col-lg-12">
+                <p>
+                  <%= link_to(t('activerecord.controllers.user.logout'), destroy_user_session_path, method: :delete, :class => "btn btn-danger btn-block") %>
+                </p>
               </div>
             </div>
-          </li>
-        </ul>
-      </li>
-    </ul>
+          </div>
+        </li>
+      </ul>
+    </li>
+  </ul>
 <% else %>
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <strong><%= t('activerecord.controllers.user.sign_in') %></strong>
-          <span class="glyphicon glyphicon-chevron-down"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <% if devise_mapping.omniauthable? %>
-              <% resource_class.omniauth_providers.each do |provider| %>
-                  <li><%= link_to t('activerecord.controllers.user.sign_in_through', provider: provider.to_s.split('_')[0].titleize), omniauth_authorize_path(resource_name, provider) %></li>
-              <% end %>
-          <% end %>
+  <ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <strong><%= t('activerecord.controllers.user.sign_in') %></strong>
+        <span class="glyphicon glyphicon-chevron-down"></span>
+      </a>
+      <ul class="dropdown-menu">
+        <% if devise_mapping.omniauthable? %>
+            <% resource_class.omniauth_providers.each do |provider| %>
+                <li><%= link_to t('activerecord.controllers.user.sign_in_through', provider: provider.to_s.split('_')[0].titleize), omniauth_authorize_path(resource_name, provider) %></li>
+            <% end %>
+        <% end %>
 
-        </ul>
-      </li>
-    </ul>
+      </ul>
+    </li>
+  </ul>
 <% end %>
+
+<ul class="nav navbar-nav navbar-right">
+  <li class="dropdown">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <strong><span class="glyphicon glyphicon-globe"></span></strong>
+    </a>
+    <ul class="dropdown-menu">
+      <li><%= link_to "English", { locale: 'en' } %></li>
+      <li><%= link_to "Русский", { locale: 'ru' } %></li>
+    </ul>
+  </li>
+</ul>
