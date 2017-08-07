@@ -4,12 +4,6 @@ class StepsController < ApplicationController
   before_action :set_blocks, only: [:show]
   load_resource :manual
   load_and_authorize_resource :step, :through => :manual
-  # load_and_authorize_resource :manual
-  # load_and_authorize_resource through: :manual
-  # skip_before_action :verify_authenticity_token
-  # load_resource :manual
-  # load_and_authorize_resource :manual, :class => 'Manual'
-  # load_and_authorize_resource :step, :through => :manual
 
   def index
     @steps = Step.all

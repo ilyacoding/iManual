@@ -12,7 +12,7 @@ angular.module('app').directive('fileButton', function() {
                 height: button.offsetHeight
             });
 
-            var fileInput = angular.element('<input type="file" class="button" ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" accept="image" />')
+            var fileInput = angular.element('<input type="file" class="button" ng-model-instant onchange="angular.element(this).scope().uploadImage(event)" accept="image" />')
             fileInput.css({
                 position: 'absolute',
                 top: 0,

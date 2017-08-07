@@ -34,6 +34,7 @@
  *= require jquery-ui/spinner
  *= require jquery-ui/tabs
  *= require jquery-ui/tooltip
+ *= require ng-tags-input
  */
 
 ul {
@@ -115,15 +116,7 @@ footer {
 .css3 { font-size: 1.4em; }
 .css4 { font-size: 1.6em; }
 
-
-/* Profile container */
-.profile {
-    /*margin: 20px 0;*/
-}
-
-/* Profile sidebar */
 .profile-sidebar {
-    /*padding: 20px 0 10px 0;*/
     background: #fff;
 }
 
@@ -213,11 +206,9 @@ footer {
     margin-left: -2px;
 }
 
-/* Profile Content */
 .profile-content {
     padding: 20px;
     background: #fff;
-    /*min-height: 460px;*/
 }
 
 #spinner {
