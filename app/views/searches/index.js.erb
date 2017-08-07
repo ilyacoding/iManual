@@ -1,4 +1,4 @@
-$("<%=j render(@manuals) %>").appendTo($(".infinite-table table"));
+$("<%=j render(:partial => 'manuals/manuals', :object => @manuals) %>").appendTo($(".infinite-table table"));
 
 <% if @manuals.last_page? %>
   $('.pagination').html("<%=j t('helpers.links.all') %>");

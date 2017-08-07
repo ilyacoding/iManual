@@ -343,7 +343,7 @@ DEPENDENCIES
   redcarpet
   redis (~> 3.2)
   rolify
-  russian
+  russian (~> 0.6.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

@@ -3,8 +3,8 @@
 </h1>
 
 <div class="infinite-table">
-  <table>
-    <%= render @manuals %>
+  <table class="col-md-12">
+    <%= render(:partial => 'manuals/manuals', :object => @manuals) %>
     <%= render :partial => 'manuals/not_found'  if @manuals.empty? %>
   </table>
   <div class="text-center">
