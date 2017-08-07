@@ -2,37 +2,21 @@ class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :destroy]
   load_and_authorize_resource
 
-  # GET /manuals/1
-  # GET /manuals/1.json
-  # def show
-  #   respond_to do |format|
-  #     format.html
-  #     format.json { render json: @comment }
-  #   end
-  # end
-
-  # GET /manuals/new
+  # GET /manuals/:manual_id/new
   def new
     @comment = Comment.new
   end
 
+  # POST /manuals/:manual_id/comments
+  # POST /manuals/:manual_id/comments.json
   def create
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
-
-    respond_to do |format|
-      if @comment.save
-        # format.html { redirect_to manual_path(@comment.manual), notice: 'Comment was successfully added.' }
-        # format.json { render :show, status: :created }
-      else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
+    @comment.save
   end
 
-  # DELETE /manuals/1
-  # DELETE /manuals/1.json
+  # DELETE /manuals/:manual_id/comments/1
+  # DELETE /manuals/:manual_id/comments/1.json
   def destroy
     @comment.destroy
     respond_to do |format|

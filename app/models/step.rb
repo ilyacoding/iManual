@@ -1,8 +1,8 @@
 class Step < ApplicationRecord
-  validates :name, presence: true
   resourcify
   belongs_to :manual
   has_many :blocks, dependent: :destroy
+  validates :name, presence: true
   after_save ThinkingSphinx::RealTime.callback_for(:manual)
 
   def ordered_blocks

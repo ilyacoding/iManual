@@ -1,5 +1,4 @@
 module ApplicationHelper
-  # include ActsAsTaggableOn::TagsHelper
 
   def categories
     Category.all

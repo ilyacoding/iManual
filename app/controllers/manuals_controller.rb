@@ -3,7 +3,6 @@ class ManualsController < ApplicationController
   before_action :set_steps, only: [:show]
   before_action :set_manuals, only: [:index]
   before_action :set_tags
-  # skip_before_action :verify_authenticity_token
   load_and_authorize_resource
 
   # GET /manuals

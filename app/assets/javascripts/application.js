@@ -11,6 +11,7 @@
 // about supported directives.
 //
 
+//= require_tree ./angular/resources
 
 //= require jquery
 //= require jquery_ujs
@@ -36,7 +37,7 @@
 
 //= require local_time
 
-//= require scroll.js
+//= require scroll
 
 //= require_tree ./channels
 
