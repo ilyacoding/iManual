@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
   private
 
   def set_manuals
-    @manuals = Manual.search @query, :page => params[:page], :per_page => 10
+    @manuals = Manual.search @query, :page => params[:page], :per_page => 5
   end
 
   def set_query

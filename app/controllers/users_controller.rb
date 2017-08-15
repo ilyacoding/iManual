@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   end
 
   def set_related
-    @manuals = @user.manuals
-    @comments = @user.comments
+    @manuals = @user.manuals.includes(:category)
+    @comments = @user.comments.includes(:user)
   end
 end
