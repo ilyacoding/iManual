@@ -1,6 +1,7 @@
 class ManualsController < ApplicationController
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
+  before_action :set_comments, only: [:show]
   before_action :set_manuals, only: [:index]
   before_action :set_tags
   load_and_authorize_resource
@@ -78,13 +79,13 @@ class ManualsController < ApplicationController
   end
 
   def set_tags
-    @tags = Manual.tag_counts_on(:tags)
+    @tags = Manual.includes(:user).tag_counts_on(:tags)
   end
 
   private
 
   def set_manual
-    @manual = Manual.find(params[:id])
+    @manual = Manual.includes(:user).find(params[:id])
   end
 
   def set_manuals
@@ -99,6 +100,10 @@ class ManualsController < ApplicationController
 
   def set_steps
     @steps = @manual.ordered_steps
+  end
+
+  def set_comments
+    @comments = @manual.comments.includes(:user)
   end
 
   def manual_params

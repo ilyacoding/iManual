@@ -21,8 +21,7 @@
   <h2><%= t('activerecord.models.comment.many') %></h2>
   <hr>
   <div id="comments" data-id="<%= @manual.id %>">
-    <%= render partial: @manual.comments %>
-    <%= render 'comments/not_found' if @manual.comments.empty? %>
+    <%= render partial: @comments %>
   </div>
   <hr>
   <%= render partial: "comments/form", locals: { manual: @manual, comment: @comment } %>
