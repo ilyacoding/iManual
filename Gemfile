@@ -68,7 +68,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-vk'
 
 # Core
-gem 'activerecord-session_store'
 gem 'ratyrate'
 gem 'gravtastic'
 gem 'russian', '~> 0.6.0'
