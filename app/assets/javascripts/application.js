@@ -25,8 +25,8 @@
 //= require twitter/bootstrap
 //= require bootstrap-tagsinput
 
-//= require angular-animate
 //= require angular-ui-sortable
+//= require angular-animate
 
 //= require angular-bootstrap.js
 
