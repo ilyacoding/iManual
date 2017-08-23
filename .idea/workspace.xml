@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d56c5a6e-753f-49fb-bab1-2892a7e5161e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/cable.yml" afterPath="$PROJECT_DIR$/config/cable.yml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/.keep" afterPath="$PROJECT_DIR$/public/images/.keep" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/big-star.png" afterPath="$PROJECT_DIR$/public/images/big-star.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/cancel-off.png" afterPath="$PROJECT_DIR$/public/images/cancel-off.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/cancel-on.png" afterPath="$PROJECT_DIR$/public/images/cancel-on.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/mid-star.png" afterPath="$PROJECT_DIR$/public/images/mid-star.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/star-half.png" afterPath="$PROJECT_DIR$/public/images/star-half.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/star-off.png" afterPath="$PROJECT_DIR$/public/images/star-off.png" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/assets/images/star-on.png" afterPath="$PROJECT_DIR$/public/images/star-on.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/config/manifest.js" afterPath="$PROJECT_DIR$/app/assets/config/manifest.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/manuals/show.html.erb" afterPath="$PROJECT_DIR$/app/views/manuals/show.html.erb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,11 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cable.yml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cable.yml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/cable.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
               <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/manuals/show.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="80" lean-forward="false" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -137,7 +157,6 @@
         <option value="$PROJECT_DIR$/config/initializers/kaminari_config.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_search.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/steps_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/manuals/show.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/manuals_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/video.rb" />
@@ -152,6 +171,7 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/config/environments/production.rb" />
         <option value="$PROJECT_DIR$/config/cable.yml" />
+        <option value="$PROJECT_DIR$/app/views/manuals/show.html.erb" />
       </list>
     </option>
   </component>
@@ -215,55 +235,6 @@
               <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
               <item name="iManual" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-              <item name="angular" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="javascripts" type="462c0819:PsiDirectoryNode" />
-              <item name="channels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="javascript" type="462c0819:PsiDirectoryNode" />
-              <item name="packs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -271,24 +242,12 @@
               <item name="iManual" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+              <item name="manuals" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
               <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="environments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="iManual" type="b2602c69:ProjectViewProjectNode" />
-              <item name="iManual" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-              <item name="initializers" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -305,19 +264,19 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/assets/javascripts/angular/resources" />
-      <recent name="$PROJECT_DIR$/app/mailers" />
-      <recent name="$PROJECT_DIR$/app/views/blocks" />
-      <recent name="$PROJECT_DIR$/bin" />
-      <recent name="$PROJECT_DIR$/app/controllers/manuals" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/views/comments" />
       <recent name="$PROJECT_DIR$/app/views/users" />
       <recent name="$PROJECT_DIR$/app/views/searches" />
       <recent name="$PROJECT_DIR$/app/views/search" />
       <recent name="$PROJECT_DIR$/app/views/manuals" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/app/assets/javascripts/angular/resources" />
+      <recent name="$PROJECT_DIR$/app/mailers" />
+      <recent name="$PROJECT_DIR$/app/views/blocks" />
+      <recent name="$PROJECT_DIR$/bin" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -713,12 +672,12 @@
       <workItem from="1502131477373" duration="637000" />
       <workItem from="1502133683346" duration="3000" />
       <workItem from="1503481401468" duration="1116000" />
-      <workItem from="1503514638626" duration="3848000" />
+      <workItem from="1503514638626" duration="4011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439264000" />
+    <option name="totallyTimeSpent" value="439427000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -760,13 +719,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/blocks_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-715">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/categories_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1125,7 +1077,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1134,6 +1086,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/manuals/show.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="80" lean-forward="false" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
           <folding />
         </state>
       </provider>
