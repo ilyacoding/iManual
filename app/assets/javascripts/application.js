@@ -11,8 +11,6 @@
 // about supported directives.
 //
 
-//= require_tree ./angular/resources
-
 //= require jquery
 //= require jquery_ujs
 
@@ -27,7 +25,6 @@
 //= require twitter/bootstrap
 //= require bootstrap-tagsinput
 
-//= require angular
 //= require angular-animate
 //= require angular-ui-sortable
 
