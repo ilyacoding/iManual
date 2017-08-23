@@ -15,7 +15,7 @@
       <hr>
   <% end %>
   <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> <%= t('activerecord.models.tag.many') %>: <%= render 'layouts/tags', tags: @manual.tags %></span>
-  <span class="pull-right"><%= rating_for @manual, 'rating' %></span>
+  <span class="pull-right"><%= rating_for @manual, 'rating', star_path: '/images' %></span>
   <div class="clearfix"></div>
   <hr>
   <h2><%= t('activerecord.models.comment.many') %></h2>
