@@ -42,6 +42,7 @@ gem 'redis', '~> 3.2'
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
 gem 'thinking-sphinx', '~> 3.3.0'
+gem 'flying-sphinx'
 
 # Style
 gem 'jquery-rails'
