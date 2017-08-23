@@ -1,1 +1,1 @@
-angular.module('app', ['ui.sortable', 'ngResource', 'ngImgur', 'youtube-embed', 'ngTagsInput']);
+angular.module('app', ['ui.sortable.rails', 'ngResource', 'ngImgur', 'youtube-embed', 'ngTagsInput']);
