@@ -11,8 +11,6 @@
 // about supported directives.
 //
 
-//= require cable.js
-
 //= require jquery
 //= require jquery_ujs
 
@@ -35,6 +33,8 @@
 //= require local_time
 
 //= require scroll
+
+//= require_tree ./channels
 
 //= require jquery.raty
 //= require ratyrate
