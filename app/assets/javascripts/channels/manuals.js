@@ -6,8 +6,8 @@
 $(function () {
     this.App = {};
     var comments = $('#comments');
-    if (comments.data('id') != null)
-    {
+    // if (comments.data('id') != null)
+    // {
         App.cable = ActionCable.createConsumer();
         App.global_manual = App.cable.subscriptions.create({
             channel: "CommentsChannel",
@@ -25,5 +25,5 @@ $(function () {
         $("#new_comment").bind("ajax:complete", function(event,xhr,status){
             $('#comment_content').val('');
         });
-    }
+    // }
 });
