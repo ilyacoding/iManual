@@ -1,7 +1,7 @@
 ru:
   main:
     name: "iManual"
-    copyright: "Copyright"
+    copyright: "Авторские права"
   helpers:
     links:
       cancel: "Отмена"
