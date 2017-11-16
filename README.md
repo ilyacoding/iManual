@@ -6,12 +6,11 @@
 
 * Services:
   * Sphinx
-  
+
 * How to run:
   * bundle
-  * rake ts:start
-  * rake ts:generate
-  * rails s
-  
+  * rdc; rdm; rds
+  * rs
+
 # iManual
-iManual to make it easy to deal with manuals.
+iManual webservice to make it easy to deal with manuals.
