@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://redistogo:e433bb7d4de5bc0ad43c9d51f24cb790@barreleye.redistogo.com:11782/
+  url: <%= ENV['REDISTOGO_URL'] %>
   channel_prefix: iManual_production
