@@ -3,7 +3,6 @@ class Step < ApplicationRecord
   belongs_to :manual
   has_many :blocks, dependent: :destroy
   validates :name, presence: true
-  after_save ThinkingSphinx::RealTime.callback_for(:manual)
 
   def ordered_blocks
     blocks.order('priority ASC')

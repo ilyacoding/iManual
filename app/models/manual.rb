@@ -7,7 +7,6 @@ class Manual < ApplicationRecord
   belongs_to :category, counter_cache: true
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
-  after_save ThinkingSphinx::RealTime.callback_for(:manual)
 
   def ordered_steps
     steps.order('priority ASC')

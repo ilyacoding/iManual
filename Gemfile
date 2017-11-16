@@ -41,8 +41,6 @@ gem 'redis', '~> 3.2'
 # Bootstrap
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
-gem 'thinking-sphinx', '~> 3.3.0'
-gem 'flying-sphinx'
 
 # Style
 gem 'jquery-rails'
@@ -72,7 +70,6 @@ gem 'omniauth-vk'
 gem 'ratyrate'
 gem 'gravtastic'
 gem 'russian', '~> 0.6.0'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
