@@ -4,9 +4,6 @@
 
 * Rails version: 5.1
 
-* Services:
-  * Sphinx
-
 * How to run:
   * bundle
   * rdc; rdm; rds
