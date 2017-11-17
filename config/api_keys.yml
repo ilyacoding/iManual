@@ -1,0 +1,20 @@
+callback: http://%{url}/users/auth/%{provider}/callback
+scope: email
+
+development:
+  url: localhost:3000
+  facebook:
+    key: '131304897569751'
+    secret: 'e34c9e65c60759b70891017cd144fea1'
+  vk:
+    key: '6263793'
+    secret: '3wACUfhSoicKdF4fvw0p'
+  twitter:
+    key: 'TN91mreAUajGGrQiDjAs5yBmW'
+    secret: 'a2usDsSHQfUJJdu8Dl02aeMKDqunlzdyQ0hs3eta6018taQK3T'
+  google_oauth2:
+    key: '746170645489-1bgc7gq7ppt1lkevf6cadh9r7mnlfl2b.apps.googleusercontent.com'
+    secret: '1Djad8xRDTBbqJETKYlIhuOJ'
+
+production:
+  url: imanual.herokuapp.com
