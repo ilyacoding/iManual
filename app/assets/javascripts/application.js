@@ -25,9 +25,10 @@
 //= require twitter/bootstrap
 //= require bootstrap-tagsinput
 
+//= require angular
 //= require angular-ui-sortable
 //= require angular-animate
-
+//= require angular-resource
 //= require angular-bootstrap.js
 
 //= require local_time
