@@ -92,9 +92,9 @@ class ManualsController < ApplicationController
     if params[:tag]
       @manuals = Manual.tagged_with(params[:tag]).order(:id).page params[:page]
     elsif params[:search]
-      @manuals = Manual.search params[:search], :page => params[:page]
+      @manuals = Manual.search(params[:search]).page(params[:page])
     else
-      @manuals = Manual.all.order(:id).page params[:page]
+      @manuals = Manual.all.order(:id).page(params[:page])
     end
   end
 
