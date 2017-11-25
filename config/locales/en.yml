@@ -83,7 +83,7 @@ en:
         sign_in_through: "Sign in with %{provider}"
         logout: "Sign out"
       search:
-        title: "Search result for query '%{query}'"
+        title: "Search results for query '%{query}'"
         button: "Search"
       categories:
         show:
