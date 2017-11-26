@@ -25,3 +25,5 @@
 /db/schema.rb
 
 Gemfile.lock
+
+/public/assets
