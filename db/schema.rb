@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170806012917) do
+ActiveRecord::Schema.define(version: 20171126000756) do
 
   create_table "average_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rater_id"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 20170806012917) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "preview", default: "/no_image.jpg"
+    t.string "preview"
     t.bigint "category_id"
     t.integer "comments_count", default: 0, null: false
     t.index ["category_id"], name: "index_manuals_on_category_id"

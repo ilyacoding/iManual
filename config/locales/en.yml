@@ -49,7 +49,7 @@ en:
     attributes:
       manual:
         name: "Name"
-        preview: "Preview"
+        preview: "Image Preview"
         metadata:
           updated: "Updated"
           created_at: "Posted"

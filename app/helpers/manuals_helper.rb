@@ -16,4 +16,8 @@ module ManualsHelper
   def devise_mapping
     @devise_mapping ||= Devise.mappings[:user]
   end
+
+  def default_preview
+    "/no_image.jpg"
+  end
 end
