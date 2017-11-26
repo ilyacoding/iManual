@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :completed_steps
+  resources :completed_manuals
   post '/rate' => 'rater#create', :as => 'rate'
   mount ActionCable.server => '/cable'
 

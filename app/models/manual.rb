@@ -16,9 +16,11 @@ class Manual < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
+  has_many :completed_manuals, dependent: :destroy
+
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :blocks, :through => :steps
+  has_many :blocks, through: :steps
 
   def ordered_steps
     steps.order('priority ASC')

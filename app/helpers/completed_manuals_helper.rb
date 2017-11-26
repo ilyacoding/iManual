@@ -1,0 +1,2 @@
+module CompletedManualsHelper
+end

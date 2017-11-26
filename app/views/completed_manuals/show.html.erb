@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Manual:</strong>
+  <%= @completed_manual.manual %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @completed_manual.user %>
+</p>
+
+<%= link_to 'Edit', edit_completed_manual_path(@completed_manual) %> |
+<%= link_to 'Back', completed_manuals_path %>
