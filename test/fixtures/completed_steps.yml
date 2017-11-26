@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  completed_manual: one
-  step: one
   user: one
+  step: one
+  completed_manual: one
 
 two:
-  completed_manual: two
-  step: two
   user: two
+  step: two
+  completed_manual: two
