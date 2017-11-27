@@ -25,4 +25,8 @@ class Manual < ApplicationRecord
   def ordered_steps
     steps.order('priority ASC')
   end
+
+  def user_completed_manual(user)
+    completed_manuals.where(user: user).first
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126000756) do
+ActiveRecord::Schema.define(version: 20171126214212) do
 
   create_table "average_caches", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "rater_id"
@@ -46,6 +46,27 @@ ActiveRecord::Schema.define(version: 20171126000756) do
     t.bigint "manual_id"
     t.index ["manual_id"], name: "index_comments_on_manual_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "completed_manuals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "manual_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "completed", default: false, null: false
+    t.index ["manual_id"], name: "index_completed_manuals_on_manual_id"
+    t.index ["user_id"], name: "index_completed_manuals_on_user_id"
+  end
+
+  create_table "completed_steps", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id"
+    t.bigint "step_id"
+    t.bigint "completed_manual_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["completed_manual_id"], name: "index_completed_steps_on_completed_manual_id"
+    t.index ["step_id"], name: "index_completed_steps_on_step_id"
+    t.index ["user_id"], name: "index_completed_steps_on_user_id"
   end
 
   create_table "manuals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -183,6 +204,11 @@ ActiveRecord::Schema.define(version: 20171126000756) do
   add_foreign_key "blocks", "steps"
   add_foreign_key "comments", "manuals"
   add_foreign_key "comments", "users"
+  add_foreign_key "completed_manuals", "manuals"
+  add_foreign_key "completed_manuals", "users"
+  add_foreign_key "completed_steps", "completed_manuals"
+  add_foreign_key "completed_steps", "steps"
+  add_foreign_key "completed_steps", "users"
   add_foreign_key "manuals", "categories"
   add_foreign_key "manuals", "users"
   add_foreign_key "steps", "users"

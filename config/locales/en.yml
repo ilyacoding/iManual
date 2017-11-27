@@ -70,6 +70,8 @@ en:
         edit:
           title: "Editing manual with id"
           preview: "Preview"
+        show:
+          completed: "Progress: (%{current}/%{total})"
       step:
         edit:
           title: "Editing step with id"

@@ -22,7 +22,7 @@
 
 .DS_Store
 
-/db/schema.rb
+db/schema.rb
 
 Gemfile.lock
 
