@@ -26,7 +26,8 @@ class Manual < ApplicationRecord
     steps.order('priority ASC')
   end
 
-  def user_completed_manual(user)
-    completed_manuals.where(user: user).first
+  def completed_steps_amount(user)
+    manual = completed_manuals.where(user: user).first
+    manual.present? ? manual.completed_steps.count : 0
   end
 end

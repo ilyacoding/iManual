@@ -23,6 +23,7 @@ ru:
       manual:
         one: "Инструкция"
         other: "Инструкции"
+        progress: "Прогресс инструкций"
       category:
         one: "Категория"
         many: "Категории"
