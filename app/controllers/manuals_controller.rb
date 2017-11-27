@@ -2,6 +2,7 @@ class ManualsController < ApplicationController
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
   before_action :set_steps, only: [:show]
   before_action :set_comments, only: [:show]
+  before_action :set_completed_steps, only: [:show]
   before_action :set_manuals, only: [:index]
   before_action :set_tags
   load_and_authorize_resource
@@ -104,6 +105,10 @@ class ManualsController < ApplicationController
 
   def set_comments
     @comments = @manual.comments.includes(:user)
+  end
+
+  def set_completed_steps
+    CompletedManual.where(user: current_user, manual: @manual).first_or_create if current_user.present?
   end
 
   def manual_params
