@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_related, only: [:show]
+  before_action :set_completed_manuals, only: [:show]
   load_and_authorize_resource
 
   def index
@@ -52,5 +53,9 @@ class UsersController < ApplicationController
   def set_related
     @manuals = @user.manuals.includes(:category)
     @comments = @user.comments.includes(:user)
+  end
+
+  def set_completed_manuals
+    @completed_manuals = CompletedManual.where(user: @user).map(&:manual)
   end
 end

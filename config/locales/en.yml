@@ -23,6 +23,7 @@ en:
       manual:
         one: "Manual"
         other: "Manuals"
+        progress: "Manuals progress"
       category:
         one: "Category"
         many: "Categories"

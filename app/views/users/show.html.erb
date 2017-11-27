@@ -41,7 +41,12 @@
                 <%= t('activerecord.models.manual.other') %> <span class='badge badge-default badge-pill pull-right'><%= @user.manuals_count %></span></a>
             </li>
             <li>
-              <a class="switch" id="3" data-target="comments" href="#">
+              <a class="switch" id="3" data-target="manuals-progress" href="#">
+                <i class="glyphicon glyphicon-ok"></i>
+                <%= t('activerecord.models.manual.progress') %> <span class='badge badge-default badge-pill pull-right'><%= @user.completed_manuals.size %></span></a>
+            </li>
+            <li>
+              <a class="switch" id="4" data-target="comments" href="#">
                 <i class="glyphicon glyphicon-comment"></i>
                 <%= t('activerecord.models.comment.many') %> <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
             </li>
@@ -72,6 +77,10 @@
 
       <div id="manuals" class="profile-content" style="display: none;">
         <%= render @manuals %>
+      </div>
+
+      <div id="manuals-progress" class="profile-content" style="display: none;">
+        <%= render @completed_manuals %>
       </div>
 
       <div id="comments" class="profile-content" style="display: none;">
