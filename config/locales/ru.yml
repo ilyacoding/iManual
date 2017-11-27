@@ -72,7 +72,7 @@ ru:
           title: "Редактирование инструкции с id"
           preview: "Предпросмотр"
         show:
-          completed: "Завершено: (%{current}/%{total})"
+          completed: "Прогресс: (%{current}/%{total})"
       step:
         edit:
           title: "Редактирование шага с id"
