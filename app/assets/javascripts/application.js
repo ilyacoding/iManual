@@ -14,10 +14,9 @@
 //= require jquery
 //= require jquery_ujs
 
-//= require jquery-ui
-//= require jquery-ui/core
-//= require jquery-ui/widget
-//= require jquery-ui/position
+//= require jquery-ui/widgets/draggable
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
 //= require jquery.infinite-pages
 
 //= require autocomplete-rails
