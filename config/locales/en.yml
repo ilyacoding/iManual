@@ -32,8 +32,9 @@ en:
         many: "Tags"
         cloud: "Top 30 tags"
       comment:
+        zero: "No comments left"
         one: "Comment"
-        many: "Comments"
+        other: "Comments"
       step:
         one: "Step"
         many: "Steps"

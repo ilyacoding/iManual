@@ -18,11 +18,11 @@
   <span class="pull-right"><%= rating_for @manual, 'rating', star_path: '/images' %></span>
   <div class="clearfix"></div>
   <hr>
-  <h2><%= t('activerecord.models.comment.many') %></h2>
+  <h2><%= t('activerecord.models.comment', count: @comments.count) %></h2>
   <hr>
   <div id="comments" data-id="<%= @manual.id %>">
     <%= render partial: @comments %>
   </div>
-  <hr>
+  <br>
   <%= render partial: "comments/form", locals: { manual: @manual, comment: @comment } %>
 </div>
