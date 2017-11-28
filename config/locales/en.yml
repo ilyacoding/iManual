@@ -34,6 +34,7 @@ en:
       comment:
         zero: "No comments left"
         one: "Comment"
+        many: "Comments"
         other: "Comments"
       step:
         one: "Step"
