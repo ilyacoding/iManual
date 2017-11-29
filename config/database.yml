@@ -49,6 +49,5 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['DATABASE_URL'] %>
   database: iManual_production
-  username: iManual
-  password: <%= ENV['IMANUAL_DATABASE_PASSWORD'] %>
