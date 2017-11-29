@@ -30,10 +30,9 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-gem 'redis', '~> 3.2'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -41,18 +40,24 @@ gem 'redis', '~> 3.2'
 gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
 
-# Style
+# JQuery
 gem 'jquery-rails'
-gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
+gem 'rails-jquery-autocomplete'
+gem 'jquery-infinite-pages'
+
+# Angular
 gem 'angularjs-rails'
 gem 'rails-angular-ui-sortable'
+
+# Style
+gem 'bootstrap-tagsinput-rails'
+
+# Helpers
 gem 'redcarpet'
 gem 'local_time'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
-gem 'bootstrap-tagsinput-rails'
 gem 'kaminari'
-gem 'jquery-infinite-pages'
 
 # Authorization
 gem 'devise'
