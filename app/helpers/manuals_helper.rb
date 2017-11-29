@@ -18,6 +18,6 @@ module ManualsHelper
   end
 
   def default_preview
-    "/no_image.jpg"
+    asset_path("/no_image.jpg")
   end
 end
