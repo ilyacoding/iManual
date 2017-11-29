@@ -18,3 +18,15 @@ development:
 
 production:
   url: imanual.herokuapp.com
+  facebook:
+    key: '341349279632556'
+    secret: 'c9f5cf2257c7598f10e8772bfeae522a'
+  vk:
+    key: '6114220'
+    secret: '1xsRGBp7aiQZCCuDYXkn'
+  twitter:
+    key: 'izeGhP86pjscKcBtu6IB1rQwc'
+    secret: 'K1V97SpVW36nfsOolz3nKZ3HUDIOsADr6JXkU7hBD7hyFsWXxN'
+  google_oauth2:
+    key: '746170645489-4q5hoq0mkesvii3qfhr2bn9eh70msb09.apps.googleusercontent.com'
+    secret: 'GWmbFLeH4Xc_njx9yicckI7n'
