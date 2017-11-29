@@ -7,7 +7,7 @@
   </h1>
   <%= render 'manuals/metadata', manual: @manual %>
   <hr>
-  <%= image_tag(@manual.preview, :class => "img-responsive center-block") %>
+  <%= image_tag(@manual.preview || default_preview, :class => "img-responsive center-block") %>
   <hr>
   <% @steps.each do |step| %>
       <h4><%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
