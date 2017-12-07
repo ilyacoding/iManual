@@ -1,4 +1,6 @@
-angular.module('app').directive('fileButton', function() {
+angular.module('app').directive('fileButton', fileButton);
+
+function fileButton() {
     return {
         link: function(scope, element, attributes) {
 
@@ -27,4 +29,4 @@ angular.module('app').directive('fileButton', function() {
             el.append(fileInput);
         }
     }
-});
+}
