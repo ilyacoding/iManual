@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: [:show, :destroy]
+  before_action :set_comment, only: [:destroy]
   load_and_authorize_resource
 
   # GET /manuals/:manual_id/new
@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
   # POST /manuals/:manual_id/comments.json
   def create
     @comment = Comment.new(comment_params)
-    @comment.user_id = current_user.id
+    @comment.user = current_user
     @comment.save
   end
 
