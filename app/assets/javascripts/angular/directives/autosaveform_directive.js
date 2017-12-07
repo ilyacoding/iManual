@@ -1,4 +1,4 @@
-angular.module('app').directive('autoSaveForm', function($timeout) {
+angular.module('app').directive('autoSaveForm', ['$timeout', function($timeout) {
     return {
         require: ['^form'],
         link: function($scope, $element, $attrs, $ctrls) {
@@ -22,4 +22,4 @@ angular.module('app').directive('autoSaveForm', function($timeout) {
             });
         }
     };
-});
+}]);
