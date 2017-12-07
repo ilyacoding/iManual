@@ -1,9 +1,6 @@
-/* global YT */
-angular.module('youtube-embed', [])
-    .service ('youtubeEmbedUtils', ['$window', '$rootScope', function ($window, $rootScope) {
+angular.module('youtube-embed', []).service ('youtubeEmbedUtils', ['$window', '$rootScope', function ($window, $rootScope) {
         var Service = {}
 
-        // adapted from http://stackoverflow.com/a/5831191/1614967
         var youtubeRegexp = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
         var timeRegexp = /t=(\d+)[ms]?(\d+)?s?/;
 
@@ -18,22 +15,13 @@ angular.module('youtube-embed', [])
                 var pieces = id.split(';');
 
                 if (contains(pieces[1], '%')) {
-                    // links like this:
-                    // "http://www.youtube.com/attribution_link?a=pxa6goHqzaA&amp;u=%2Fwatch%3Fv%3DdPdgx30w9sU%26feature%3Dshare"
-                    // have the real query string URI encoded behind a ';'.
-                    // at this point, `id is 'pxa6goHqzaA;u=%2Fwatch%3Fv%3DdPdgx30w9sU%26feature%3Dshare'
                     var uriComponent = decodeURIComponent(pieces[1]);
                     id = ('http://youtube.com' + uriComponent)
                         .replace(youtubeRegexp, '$1');
                 } else {
-                    // https://www.youtube.com/watch?v=VbNF9X1waSc&amp;feature=youtu.be
-                    // `id` looks like 'VbNF9X1waSc;feature=youtu.be' currently.
-                    // strip the ';feature=youtu.be'
                     id = pieces[0];
                 }
             } else if (contains(id, '#')) {
-                // id might look like '93LvTKF_jW0#t=1'
-                // and we want '93LvTKF_jW0'
                 id = id.split('#')[0];
             }
 
@@ -42,43 +30,28 @@ angular.module('youtube-embed', [])
 
         Service.getTimeFromURL = function getTimeFromURL(url) {
             url = url || '';
-
-            // t=4m20s
-            // returns ['t=4m20s', '4', '20']
-            // t=46s
-            // returns ['t=46s', '46']
-            // t=46
-            // returns ['t=46', '46']
             var times = url.match(timeRegexp);
 
             if (!times) {
-                // zero seconds
                 return 0;
             }
 
-            // assume the first
             var full = times[0],
                 minutes = times[1],
                 seconds = times[2];
 
-            // t=4m20s
             if (typeof seconds !== 'undefined') {
                 seconds = parseInt(seconds, 10);
                 minutes = parseInt(minutes, 10);
 
-                // t=4m
             } else if (contains(full, 'm')) {
                 minutes = parseInt(minutes, 10);
                 seconds = 0;
-
-                // t=4s
-                // t=4
             } else {
                 seconds = parseInt(minutes, 10);
                 minutes = 0;
             }
 
-            // in seconds
             return seconds + (minutes * 60);
         };
 
@@ -90,9 +63,7 @@ angular.module('youtube-embed', [])
             });
         };
 
-        // If the library isn't here at all,
         if (typeof YT === "undefined") {
-            // ...grab on to global callback, in case it's eventually loaded
             $window.onYouTubeIframeAPIReady = applyServiceIsReady;
             console.log('Unable to find YouTube iframe library on this page.')
         } else if (YT.loaded) {
@@ -106,7 +77,6 @@ angular.module('youtube-embed', [])
     .directive('youtubeVideo', ['$window', 'youtubeEmbedUtils', function ($window, youtubeEmbedUtils) {
         var uniqId = 1;
 
-        // from YT.PlayerState
         var stateNames = {
             '-1': 'unstarted',
             0: 'ended',
@@ -133,14 +103,11 @@ angular.module('youtube-embed', [])
                 playerWidth: '=?'
             },
             link: function (scope, element, attrs) {
-                // allows us to $watch `ready`
                 scope.utils = youtubeEmbedUtils;
 
-                // player-id attr > id attr > directive-generated ID
                 var playerId = attrs.playerId || element[0].id || 'unique-youtube-embed-id-' + uniqId++;
                 element[0].id = playerId;
 
-                // Attach to element
                 scope.playerHeight = scope.playerHeight || 390;
                 scope.playerWidth = scope.playerWidth || 640;
                 scope.playerVars = scope.playerVars || {};
@@ -212,7 +179,6 @@ angular.module('youtube-embed', [])
                         if (ready) {
                             stopWatchingReady();
 
-                            // URL takes first priority
                             if (typeof scope.videoUrl !== 'undefined') {
                                 scope.$watch('videoUrl', function (url) {
                                     scope.videoId = scope.utils.getIdFromURL(url);
@@ -221,14 +187,12 @@ angular.module('youtube-embed', [])
                                     loadPlayer();
                                 });
 
-                                // then, a video ID
                             } else if (typeof scope.videoId !== 'undefined') {
                                 scope.$watch('videoId', function () {
                                     scope.urlStartTime = null;
                                     loadPlayer();
                                 });
 
-                                // finally, a list
                             } else {
                                 scope.$watch('playerVars.list', function () {
                                     scope.urlStartTime = null;
