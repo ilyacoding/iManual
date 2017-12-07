@@ -1,4 +1,8 @@
-angular.module('app').controller('UserEditCtrl', ['$scope', '$http', '$location', 'Users', 'User', function ($scope, $http, $location, Users, User)
+angular.module('app').controller('UserEditCtrl', UserEditCtrl);
+
+UserEditCtrl.$inject = ['$scope', '$http', '$location', 'Users', 'User'];
+
+function UserEditCtrl($scope, $http, $location, Users, User)
 {
     $scope.form = {
         state: {},
@@ -16,5 +20,4 @@ angular.module('app').controller('UserEditCtrl', ['$scope', '$http', '$location'
     $scope.updateUser = function () {
         User.update({ id: $scope.user.id }, $scope.user, function (response) {});
     };
-
-}]);
+}

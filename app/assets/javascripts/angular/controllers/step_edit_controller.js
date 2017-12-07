@@ -1,4 +1,8 @@
-angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Textes', 'Images', 'Videos', 'imgur', function ($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur)
+angular.module('app').controller('StepEditCtrl', StepEditCtrl);
+
+StepEditCtrl.$inject = ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Textes', 'Images', 'Videos', 'imgur'];
+
+function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur)
 {
     $scope.form = {
         state: {},
@@ -166,4 +170,4 @@ angular.module('app').controller('StepEditCtrl', ['$scope', '$http', '$location'
     $scope.updateBlock = function (block) {
         Block.update({ id: block.id }, block, function (response) { });
     };
-}]);
+}
