@@ -1,5 +1,8 @@
-angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'Tags', 'imgur', function ($scope, $http, Manual, Categories, Step, Steps, Tags, imgur)
-{
+angular.module('app').controller('ManualEditCtrl', ManualEditCtrl);
+
+ManualEditCtrl.$inject = ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'Tags', 'imgur'];
+
+function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, imgur) {
     $scope.form = {
         state: {},
         data: {}
@@ -116,4 +119,4 @@ angular.module('app').controller('ManualEditCtrl', ['$scope', '$http', 'Manual',
             Step.update({ manual_id: $scope.manual.id, id: obj.id }, obj, function (response) {});
         });
     }
-}]);
+}

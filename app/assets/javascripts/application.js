@@ -26,7 +26,6 @@
 
 //= require angular
 //= require angular-ui-sortable
-//= require angular-animate
 //= require angular-resource
 //= require angular-bootstrap.js
 
