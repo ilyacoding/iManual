@@ -21,7 +21,7 @@ function autoSaveForm($timeout) {
                                 $formCtrl.$setPristine();
                             }
                         }
-                    }, 2000);
+                    }, 1000);
                 }
             });
         }
