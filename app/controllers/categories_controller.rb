@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render json: Category.all }
+      format.json { render partial: 'categories/categories', categories: Category.all, format: :json }
     end
   end
 

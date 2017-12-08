@@ -10,9 +10,10 @@ function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, im
 
     $scope.loading = false;
 
-    $scope.initializeManual = function(manualId) {
-        $scope.manual = Manual.get({id: manualId});
-        $scope.categories = Categories.get();
+    $scope.initializeManual = function(manualId, locale) {
+      
+        $scope.manual = Manual.get({ id: manualId });
+        $scope.categories = Categories.get({ locale: locale });
 
         $scope.manual.$promise.then(function (result)
         {
