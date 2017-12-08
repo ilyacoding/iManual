@@ -34,7 +34,7 @@
     </div>
 
     <div class="form-group">
-      <input type="hidden" ng-init="initializeManual(<%= @manual.id %>)">
+      <input type="hidden" ng-init="initializeManual(<%= @manual.id %>, '<%= I18n.locale %>')">
     </div>
 
     <div class="form-group">

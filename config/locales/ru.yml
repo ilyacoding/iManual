@@ -27,6 +27,15 @@ ru:
       category:
         one: "Категория"
         many: "Категории"
+      category_slug:
+        everything: Обо всём
+        technology: Технологии
+        craft: Ремесло
+        home: Дом
+        food: Еда
+        play: Игры
+        country: Сельское
+        costumes: Костюмы
       tag:
         one: "Тег"
         many: "Теги"

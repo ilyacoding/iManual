@@ -27,6 +27,15 @@ en:
       category:
         one: "Category"
         many: "Categories"
+      category_slug:
+        everything: Everything
+        technology: Technology
+        craft: Craft
+        home: Home
+        food: Food
+        play: Play
+        country: Country
+        costumes: Costumes
       tag:
         one: "Tag"
         many: "Tags"

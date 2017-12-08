@@ -1,6 +1,6 @@
 <% categories.each do |category| %>
     <%= link_to(category_path(category), :class => "list-group-item list-group-item-action") do
-        simple_format "<h4>#{category.name} <span class='badge badge-default badge-pill pull-right'>#{category.manuals_count}</span></h4>"
+        simple_format "<h4>#{translation_by_slug(category.slug)} <span class='badge badge-default badge-pill pull-right'>#{category.manuals_count}</span></h4>"
       end
     %>
 <% end %>

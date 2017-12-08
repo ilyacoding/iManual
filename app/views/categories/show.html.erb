@@ -1,6 +1,6 @@
 <div class="col-md-9">
   <h1 class="page-header">
-    <%= t('activerecord.controllers.categories.show.title', category: @category.name ) %>
+    <%= t('activerecord.controllers.categories.show.title', category: translation_by_slug(@category.slug)) %>
     <% if can? :create, Manual %>
         <small>
           <%= link_to t('helpers.links.new.female'), new_manual_path(category_id: @category.id), :class => 'btn btn-primary pull-right' %>
