@@ -1,0 +1,3 @@
+<%- if tags.present? %>
+  <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> <%= t('activerecord.models.tag.many') %>: <%= render 'layouts/tags', tags: tags %></span>
+<%- end %>

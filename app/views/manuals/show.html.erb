@@ -10,11 +10,10 @@
   <%= image_tag(@manual.preview || default_preview, :class => "img-responsive center-block") %>
   <hr>
   <% @steps.each do |step| %>
-      <h4><%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name), { :controller => "steps", :action => "show",
-                                                               :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %></h4>
-      <hr>
+    <%= render step %>
+    <hr>
   <% end %>
-  <span class="pull-left"><span class="glyphicon glyphicon-tags"></span> <%= t('activerecord.models.tag.many') %>: <%= render 'layouts/tags', tags: @manual.tags %></span>
+  <%= render 'manuals/tags', tags: @manual.tags %>
   <span class="pull-right"><%= rating_for @manual, 'rating', star_path: '/images' %></span>
   <div class="clearfix"></div>
   <hr>
