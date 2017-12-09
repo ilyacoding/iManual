@@ -1,6 +1,6 @@
 <script>
   $(function () {
-    $('.switch').click(function() {
+    $('.js-user-profile-switch').click(function() {
       $('.profile-content').hide();
       $('.nav li').removeClass("active");
       $(this.parentNode).addClass("active");
@@ -31,25 +31,21 @@
         <div class="profile-usermenu">
           <ul class="nav">
             <li class="active">
-              <a class="switch" id="1" data-target="profile" href="#">
+              <a class="js-user-profile-switch" id="1" data-target="profile" href="#">
                 <i class="glyphicon glyphicon-home"></i>
                 <%= t('activerecord.attributes.user.profile') %> </a>
             </li>
             <li>
-              <a class="switch" id="2" data-target="manuals" href="#">
+              <a class="js-user-profile-switch" id="2" data-target="manuals" href="#">
                 <i class="glyphicon glyphicon-th-large"></i>
                 <%= t('activerecord.models.manual.other') %> <span class='badge badge-default badge-pill pull-right'><%= @user.manuals_count %></span></a>
             </li>
             <li>
-              <a class="switch" id="3" data-target="manuals-progress" href="#">
-                <i class="glyphicon glyphicon-ok"></i>
-                <%= t('activerecord.models.manual.progress') %> <span class='badge badge-default badge-pill pull-right'><%= @user.completed_manuals.size %></span></a>
-            </li>
-            <li>
-              <a class="switch" id="4" data-target="comments" href="#">
+              <a class="js-user-profile-switch" id="3" data-target="comments" href="#">
                 <i class="glyphicon glyphicon-comment"></i>
                 <%= t('activerecord.models.comment.many') %> <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
             </li>
+            <%= render 'users/completed_manuals_title', completed_manuals_size: @completed_manuals.size if current_user == @user %>
           </ul>
         </div>
       </div>
@@ -79,14 +75,11 @@
         <%= render @manuals %>
       </div>
 
-      <div id="manuals-progress" class="profile-content" style="display: none;">
-        <%= render @completed_manuals %>
-      </div>
-
       <div id="comments" class="profile-content" style="display: none;">
         <%= render @comments %>
       </div>
 
+      <%= render 'users/completed_manuals_content', completed_manuals: @completed_manuals %>
     </div>
   </div>
 </div>
