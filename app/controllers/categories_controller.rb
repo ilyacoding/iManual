@@ -3,12 +3,11 @@ class CategoriesController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { render partial: 'categories/categories', categories: Category.all, format: :json }
+      format.json
     end
   end
 
   # GET /categories/1
-  # GET /categories/1.json
   def show
     @manuals = @category.manuals.page params[:page]
   end
