@@ -14,20 +14,9 @@
   </head>
 
   <body data-user-id="<%= data_user_id %>">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <%= link_to t('main.name'), root_path, class: "navbar-brand" %>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <%= render 'layouts/profile', user: current_user %>
-          <%= render 'layouts/language' %>
-          <%= render 'layouts/search' %>
-        </div>
-      </div>
-    </nav>
+    <%= render 'layouts/navbar', user: current_user %>
 
-    <div class="container">
+    <div class="container-fluid">
       <%= bootstrap_flash %>
       <%= yield %>
       <%= yield(:side_bar) %>

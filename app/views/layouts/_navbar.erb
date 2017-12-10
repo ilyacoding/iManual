@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid" style='margin-left: 20px; margin-right: 20px;'>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+       <span class="sr-only">Toggle navigation</span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+       <span class="icon-bar"></span>
+      </button>
+      <%= link_to t('main.name'), root_path, class: "navbar-brand brand-logo" %>
+    </div>
+    <div class="collapse navbar-collapse" id="navigationbar">
+      <%= render 'layouts/profile', user: user %>
+      <%= render 'layouts/language' %>
+      <%= render 'layouts/search' %>
+    </div>
+  </div>
+</nav>
