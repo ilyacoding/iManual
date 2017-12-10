@@ -10,7 +10,7 @@ function UserEditCtrl($scope, $http, $location, Users, User)
     };
 
     $scope.initializeUser = function(userId) {
-        $scope.user = User.get({id: userId});
+        $scope.user = User.get({ id: userId });
     };
 
     $scope.saveForm = function () {

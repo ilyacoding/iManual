@@ -9,7 +9,9 @@ class BlocksController < ApplicationController
     @blocks = Block.all
     respond_to do |format|
       format.html
-      format.json
+      format.json {
+        render json: @blocks
+      }
     end
   end
 
@@ -18,7 +20,9 @@ class BlocksController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json
+      format.json {
+        render json: @block
+      }
     end
   end
 
