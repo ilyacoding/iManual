@@ -16,7 +16,7 @@ class Manual < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
-  has_many :completed_manuals, dependent: :destroy
+  has_many :completed_steps, dependent: :destroy
 
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -24,10 +24,5 @@ class Manual < ApplicationRecord
 
   def ordered_steps
     steps.order('priority ASC')
-  end
-
-  def completed_steps_amount(user)
-    manual = completed_manuals.where(user: user).first
-    manual.present? ? manual.completed_steps.count : 0
   end
 end

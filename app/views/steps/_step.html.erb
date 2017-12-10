@@ -1,4 +1,8 @@
-<h4>
+<% @completed_steps ||= [] %>
+<h3>
+  <%- if @completed_steps.include? step %>
+    <%= render 'manuals/completed_tick' %>
+  <%- end %>
   <%= link_to t('activerecord.controllers.step.show.name', priority: step.priority, name: step.name),
       { :controller => "steps", :action => "show", :manual_id => @manual.id, :id => step.priority }, :class => "text-center" %>
-</h4>
+</h3>

@@ -20,4 +20,12 @@ module ManualsHelper
   def default_preview
     asset_path("no_image.jpg")
   end
+
+  def completed_steps_amount(manual, user)
+    manual.completed_steps.where(user: user).size
+  end
+
+  def manual_completed?(manual, user)
+    manual.steps.count == manual.completed_steps.where(user: user).count
+  end
 end
