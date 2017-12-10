@@ -28,4 +28,8 @@ module ManualsHelper
   def manual_completed?(manual, user)
     manual.steps.count == manual.completed_steps.where(user: user).count
   end
+
+  def ordered_steps(manual)
+    manual.steps.order('priority ASC')
+  end
 end

@@ -2,6 +2,7 @@ class Manual < ApplicationRecord
   include SearchCop
 
   resourcify
+
   acts_as_taggable
   ratyrate_rateable 'rating'
 
@@ -21,8 +22,4 @@ class Manual < ApplicationRecord
   has_many :steps, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :blocks, through: :steps
-
-  def ordered_steps
-    steps.order('priority ASC')
-  end
 end

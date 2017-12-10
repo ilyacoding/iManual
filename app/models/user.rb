@@ -7,7 +7,6 @@ class User < ApplicationRecord
 
   has_many :manuals, dependent: :destroy
   has_many :comments, dependent: :destroy
-
   has_many :completed_steps, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable,
@@ -39,7 +38,7 @@ class User < ApplicationRecord
     true
   end
 
-  def get_name
+  def global_name
     name.empty? ? "ID_#{id}" : name
   end
 end
