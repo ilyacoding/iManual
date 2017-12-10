@@ -11,7 +11,7 @@ class ManualsController < ApplicationController
   def index
     respond_to do |format|
       format.html
-      format.js
+      format.js { render partial: 'manuals/more_manuals' }
       format.json { render json: @manuals }
     end
   end
