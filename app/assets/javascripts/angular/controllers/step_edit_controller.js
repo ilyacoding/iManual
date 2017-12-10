@@ -2,8 +2,7 @@ angular.module('app').controller('StepEditCtrl', StepEditCtrl);
 
 StepEditCtrl.$inject = ['$scope', '$http', '$location', 'Manual', 'Step', 'Block', 'Textes', 'Images', 'Videos', 'imgur'];
 
-function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur)
-{
+function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Images, Videos, imgur) {
     $scope.form = {
         state: {},
         data: {}
@@ -44,7 +43,7 @@ function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Ima
         var files = event.target.files;
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            if(!$scope.isValidImage(file.type)) {
+            if (!$scope.isValidImage(file.type)) {
                 return;
             }
             $scope.loading = true;
@@ -57,9 +56,8 @@ function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Ima
 
     $scope.isValidImage = function (fileType) {
         var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-        for(var index in allowedExtension) {
-
-            if(fileType === allowedExtension[index]) {
+        for (var index in allowedExtension) {
+            if (fileType === allowedExtension[index]) {
                 return true;
             }
         }
@@ -73,7 +71,7 @@ function StepEditCtrl($scope, $http, $location, Manual, Step, Block, Textes, Ima
         markdown.priority = $scope.list.length + 1;
         markdown.step_id = $scope.step.id;
         Textes.create(markdown, function(response) {
-            Block.get({id: response.id}).$promise.then(function (result) {
+            Block.get({ id: response.id }).$promise.then(function (result) {
                 $scope.list.push(result);
                 $scope.loading = false;
             });

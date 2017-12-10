@@ -1,8 +1,8 @@
 angular.module('app').controller('ManualEditCtrl', ManualEditCtrl);
 
-ManualEditCtrl.$inject = ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'Tags', 'imgur'];
+ManualEditCtrl.$inject = ['$scope', '$http', 'Manual', 'Categories', 'Step', 'Steps', 'imgur'];
 
-function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, imgur) {
+function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, imgur) {
     $scope.form = {
         state: {},
         data: {}
@@ -11,12 +11,10 @@ function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, im
     $scope.loading = false;
 
     $scope.initializeManual = function(manualId, locale) {
-      
         $scope.manual = Manual.get({ id: manualId });
         $scope.categories = Categories.get({ locale: locale });
 
-        $scope.manual.$promise.then(function (result)
-        {
+        $scope.manual.$promise.then(function (result) {
             $scope.list = result.steps;
             $scope.form.data.name = result.name;
             $scope.form.data.category_id = result.category_id;
@@ -40,8 +38,7 @@ function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, im
     };
 
     $scope.addStep = function(formData) {
-        if (formData.stepName.length > 0)
-        {
+        if (formData.stepName.length > 0) {
             var step = new Step();
             step.name = formData.stepName;
             formData.stepName = "";
@@ -68,7 +65,7 @@ function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, im
         var files = event.target.files;
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            if(!$scope.isValidImage(file.type)) {
+            if (!$scope.isValidImage(file.type)) {
                 return;
             }
             $scope.loading = true;
@@ -82,9 +79,8 @@ function ManualEditCtrl($scope, $http, Manual, Categories, Step, Steps, Tags, im
 
     $scope.isValidImage = function (fileType) {
         var allowedExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp'];
-        for(var index in allowedExtension) {
-
-            if(fileType === allowedExtension[index]) {
+        for (var index in allowedExtension) {
+            if (fileType === allowedExtension[index]) {
                 return true;
             }
         }
