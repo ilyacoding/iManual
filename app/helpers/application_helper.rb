@@ -27,4 +27,8 @@ module ApplicationHelper
 
     markdown.render(text).html_safe
   end
+
+  def data_user_id
+    current_user.try(:id) || 0
+  end
 end

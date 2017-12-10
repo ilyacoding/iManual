@@ -6,22 +6,29 @@
       <%= render 'manuals/edit_buttons', manual: @manual%>
     </small>
   </h1>
+
   <%= render 'manuals/metadata', manual: @manual %>
+
   <hr>
   <%= image_tag(@manual.preview || default_preview, :class => "img-responsive center-block") %>
   <hr>
-  <% @steps.each do |step| %>
+
+  <%- @steps.each do |step| %>
     <%= render step %>
     <hr>
-  <% end %>
+  <%- end %>
+
   <%= render 'manuals/tags', tags: @manual.tags %>
+
   <span class="pull-right"><%= rating_for @manual, 'rating', star_path: '/images' %></span>
   <div class="clearfix"></div>
+
   <hr>
-  <h2><%= t('activerecord.models.comment', count: @comments.count) %></h2>
+  <h2 id='js-comments-title'><%= t('activerecord.models.comment', count: @comments.count) %></h2>
   <hr>
+
   <div id="comments" data-id="<%= @manual.id %>">
-    <%= render partial: @comments %>
+    <%= render @comments %>
   </div>
   <br>
   <%= render partial: "comments/form", locals: { manual: @manual, comment: @comment } %>
