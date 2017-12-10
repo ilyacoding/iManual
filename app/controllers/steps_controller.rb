@@ -83,16 +83,8 @@ class StepsController < ApplicationController
   end
 
   def set_completed_attributes
-    if current_user.present?
-      completed_manual = CompletedManual.where(user: current_user, manual: @step.manual).first_or_create
-      completed_step = CompletedStep.where(user: current_user, completed_manual: completed_manual, step: @step)
-                                    .first_or_create
-
-      total_steps = @step.manual.steps.count
-      completed_steps = completed_step.completed_manual.completed_steps.count
-
-      completed_manual.update_attribute(:completed, :true) if total_steps == completed_steps
-    end
+    return if current_user.blank?
+    CompletedStep.where(user: current_user, manual: @step.manual, step: @step).first_or_create
   end
 
   def step_params

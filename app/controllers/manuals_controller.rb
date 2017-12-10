@@ -23,7 +23,7 @@ class ManualsController < ApplicationController
     @comment = Comment.new
     respond_to do |format|
       format.html
-      format.json { render json: @manual, include: [:steps, :tags] }
+      format.json { render json: @manual, include: %i(steps tags) }
     end
   end
 
@@ -108,14 +108,11 @@ class ManualsController < ApplicationController
   end
 
   def set_completed_steps
-    CompletedManual.where(user: current_user, manual: @manual).first_or_create if current_user.present?
+    return if current_user.blank?
+    @completed_steps = current_user.completed_steps.where(manual: @manual).map(&:step)
   end
 
   def manual_params
     params.require(:manual).permit(:name, :preview, :category_id, :tags)
-  end
-
-  def manual
-    Manual.find(params[:manual_id])
   end
 end

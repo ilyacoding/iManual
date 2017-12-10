@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :manuals, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  has_many :completed_manuals, dependent: :destroy
+  has_many :completed_steps, dependent: :destroy
 
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :omniauthable,
          :omniauth_providers => [:facebook, :twitter, :vk, :google_oauth2]

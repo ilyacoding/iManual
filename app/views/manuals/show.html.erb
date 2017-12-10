@@ -1,5 +1,6 @@
 <div class="col-md-12">
   <h1>
+    <%= render 'manuals/completed_tick' if manual_completed?(@manual, current_user) %>
     <%= @manual.name %>
     <small class="pull-right">
       <%= render 'manuals/edit_buttons', manual: @manual%>

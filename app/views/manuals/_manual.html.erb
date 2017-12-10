@@ -1,5 +1,6 @@
 <div class="panel panel-default col-md-12" style="padding: 10px;">
   <h2>
+    <%= render 'manuals/completed_tick' if manual_completed?(manual, current_user) %>
     <%= link_to manual.name, manual_path(manual), :class => 'col-xs' %>
     <small class="pull-right">
       <%= render 'manuals/edit_buttons', manual: manual%>
