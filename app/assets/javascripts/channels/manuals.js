@@ -3,7 +3,9 @@
 //= require_tree .
 
 $(function () {
+    var current_user_id = $('body').data('user-id');
     var comments = $('#comments');
+    var title = $('#js-comments-title');
     if (comments.data('id') != null) {
         var App = {};
         App.cable = ActionCable.createConsumer();
@@ -13,7 +15,12 @@ $(function () {
         },
         {
             received: function(data) {
-                comments.append(data['comment']);
+                title.html(data['title']);
+                if (data['user_id'] == current_user_id) {
+                  comments.append(data['editable_comment']);
+                } else {
+                  comments.append(data['static_comment']);
+                }
                 comments.children("div").last().effect("highlight", {}, 2000);
             }
         });
