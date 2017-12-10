@@ -1,7 +1,6 @@
 class StepsController < ApplicationController
   before_action :set_update_step, only: [:update]
   before_action :set_show_step, only: [:show, :edit, :destroy]
-  before_action :set_blocks, only: [:show]
   before_action :set_completed_attributes, only: [:show]
   load_resource :manual
   load_and_authorize_resource :step, :through => :manual
@@ -76,10 +75,6 @@ class StepsController < ApplicationController
 
   def set_show_step
     @step = Step.where(manual_id: params[:manual_id]).where(priority: params[:id]).first
-  end
-
-  def set_blocks
-    @blocks = @step.ordered_blocks
   end
 
   def set_completed_attributes

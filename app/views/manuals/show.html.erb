@@ -17,7 +17,7 @@
   <%= image_tag(@manual.preview || default_preview, :class => "img-responsive center-block") %>
   <hr>
 
-  <%- @steps.each do |step| %>
+  <%- ordered_steps(@manual).each do |step| %>
     <%= render step %>
     <hr>
   <%- end %>

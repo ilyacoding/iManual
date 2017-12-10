@@ -1,6 +1,5 @@
 class ManualsController < ApplicationController
   before_action :set_manual, only: [:show, :edit, :update, :destroy]
-  before_action :set_steps, only: [:show]
   before_action :set_comments, only: [:show]
   before_action :set_completed_steps, only: [:show]
   before_action :set_manuals, only: [:index]
@@ -97,10 +96,6 @@ class ManualsController < ApplicationController
     else
       @manuals = Manual.all.order(:id).page(params[:page])
     end
-  end
-
-  def set_steps
-    @steps = @manual.ordered_steps
   end
 
   def set_comments
