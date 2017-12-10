@@ -2,7 +2,7 @@
   <%= t('main.title.user', user_title: @user.name) %>
 <% end %>
 
-<%- completed_manuals = completed_manuals(@user) %>
+<%- completed_manuals = completed_manuals(@user) || [] %>
 
 <div class="col-md-12">
   <div class="row profile">
