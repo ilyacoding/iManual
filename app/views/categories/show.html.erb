@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <%= t('main.title.category', category_title: translation_by_slug(@category.slug)) %>
+<% end %>
+
 <div class="col-md-9">
   <h1 class="page-header">
     <%= t('activerecord.controllers.categories.show.title', category: translation_by_slug(@category.slug)) %>

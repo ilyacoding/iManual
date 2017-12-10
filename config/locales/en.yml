@@ -1,6 +1,11 @@
 en:
   main:
     name: "iManual"
+    title:
+      manual: "Manual %{manual_title}"
+      step: "Manual %{manual_title}: Step %{step_id}: %{step_title}"
+      category: "Category %{category_title}"
+      user: "User %{user_title}"
     copyright: "Copyright"
   helpers:
     links:

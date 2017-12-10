@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <%= t('main.title.step', manual_title: @step.manual.name, step_id: @step.priority, step_title: @step.name) %>
+<% end %>
+
 <div class="col-md-12">
   <h3><%= link_to t('activerecord.controllers.step.edit.back'), manual_path(@step.manual), :class => 'col-xs' %></h3>
   <hr>
