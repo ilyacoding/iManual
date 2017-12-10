@@ -78,14 +78,14 @@ class ManualsController < ApplicationController
     end
   end
 
-  def set_tags
-    @tags = Manual.includes(:user).tag_counts_on(:tags)
-  end
-
   private
 
   def set_manual
     @manual = Manual.includes(:user).find(params[:id])
+  end
+
+  def set_tags
+    @tags = Manual.includes(:user).tag_counts_on(:tags)
   end
 
   def set_manuals

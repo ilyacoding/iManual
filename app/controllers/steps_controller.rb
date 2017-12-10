@@ -9,9 +9,7 @@ class StepsController < ApplicationController
     @steps = Step.all
     respond_to do |format|
       format.html
-      format.json {
-        render json: @steps
-      }
+      format.json
     end
   end
 
