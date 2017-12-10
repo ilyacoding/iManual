@@ -44,7 +44,7 @@ class BlocksController < ApplicationController
     respond_to do |format|
       if @block.save
         format.html { redirect_to @block, notice: 'Block was successfully created.' }
-        format.json { render :show, status: :created, location: @block }
+        format.json { render json: @block }
       else
         format.html { render :new }
         format.json { render json: @block.errors, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class BlocksController < ApplicationController
     respond_to do |format|
       if @block.update(block_params)
         format.html { redirect_to @block, notice: 'Block was successfully updated.' }
-        format.json { render :show, status: :ok, location: @block }
+        format.json { render json: @block }
       else
         format.html { render :edit }
         format.json { render json: @block.errors, status: :unprocessable_entity }
