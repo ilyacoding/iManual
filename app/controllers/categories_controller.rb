@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
-    @manuals = @category.manuals.page params[:page]
+    @manuals = @category.manuals.page(params[:page])
   end
 
   private
