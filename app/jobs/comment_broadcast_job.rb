@@ -11,11 +11,11 @@ class CommentBroadcastJob < ApplicationJob
   private
 
   def render_static_comment(comment)
-    CommentsController.render partial: 'comments/comment_broadcast', locals: { comment: comment }
+    CommentsController.render partial: 'comments/broadcast_comment', locals: { comment: comment }
   end
 
   def render_editable_comment(comment)
-    CommentsController.render partial: 'comments/comment_editable_broadcast', locals: { comment: comment }
+    CommentsController.render partial: 'comments/broadcast_comment', locals: { comment: comment, render_delete_button: true }
   end
 
   def render_title(manual)
