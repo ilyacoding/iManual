@@ -1,6 +1,7 @@
 ru:
   main:
     name: "iManual"
+    title: "iManual: %{subtitle}"
     copyright: "Авторские права"
   helpers:
     links:

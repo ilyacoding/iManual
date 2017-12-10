@@ -1,3 +1,7 @@
+<% content_for(:title) do %>
+  <%= t('main.title.manual', manual_title: @manual.name) %>
+<% end %>
+
 <div class="col-md-12">
   <h1>
     <%= render 'manuals/completed_tick' if manual_completed?(@manual, current_user) %>
