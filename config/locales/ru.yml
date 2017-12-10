@@ -1,7 +1,11 @@
 ru:
   main:
     name: "iManual"
-    title: "iManual: %{subtitle}"
+    title:
+      manual: "Инструкция %{manual_title}"
+      step: "Инструкция %{manual_title}: Шаг %{step_id}: %{step_title}"
+      category: "Категория %{category_title}"
+      user: "Пользователь %{user_title}"
     copyright: "Авторские права"
   helpers:
     links:
