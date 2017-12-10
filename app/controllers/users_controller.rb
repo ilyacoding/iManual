@@ -56,6 +56,6 @@ class UsersController < ApplicationController
   end
 
   def set_completed_manuals
-    @completed_manuals = CompletedManual.where(user: @user).map(&:manual)
+    @completed_manuals = @user.completed_steps.includes(:manual).map(&:manual).uniq
   end
 end
