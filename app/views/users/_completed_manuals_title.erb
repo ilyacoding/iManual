@@ -2,6 +2,6 @@
   <a class="js-user-profile-switch" id="4" data-target="manuals-progress" href="#">
     <i class="glyphicon glyphicon-ok"></i>
     <%= t('activerecord.models.manual.progress') %>
-    <span class='badge badge-default badge-pill pull-right'><%= completed_manuals_size %></span>
+    <span class='badge badge-default badge-pill pull-right'><%= completed_manuals.size if completed_manuals.present? %></span>
   </a>
 </li>

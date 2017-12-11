@@ -2,7 +2,7 @@
   <%= t('main.title.user', user_title: @user.name) %>
 <% end %>
 
-<%- completed_manuals = completed_manuals(@user) || [] %>
+<%- completed_manuals = completed_manuals(@user) %>
 
 <div class="col-md-12">
   <div class="row profile">
@@ -39,7 +39,7 @@
                 <i class="glyphicon glyphicon-comment"></i>
                 <%= t('activerecord.models.comment.many') %> <span class='badge badge-default badge-pill pull-right'><%= @user.comments_count %></span></a>
             </li>
-            <%= render 'users/completed_manuals_title', completed_manuals_size: completed_manuals.size if current_user == @user %>
+            <%= render 'users/completed_manuals_title', completed_manuals: completed_manuals if current_user == @user %>
           </ul>
         </div>
       </div>
@@ -73,7 +73,7 @@
         <%= render @comments %>
       </div>
 
-      <%= render 'users/completed_manuals_content', completed_manuals: completed_manuals %>
+      <%= render 'users/completed_manuals_content', completed_manuals: completed_manuals if current_user == @user %>
     </div>
   </div>
 </div>
