@@ -2,7 +2,7 @@
   <%= t('main.title.user', user_title: @user.name) %>
 <% end %>
 
-<%- completed_manuals = completed_manuals(@user) if current_user == @user %>
+<%- completed_manuals = current_user == @user ? completed_manuals(@user) : nil %>
 
 <div class="col-md-12">
   <div class="row profile">
