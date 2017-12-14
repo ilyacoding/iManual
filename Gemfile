@@ -37,14 +37,14 @@ gem 'redis', '~> 3.2'
 # gem 'capistrano-rails', group: :development
 
 # Bootstrap
-gem 'twitter-bootstrap-rails'
 gem 'sprockets-helpers'
+gem 'twitter-bootstrap-rails'
 
 # JQuery
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'rails-jquery-autocomplete'
 gem 'jquery-infinite-pages'
+gem 'rails-jquery-autocomplete'
 
 # Angular
 gem 'angularjs-rails'
