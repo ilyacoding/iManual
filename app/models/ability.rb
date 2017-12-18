@@ -46,8 +46,8 @@ class Ability
       can :update, User, id: user.id
       can :destroy, User, id: user.id
 
-      can :manage, Step, :manual => { :user_id => user.id }
-      can :manage, Block, :step => { :user_id => user.id }
+      can :manage, Step, manual: { user_id: user.id }
+      can :manage, Block, step: { user_id: user.id }
     else
       can :read, :all
     end
