@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_related, only: [:show]
   load_and_authorize_resource
 
   def index
@@ -8,11 +7,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    @manuals = @user.manuals.includes(:category)
+    @comments = @user.comments.includes(:user)
     respond_to do |format|
       format.html
-      format.json {
-        render json: @user, include: :manuals
-      }
+      format.json { render json: @user, include: :manuals }
     end
   end
 
@@ -47,10 +46,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :about, :interests)
-  end
-
-  def set_related
-    @manuals = @user.manuals.includes(:category)
-    @comments = @user.comments.includes(:user)
   end
 end
