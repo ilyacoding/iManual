@@ -1,9 +1,8 @@
 class StepsController < ApplicationController
-  before_action :set_update_step, only: [:update]
   before_action :set_show_step, only: [:show, :edit, :destroy]
   before_action :set_completed_attributes, only: [:show]
   load_resource :manual
-  load_and_authorize_resource :step, :through => :manual
+  load_and_authorize_resource :step, through: :manual
 
   def index
     @steps = Step.all
@@ -16,17 +15,12 @@ class StepsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.json {
-        render json: @step, include: :blocks
-      }
+      format.json { render json: @step, include: :blocks }
     end
   end
 
   def new
     @step = Step.new
-  end
-
-  def edit
   end
 
   def create
@@ -46,6 +40,7 @@ class StepsController < ApplicationController
   end
 
   def update
+    @step = Step.find(params[:id])
     respond_to do |format|
       if @step.update(step_params)
         format.html { redirect_to @step, notice: 'Step was successfully updated.' }
@@ -66,10 +61,6 @@ class StepsController < ApplicationController
   end
 
   private
-
-  def set_update_step
-    @step = Step.find(params[:id])
-  end
 
   def set_show_step
     @step = Step.where(manual_id: params[:manual_id]).where(priority: params[:id]).first

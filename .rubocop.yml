@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.1
   Exclude:
     - db/schema.rb
     - db/restore_schema.rb
@@ -16,3 +16,9 @@ Metrics/BlockLength:
   Exclude:
     - config/routes/*
     - spec/**/*
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SingleLineBlockParams:
+  Enabled: false
