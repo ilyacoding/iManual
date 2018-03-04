@@ -3,6 +3,8 @@ class BlocksController < ApplicationController
   load_resource :step
   load_and_authorize_resource :block, through: :step
 
+  PERMITTED_PARAMS = %i(content priority step_id type priority)
+
   def index
     @blocks = Block.all
     respond_to do |format|
@@ -64,6 +66,6 @@ class BlocksController < ApplicationController
   end
 
   def block_params
-    params.require(:block).permit(:content, :priority, :step_id, :type, :priority)
+    params.require(:block).permit(*PERMITTED_PARAMS)
   end
 end
