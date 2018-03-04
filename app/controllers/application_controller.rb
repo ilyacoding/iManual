@@ -6,9 +6,9 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
-      format.json { head :forbidden, content_type: 'text/html' }
+      format.json { head :forbidden, content_type: "text/html" }
       format.html { redirect_to main_app.root_url, alert: exception.message }
-      format.js   { head :forbidden, content_type: 'text/html' }
+      format.js   { head :forbidden, content_type: "text/html" }
     end
   end
 
@@ -22,12 +22,12 @@ class ApplicationController < ActionController::Base
     store_location_for(:user, request.url)
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_)
     request.referrer || root_path
   end
 
   def set_csrf_cookie_for_ng
-    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+    cookies["XSRF-TOKEN"] = form_authenticity_token if protect_against_forgery?
   end
 
   def set_locale
@@ -41,6 +41,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def verified_request?
-    super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+    super || valid_authenticity_token?(session, request.headers["X-XSRF-TOKEN"])
   end
 end
