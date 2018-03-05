@@ -22,3 +22,8 @@ Style/StringLiterals:
 
 Style/SingleLineBlockParams:
   Enabled: false
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%i': '()'
+    '%w': '()'
