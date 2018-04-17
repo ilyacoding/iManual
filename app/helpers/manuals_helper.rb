@@ -30,6 +30,6 @@ module ManualsHelper
   end
 
   def ordered_steps(manual)
-    manual.steps.order('priority ASC')
+    manual.steps.order("priority ASC")
   end
 end
