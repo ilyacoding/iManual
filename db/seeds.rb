@@ -5,6 +5,4 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-%w(everything technology craft home food play country costumes).each do |category|
-  Category.create(slug: category)
-end
+%w(everything technology craft home food play country costumes).each { |category| Category.create(slug: category) }

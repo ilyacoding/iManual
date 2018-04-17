@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i(show edit update destroy)
   load_and_authorize_resource
 
   def index
@@ -15,13 +15,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User updated.' }
+        format.html { redirect_to @user, notice: "User updated" }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -33,7 +32,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'User was successfully deleted.' }
+      format.html { redirect_to root_url, notice: "User was successfully deleted" }
       format.json { head :no_content }
     end
   end

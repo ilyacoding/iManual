@@ -22,6 +22,8 @@
 
 .DS_Store
 
+.rvmrc
+
 db/schema.rb
 
 Gemfile.lock

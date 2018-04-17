@@ -8,6 +8,6 @@ module StepsHelper
   end
 
   def ordered_blocks(step)
-    step.blocks.order('priority ASC')
+    step.blocks.order("priority ASC")
   end
 end
