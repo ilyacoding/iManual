@@ -2,7 +2,7 @@
 
 * Ruby version: 2.4.0
 
-* Rails version: 5.1
+* Rails version: 5.1.2
 
 * How to run:
   * bundle
