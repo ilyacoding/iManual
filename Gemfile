@@ -12,9 +12,9 @@ gem "rails", "~> 5.1.2"
 gem "mysql2", ">= 0.3.18", "< 0.5"
 gem "puma", "~> 3.7"
 gem "sass-rails", "~> 5.0"
+gem "therubyracer", platforms: :ruby
 gem "uglifier", ">= 1.3.0"
 gem "webpacker"
-gem "therubyracer", platforms: :ruby
 
 gem "coffee-rails", "~> 4.2"
 gem "jbuilder", "~> 2.5"
