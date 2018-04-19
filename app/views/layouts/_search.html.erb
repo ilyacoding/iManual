@@ -1,7 +1,7 @@
 <%= form_tag(searches_path, method: :get, class: "nav navbar-form navbar-right") do %>
-  <div class="form-group">
+  <div class="form-group flex-search-box">
     <%= text_field_tag :query, params[:query], class: "form-control" %>
     <input type="hidden" name="locale" value="<%= params[:locale] || I18n.default_locale %>">
-    <%= submit_tag(t('activerecord.controllers.search.button'), class: "btn btn-default form-control") %>
+    <%= submit_tag(t('activerecord.controllers.search.button'), class: "btn btn-default form-control flex-search-submit") %>
   </div>
 <% end %>

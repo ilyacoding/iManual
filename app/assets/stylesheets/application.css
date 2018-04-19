@@ -217,3 +217,12 @@ footer {
     position: fixed;
     z-index: 99;
 }
+
+.flex-search-box {
+  display: inline-flex;
+  width: 100%;
+}
+
+.flex-search-submit {
+  width: 68px !important;
+}
