@@ -4,7 +4,7 @@ class Manual < ApplicationRecord
   resourcify
 
   acts_as_taggable
-  ratyrate_rateable 'rating'
+  ratyrate_rateable "rating"
 
   search_scope :search do
     attributes :name, :created_at

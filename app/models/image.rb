@@ -1,2 +1,1 @@
-class Image < Block
-end
+class Image < Block; end

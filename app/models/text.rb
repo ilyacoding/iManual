@@ -1,2 +1,1 @@
-class Text < Block
-end
+class Text < Block; end
