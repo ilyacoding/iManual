@@ -42,7 +42,6 @@ class Ability
       can :create, Comment
       can :destroy, Comment, user_id: user.id
 
-      can :read, User
       can :update, User, id: user.id
       can :destroy, User, id: user.id
 

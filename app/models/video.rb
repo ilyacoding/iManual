@@ -1,2 +1,1 @@
-class Video < Block
-end
+class Video < Block; end
